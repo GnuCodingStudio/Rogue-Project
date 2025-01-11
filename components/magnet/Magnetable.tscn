@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjvrhwhkgvkpf"]
+
+[ext_resource type="Script" path="res://components/magnet/Magnetable.gd" id="1_ox1gr"]
+
+[node name="Magnetable" type="Node"]
+script = ExtResource("1_ox1gr")

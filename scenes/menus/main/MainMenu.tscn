@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpeyhi4f1jd78"]
+
+[ext_resource type="Theme" uid="uid://cwahu64hfgl1x" path="res://resources/theme/MenuTheme.tres" id="1_tjl38"]
+[ext_resource type="Script" path="res://scenes/menus/main/MainMenu.gd" id="2_jmfhq"]
+[ext_resource type="Material" uid="uid://dygopb8fee5xt" path="res://scenes/menus/MenuBackground.tres" id="3_ko0o6"]
+[ext_resource type="PackedScene" uid="uid://wdqk4jv113lg" path="res://components/uicontrols/UIContols.tscn" id="3_m362a"]
+[ext_resource type="PackedScene" uid="uid://bpk0axlikarbm" path="res://scenes/menus/ConfirmDialog.tscn" id="3_pus6v"]
+[ext_resource type="PackedScene" uid="uid://b1jimh7w0a3n7" path="res://scenes/console/GameConsole.tscn" id="5_ljn2o"]
+[ext_resource type="Script" path="res://scenes/console/command/Command.gd" id="7_2time"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1ilb"]
+
+[sub_resource type="GDScript" id="GDScript_b4ev4"]
+script/source = "extends Label
+
+
+func appear(time: float) -> void:
+	show()
+	await get_tree().create_timer(time).timeout
+	hide()
+"
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_tjl38")
+script = ExtResource("2_jmfhq")
+metadata/_edit_use_anchors_ = true
+
+[node name="UiContols" parent="." instance=ExtResource("3_m362a")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("3_ko0o6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.583954, 0, 0.695312, 1)
+
+[node name="GlobalMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Center" type="CenterContainer" parent="GlobalMargin"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="GlobalMargin/Center"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="GlobalMargin/Center/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"BigTitle"
+text = "GAME_NAME"
+
+[node name="SubTitle" type="Label" parent="GlobalMargin/Center/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"SubTitle"
+text = "GAME_TAGLINE"
+
+[node name="HSeparator" type="HSeparator" parent="GlobalMargin/Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 60
+theme_override_styles/separator = SubResource("StyleBoxEmpty_t1ilb")
+
+[node name="StartButton" type="Button" parent="GlobalMargin/Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../CreditsButton")
+focus_next = NodePath("../CreditsButton")
+focus_previous = NodePath("../QuitButton")
+text = "MAIN_START_BUTTON"
+
+[node name="CreditsButton" type="Button" parent="GlobalMargin/Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../StartButton")
+text = "MAIN_CREDITS_BUTTON"
+
+[node name="QuitButton" type="Button" parent="GlobalMargin/Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../CreditsButton")
+text = "MAIN_QUIT_BUTTON"
+
+[node name="TemplateFromGCS" type="Label" parent="GlobalMargin"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "A Gnu Coding Studio's template"
+script = SubResource("GDScript_b4ev4")
+
+[node name="QuitDialog" parent="." instance=ExtResource("3_pus6v")]
+unique_name_in_owner = true
+layout_mode = 1
+text = "QUIT_CONFIRM_TEXT"
+confirmButtonText = "QUIT_CONFIRM_BUTTON"
+cancelButtonText = "QUIT_CONFIRM_CANCEL"
+
+[node name="GameConsole" parent="." instance=ExtResource("5_ljn2o")]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_bottom = 300.0
+grow_vertical = 1
+auto_help = true
+
+[node name="easter-egg" type="Node" parent="GameConsole" node_paths=PackedStringArray("target")]
+script = ExtResource("7_2time")
+target = NodePath("../../GlobalMargin/TemplateFromGCS")
+function = "appear"
+help = "Show info about the template used to create this game."
+parameters = Array[String](["time:float:0.6"])
+
+[connection signal="pressed" from="GlobalMargin/Center/VBox/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/Center/VBox/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/Center/VBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="on_confirm" from="QuitDialog" to="." method="_on_quit_dialog_confirmed"]

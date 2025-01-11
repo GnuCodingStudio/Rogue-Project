@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://du0c1yciw8ul6"]
+
+[ext_resource type="Script" path="res://objects/actors/Actor.gd" id="1_78mof"]
+
+[node name="Actor" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_78mof")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]

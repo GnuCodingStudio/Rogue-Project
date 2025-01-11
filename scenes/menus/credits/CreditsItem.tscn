@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb1d5ajohbgpi"]
+
+[ext_resource type="Script" path="res://scenes/menus/credits/CreditsItem.gd" id="1_7036g"]
+
+[node name="CreditsItem" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 94.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("1_7036g")
+
+[node name="Title" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]toto[/b] par [b]toto[/b]
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="LinkButton" type="LinkButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "http://www.example.org"

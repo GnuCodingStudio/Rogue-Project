@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckdgdo4aq6h5l"]
+
+[ext_resource type="Script" path="res://scenes/console/command/Command.gd" id="1_lv3wi"]
+
+[node name="Command" type="Node"]
+script = ExtResource("1_lv3wi")

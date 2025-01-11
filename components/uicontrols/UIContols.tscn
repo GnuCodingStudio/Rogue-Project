@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wdqk4jv113lg"]
+
+[ext_resource type="Script" path="res://components/uicontrols/UIContols.gd" id="1_oy0o4"]
+
+[node name="UiContols" type="Node"]
+script = ExtResource("1_oy0o4")

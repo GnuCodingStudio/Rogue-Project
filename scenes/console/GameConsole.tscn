@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1jimh7w0a3n7"]
+
+[ext_resource type="Theme" uid="uid://cdovj1dkmbjh0" path="res://scenes/console/GameConsole.tres" id="1_glwp4"]
+[ext_resource type="Script" path="res://scenes/console/GameConsole.gd" id="1_uld6j"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ox4yg"]
+device = -1
+keycode = 4194310
+
+[sub_resource type="Shortcut" id="Shortcut_tfrcl"]
+events = [SubResource("InputEventKey_ox4yg")]
+
+[node name="GameConsole" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_glwp4")
+script = ExtResource("1_uld6j")
+
+[node name="GlobalMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GlobalMargin"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GlobalMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Log" type="RichTextLabel" parent="GlobalMargin/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+selection_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GlobalMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Input" type="LineEdit" parent="GlobalMargin/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../Button")
+focus_next = NodePath("../Button")
+focus_previous = NodePath("../Button")
+placeholder_text = "CONSOLE_INPUT_PLACEHOLDER"
+
+[node name="Button" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Input")
+focus_next = NodePath("../Input")
+focus_previous = NodePath("../Input")
+shortcut = SubResource("Shortcut_tfrcl")
+text = "CONSOLE_INPUT_SUBMIT"
+
+[connection signal="text_submitted" from="GlobalMargin/VBoxContainer/HBoxContainer/Input" to="." method="_on_command_submitted"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/Button" to="." method="_on_submit_pressed"]

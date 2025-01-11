@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxlkjx4h6gv5h"]
+
+[ext_resource type="Script" path="res://components/collector/Collector.gd" id="1_5vi4i"]
+[ext_resource type="AudioStream" uid="uid://cn52p163j8i7c" path="res://assets/audio/collect.wav" id="2_0gp38"]
+
+[node name="Collector" type="Area2D"]
+script = ExtResource("1_5vi4i")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_0gp38")
+volume_db = -15.0
+bus = &"SFX"
