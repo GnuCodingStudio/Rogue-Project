@@ -8,12 +8,11 @@ assignees: olivierperez
 ---
 # **📚 Documentation Issue Report**
 
-## **Describe the bug**
+## **📝 Describe the bug**
 <!-- A clear and concise description of what the bug is. -->
 
 *
 
----
 
 ### **To Reproduce**
 
@@ -31,24 +30,22 @@ assignees: olivierperez
 3.
 4.
 
----
 
 ### **Media prove**
 <!-- If applicable, add screenshots or videos to help explain your problem. -->
 
----
 
-## **Describe the solution you'd like**
+## **📝 Describe the solution**
 <!-- A clear and concise description of what you want to happen. -->
 
 *
 
----
 
-### **Additional context**
+## **💡 Additional context**
 <!-- Add any other context or additional information about the problem here.-->
 
 *
+
 
 <!--📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛📛
 
