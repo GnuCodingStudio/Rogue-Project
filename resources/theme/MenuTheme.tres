@@ -1,6 +1,10 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://cwahu64hfgl1x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axijr"]
+content_margin_left = 30.0
+content_margin_top = 2.0
+content_margin_right = 30.0
+content_margin_bottom = 2.0
 bg_color = Color(0, 0, 0, 0.313726)
 border_width_left = 4
 border_width_top = 4
@@ -12,6 +16,10 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0ubr"]
+content_margin_left = 30.0
+content_margin_top = 2.0
+content_margin_right = 30.0
+content_margin_bottom = 2.0
 bg_color = Color(0.564706, 0.00392157, 0.968627, 0.643137)
 skew = Vector2(0.07, 0)
 border_width_left = 4
@@ -23,12 +31,12 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 30.0
-expand_margin_top = 2.0
-expand_margin_right = 30.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efog0"]
+content_margin_left = 30.0
+content_margin_top = 2.0
+content_margin_right = 30.0
+content_margin_bottom = 2.0
 bg_color = Color(0.564706, 0.00392157, 0.968627, 0.513726)
 skew = Vector2(0.08, 2.08165e-12)
 border_width_left = 4
@@ -40,12 +48,12 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 30.0
-expand_margin_top = 2.0
-expand_margin_right = 30.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inqva"]
+content_margin_left = 30.0
+content_margin_top = 2.0
+content_margin_right = 30.0
+content_margin_bottom = 2.0
 bg_color = Color(0, 0, 0, 0)
 border_width_left = 4
 border_width_top = 4
@@ -56,12 +64,12 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 30.0
-expand_margin_top = 2.0
-expand_margin_right = 30.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bn2ea"]
+content_margin_left = 30.0
+content_margin_top = 2.0
+content_margin_right = 30.0
+content_margin_bottom = 2.0
 bg_color = Color(0.564706, 0.00392157, 0.968627, 0.490196)
 skew = Vector2(0.07, 0)
 border_width_left = 4
@@ -73,10 +81,6 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 30.0
-expand_margin_top = 2.0
-expand_margin_right = 30.0
-expand_margin_bottom = 2.0
 
 [resource]
 default_font_size = 32
