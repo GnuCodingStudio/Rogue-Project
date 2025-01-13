@@ -133,9 +133,12 @@ cancelButtonText = "QUIT_CONFIRM_CANCEL"
 [node name="GlobalGameConsole" parent="." instance=ExtResource("7_gv0xi")]
 visible = false
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 layout_mode = 1
 >>>>>>> 905b5e4 (feat(console): make the open-debug-level command triggerable from everywhere)
+=======
+>>>>>>> d329ac2 (feat(debug): add game console to debug level)
 
 [node name="easter-egg" type="Node" parent="GlobalGameConsole" node_paths=PackedStringArray("target")]
 script = ExtResource("7_2time")
