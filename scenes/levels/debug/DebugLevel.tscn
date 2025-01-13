@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://mnloru3er2fc"]
+
+[ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="1_t7e46"]
+[ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="2_md0ag"]
+
+[node name="DebugLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_t7e46")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="GlobalGameConsole" parent="." instance=ExtResource("2_md0ag")]
+visible = false

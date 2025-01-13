@@ -5,11 +5,13 @@
 [ext_resource type="Script" path="res://scenes/console/command/Command.gd" id="2_1lefe"]
 
 [node name="GlobalGameConsole" instance=ExtResource("1_hnrpg")]
+script = ExtResource("2_0qxq1")
+
+[node name="Panel" parent="." index="0"]
 anchors_preset = 10
 anchor_bottom = 0.0
 offset_bottom = 300.0
 grow_vertical = 1
-script = ExtResource("2_0qxq1")
 
 [node name="debug-level" type="Node" parent="." index="1" node_paths=PackedStringArray("target")]
 script = ExtResource("2_1lefe")
