@@ -5,15 +5,24 @@
 [ext_resource type="Script" path="res://scenes/console/command/Command.gd" id="2_1lefe"]
 
 [node name="GlobalGameConsole" instance=ExtResource("1_hnrpg")]
+<<<<<<< HEAD
 script = ExtResource("2_0qxq1")
 
 [node name="Panel" parent="." index="0"]
+=======
+>>>>>>> 905b5e4 (feat(console): make the open-debug-level command triggerable from everywhere)
 anchors_preset = 10
 anchor_bottom = 0.0
 offset_bottom = 300.0
 grow_vertical = 1
+<<<<<<< HEAD
 
 [node name="debug-level" type="Node" parent="." index="1" node_paths=PackedStringArray("target")]
+=======
+script = ExtResource("2_0qxq1")
+
+[node name="open-debug-level" type="Node" parent="." index="1" node_paths=PackedStringArray("target")]
+>>>>>>> 905b5e4 (feat(console): make the open-debug-level command triggerable from everywhere)
 script = ExtResource("2_1lefe")
 target = NodePath("..")
 function = "_open_debug_level"
