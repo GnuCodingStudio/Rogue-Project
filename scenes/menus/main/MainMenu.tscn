@@ -5,8 +5,8 @@
 [ext_resource type="Material" uid="uid://dygopb8fee5xt" path="res://scenes/menus/MenuBackground.tres" id="3_ko0o6"]
 [ext_resource type="PackedScene" uid="uid://wdqk4jv113lg" path="res://components/uicontrols/UIContols.tscn" id="3_m362a"]
 [ext_resource type="PackedScene" uid="uid://bpk0axlikarbm" path="res://scenes/menus/ConfirmDialog.tscn" id="3_pus6v"]
-[ext_resource type="PackedScene" uid="uid://b1jimh7w0a3n7" path="res://scenes/console/GameConsole.tscn" id="5_ljn2o"]
 [ext_resource type="Script" path="res://scenes/console/command/Command.gd" id="7_2time"]
+[ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="7_gv0xi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1ilb"]
 
@@ -130,16 +130,10 @@ text = "QUIT_CONFIRM_TEXT"
 confirmButtonText = "QUIT_CONFIRM_BUTTON"
 cancelButtonText = "QUIT_CONFIRM_CANCEL"
 
-[node name="GameConsole" parent="." instance=ExtResource("5_ljn2o")]
+[node name="GlobalGameConsole" parent="." instance=ExtResource("7_gv0xi")]
 visible = false
-layout_mode = 1
-anchors_preset = 10
-anchor_bottom = 0.0
-offset_bottom = 300.0
-grow_vertical = 1
-auto_help = true
 
-[node name="easter-egg" type="Node" parent="GameConsole" node_paths=PackedStringArray("target")]
+[node name="easter-egg" type="Node" parent="GlobalGameConsole" node_paths=PackedStringArray("target")]
 script = ExtResource("7_2time")
 target = NodePath("../../GlobalMargin/TemplateFromGCS")
 function = "appear"
