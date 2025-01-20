@@ -2,7 +2,7 @@
   <br/><br/>
   <!-- <img src="./path/to/icon.png" width="215" /> -->
   <br/><br/>
-  
+
   # Game Name
 
 ![GitHub release](https://img.shields.io/github/v/release/{user-name}/{repository-name}?include_prereleases)

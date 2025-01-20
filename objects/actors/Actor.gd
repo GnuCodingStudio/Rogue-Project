@@ -40,7 +40,7 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	move_and_collide(moving_direction * speed * delta)
+	move_and_collide(moving_direction.normalized() * speed * delta)
 
 
 func _direction_name() -> String:
