@@ -64,7 +64,7 @@ Contains scenes like levels and menus.
 ### Scenes/Console
 
 The `GameConsole` is a UI for developers which allows to enter commands for debugging.
-By default, on an AZERTY it opens when typing the "²" key.
+By default, on an AZERTY it opens when typing the "²" key or "#".
 
 To add it to a scene, add the `GameConsole` to it, and add `Command` children nodes.
 Every `Command` nodes have to be configured to **target** an existing node of the scene,
