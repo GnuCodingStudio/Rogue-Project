@@ -18,8 +18,9 @@ func _ready():
 	$Camera2D.make_current()
 		
 	# display the ID for each player : OS name or Player name
-	if GlobalVariables.player_name == "Player" and OS.has_environment("USERNAME"):
-		player_name.text = OS.get_environment("USERNAME")
+	if GlobalVariables.player_name == null:
+		#USERNAME for Windows, USER for others
+		player_name.text = OS.get_environment("USER")
 	else: 
 		player_name.text = GlobalVariables.player_name
 

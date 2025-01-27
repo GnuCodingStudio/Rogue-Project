@@ -1,3 +1,4 @@
 extends Node
 
-var server_is_loaded = false
+var player_name
+var server_ip = "localhost"
