@@ -6,11 +6,8 @@
 
 [node name="GlobalGameConsole" instance=ExtResource("1_hnrpg")]
 script = ExtResource("2_0qxq1")
-<<<<<<< HEAD
-=======
 
 [node name="Panel" parent="." index="0"]
->>>>>>> d329ac2 (feat(debug): add game console to debug level)
 anchors_preset = 10
 anchor_bottom = 0.0
 offset_bottom = 300.0

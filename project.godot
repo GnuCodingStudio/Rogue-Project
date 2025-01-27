@@ -93,6 +93,11 @@ action_collect={
 
 locale/translations=PackedStringArray("res://resources/localization/MenuTranslations.en.translation", "res://resources/localization/MenuTranslations.fr.translation")
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="mob"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

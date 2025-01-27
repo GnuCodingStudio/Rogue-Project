@@ -7,5 +7,7 @@ gravity_scale = 0.0
 script = ExtResource("1_78mof")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true

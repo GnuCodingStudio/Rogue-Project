@@ -159,18 +159,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pm4dl"]
-size = Vector2(28, 28)
+[sub_resource type="CircleShape2D" id="CircleShape2D_rqsaa"]
+radius = 32.0
 
 [node name="Player" instance=ExtResource("1_wrkhm")]
+collision_mask = 3
 script = ExtResource("2_bhjnv")
 
 [node name="AnimatedSprite" parent="." index="0"]
-unique_name_in_owner = true
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_67jtf")
 animation = &"IdleLeft"
 
 [node name="CollisionShape" parent="." index="1"]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_pm4dl")
+shape = SubResource("CircleShape2D_rqsaa")
