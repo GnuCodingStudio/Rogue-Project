@@ -1,5 +1,5 @@
 class_name GameConsole
-extends PanelContainer
+extends CanvasLayer
 
 ## Generate help command automatically.
 @export var auto_help: bool

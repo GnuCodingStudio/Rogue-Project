@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cetwdxtei7a5n"]
+
+[ext_resource type="PackedScene" uid="uid://b1jimh7w0a3n7" path="res://scenes/console/GameConsole.tscn" id="1_hnrpg"]
+[ext_resource type="Script" path="res://scenes/console/GlobalGameConsole.gd" id="2_0qxq1"]
+[ext_resource type="Script" path="res://scenes/console/command/Command.gd" id="2_1lefe"]
+
+[node name="GlobalGameConsole" instance=ExtResource("1_hnrpg")]
+script = ExtResource("2_0qxq1")
+
+[node name="Panel" parent="." index="0"]
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_bottom = 300.0
+grow_vertical = 1
+
+[node name="debug-level" type="Node" parent="." index="1" node_paths=PackedStringArray("target")]
+script = ExtResource("2_1lefe")
+target = NodePath("..")
+function = "_open_debug_level"
