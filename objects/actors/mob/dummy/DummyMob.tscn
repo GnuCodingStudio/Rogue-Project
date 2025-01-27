@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://riml2gwgt1rh"]
+[gd_scene load_steps=16 format=3 uid="uid://riml2gwgt1rh"]
 
 [ext_resource type="PackedScene" uid="uid://b3y0j0iqfou0u" path="res://objects/actors/mob/Mob.tscn" id="1_v6bs4"]
 [ext_resource type="Texture2D" uid="uid://cnwmhohk8wm23" path="res://objects/actors/player/Player.png" id="2_pp2c0"]
-[ext_resource type="PackedScene" uid="uid://brjpcb7460j1d" path="res://components/behaviour/NearestPlayerTargetingBehaviour.tscn" id="3_45raj"]
+[ext_resource type="PackedScene" uid="uid://brjpcb7460j1d" path="res://components/behaviour/targeting/NearestPlayerTargetingBehaviour.tscn" id="3_45raj"]
+[ext_resource type="PackedScene" uid="uid://6123kykyglg8" path="res://components/behaviour/movement/RunToPlayerMovementBehavior.tscn" id="4_04pgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lo326"]
 atlas = ExtResource("2_pp2c0")
@@ -124,3 +125,5 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NearestPlayerTargetingBehaviour" index="0"]
 shape = SubResource("CircleShape2D_mh0q8")
 debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="RunToPlayerMovementBehavior" parent="." index="3" instance=ExtResource("4_04pgy")]

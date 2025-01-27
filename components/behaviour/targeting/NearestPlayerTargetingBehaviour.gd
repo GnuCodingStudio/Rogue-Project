@@ -2,19 +2,20 @@ class_name NearestPlayerTargetingBehaviour
 extends Area2D
 
 
-var _actor: Actor
+var _mob: Mob
+
 
 func _ready() -> void:
-	assert(get_parent() is Actor)
-	_actor = get_parent()
+	assert(get_parent() is Mob)
+	_mob = get_parent()
 
 
 func _process(delta: float) -> void:
 	var targeted_player = _find_nearest_player()
 	if targeted_player:
-		_actor.moving_direction = targeted_player.global_position - global_position
+		_mob.targeted_players = [targeted_player]
 	else:
-		_actor.moving_direction = Vector2.ZERO
+		_mob.targeted_players = []
 
 
 func _find_nearest_player() -> Player:
