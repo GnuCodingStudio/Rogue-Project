@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if _mob.targeted_players.size() > 0:
+	if not _mob.targeted_players.is_empty():
 		_mob.moving_direction = _mob.targeted_players[0].global_position - _mob.global_position
 	else:
 		_mob.moving_direction = Vector2.ZERO

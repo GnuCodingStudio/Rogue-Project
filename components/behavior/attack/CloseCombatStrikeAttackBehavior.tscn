@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3gepyhwfd2ue"]
 
-[ext_resource type="Script" path="res://components/behaviour/attack/CloseCombatStrikeAttackBehavior.gd" id="1_3tiha"]
+[ext_resource type="Script" path="res://components/behavior/attack/CloseCombatStrikeAttackBehavior.gd" id="1_3tiha"]
 
 [node name="CloseCombatStrikeAttackBehavior" type="Area2D"]
 script = ExtResource("1_3tiha")

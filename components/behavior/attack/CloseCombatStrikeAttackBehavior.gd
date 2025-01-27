@@ -17,8 +17,8 @@ func _ready() -> void:
 
 
 func _on_attack_timer_timeout() -> void:
-	if _mob.targeted_players.is_empty(): return
-	_attack()
+	if not _mob.targeted_players.is_empty():
+		_attack()
 
 
 func _attack() -> void:
@@ -35,7 +35,5 @@ func _attack() -> void:
 
 func _play_attack_animation() -> void:
 	if attack_animation:
-		var new_rot = attack_animation.global_position.angle_to_point(_mob.targeted_players[0].global_position)
-		prints("new_rot", new_rot)
-		attack_animation.global_rotation = new_rot
+		attack_animation.global_rotation = attack_animation.global_position.angle_to_point(_mob.targeted_players[0].global_position)
 		attack_animation.play("attack")
