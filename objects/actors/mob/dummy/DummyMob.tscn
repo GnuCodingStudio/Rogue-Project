@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://riml2gwgt1rh"]
+[gd_scene load_steps=25 format=3 uid="uid://riml2gwgt1rh"]
 
 [ext_resource type="PackedScene" uid="uid://b3y0j0iqfou0u" path="res://objects/actors/mob/Mob.tscn" id="1_v6bs4"]
 [ext_resource type="Texture2D" uid="uid://cnwmhohk8wm23" path="res://objects/actors/player/Player.png" id="2_pp2c0"]
 [ext_resource type="PackedScene" uid="uid://brjpcb7460j1d" path="res://components/behaviour/targeting/NearestPlayerTargetingBehaviour.tscn" id="3_45raj"]
 [ext_resource type="PackedScene" uid="uid://6123kykyglg8" path="res://components/behaviour/movement/RunToPlayerMovementBehavior.tscn" id="4_04pgy"]
 [ext_resource type="PackedScene" uid="uid://b3gepyhwfd2ue" path="res://components/behaviour/attack/CloseCombatStrikeAttackBehavior.tscn" id="5_n154y"]
+[ext_resource type="Texture2D" uid="uid://r0w487am0e0a" path="res://assets/image/attack/CloseCombarStrike01.png" id="6_bx5f8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lo326"]
 atlas = ExtResource("2_pp2c0")
@@ -114,6 +115,63 @@ radius = 431.167
 [sub_resource type="CircleShape2D" id="CircleShape2D_vj8hx"]
 radius = 64.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk1xh"]
+atlas = ExtResource("6_bx5f8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvlao"]
+atlas = ExtResource("6_bx5f8")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yu4u"]
+atlas = ExtResource("6_bx5f8")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vscos"]
+atlas = ExtResource("6_bx5f8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmmhm"]
+atlas = ExtResource("6_bx5f8")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7icsa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk1xh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvlao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yu4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vscos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk1xh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvlao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yu4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmmhm")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 20.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="DummyMob" instance=ExtResource("1_v6bs4")]
 
 [node name="AnimatedSprite" parent="." index="0"]
@@ -132,8 +190,12 @@ debug_color = Color(0, 1, 0, 0.419608)
 
 [node name="RunToPlayerMovementBehavior" parent="." index="3" instance=ExtResource("4_04pgy")]
 
-[node name="CloseCombatStrikeAttackBehavior" parent="." index="4" instance=ExtResource("5_n154y")]
+[node name="CloseCombatStrikeAttackBehavior" parent="." index="4" node_paths=PackedStringArray("attack_animation") instance=ExtResource("5_n154y")]
+attack_animation = NodePath("AttackAnimatation")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CloseCombatStrikeAttackBehavior" index="1"]
 shape = SubResource("CircleShape2D_vj8hx")
 debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="AttackAnimatation" type="AnimatedSprite2D" parent="CloseCombatStrikeAttackBehavior" index="2"]
+sprite_frames = SubResource("SpriteFrames_7icsa")

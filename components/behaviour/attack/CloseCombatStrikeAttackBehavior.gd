@@ -3,6 +3,7 @@ extends Area2D
 
 
 @export var force: int = 10
+@export var attack_animation: AnimatedSprite2D
 
 @onready var attack_timer: Timer = %AttackTimer
 
@@ -17,8 +18,24 @@ func _ready() -> void:
 
 func _on_attack_timer_timeout() -> void:
 	if _mob.targeted_players.is_empty(): return
+	_attack()
 
+
+func _attack() -> void:
+	var has_attacked := false
 	var attackable_players = get_overlapping_bodies().filter(func(b):return b is Player)
 	for targeted_player in _mob.targeted_players:
 		if targeted_player in attackable_players:
 			targeted_player.apply_attack(force)
+			has_attacked = true
+
+	if has_attacked:
+		_play_attack_animation()
+
+
+func _play_attack_animation() -> void:
+	if attack_animation:
+		var new_rot = attack_animation.global_position.angle_to_point(_mob.targeted_players[0].global_position)
+		prints("new_rot", new_rot)
+		attack_animation.global_rotation = new_rot
+		attack_animation.play("attack")
