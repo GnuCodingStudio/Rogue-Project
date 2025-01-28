@@ -49,7 +49,7 @@ func _direction_name() -> String:
 		Vector2.DOWN: return "Down"
 		Vector2.LEFT: return "Left"
 		Vector2.RIGHT: return "Right"
-		_: return "Down"
+		_: return ""
 
 
 func _update_animation():
