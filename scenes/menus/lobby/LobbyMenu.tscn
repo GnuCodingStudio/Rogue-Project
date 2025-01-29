@@ -2,77 +2,100 @@
 
 [ext_resource type="Script" path="res://scenes/menus/lobby/LobbyMenu.gd" id="1_nldd5"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("hostButton", "joinButton", "startButton")]
-layout_mode = 3
+[node name="Control" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 30
 script = ExtResource("1_nldd5")
-hostButton = NodePath("Host")
-joinButton = NodePath("Join")
-startButton = NodePath("StartGame")
+metadata/_edit_use_anchors_ = true
 
-[node name="Host" type="Button" parent="."]
-layout_mode = 0
-offset_left = 604.0
-offset_top = 229.0
-offset_right = 1114.0
-offset_bottom = 321.0
-text = "Host the game"
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "LOBBY"
+horizontal_alignment = 1
 
-[node name="Join" type="Button" parent="."]
-layout_mode = 0
-offset_left = 819.0
-offset_top = 415.0
-offset_right = 996.0
-offset_bottom = 507.0
-text = "Join"
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
 
-[node name="PlayerNameEdit" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 196.0
-offset_top = 253.0
-offset_right = 548.0
-offset_bottom = 306.0
+[node name="PlayerName" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player Name"
+horizontal_alignment = 1
 
-[node name="PlayerName" type="Label" parent="."]
-layout_mode = 0
-offset_left = 69.0
-offset_top = 254.0
-offset_right = 162.0
-offset_bottom = 299.0
-text = "Name"
+[node name="PlayerNameEdit" type="LineEdit" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="ServerIP" type="Label" parent="."]
-layout_mode = 0
-offset_left = 71.0
-offset_top = 440.0
-offset_right = 348.0
-offset_bottom = 485.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="Host" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+disabled = true
+text = "Create Lobby"
+
+[node name="Join" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+disabled = true
+text = "Join Lobby"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 2
+
+[node name="ServerIP" type="Label" parent="HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Adresse du server"
 
-[node name="ServerNameEdit" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 386.0
-offset_top = 438.0
-offset_right = 738.0
-offset_bottom = 491.0
+[node name="ServerNameEdit" type="LineEdit" parent="HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 3
 text = "localhost"
 placeholder_text = "default : localhost"
 
+[node name="Player connected" type="Label" parent="."]
+layout_mode = 2
+text = "Player connectés"
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 2
+auto_height = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+bbcode_enabled = true
+scroll_following = true
+
 [node name="StartGame" type="Button" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 448.0
-offset_top = 629.0
-offset_right = 857.0
-offset_bottom = 721.0
+layout_mode = 2
+disabled = true
 text = "Start Game"
 
-[connection signal="pressed" from="Host" to="." method="_create_server"]
-[connection signal="pressed" from="Join" to="." method="_join_server"]
-[connection signal="text_changed" from="PlayerNameEdit" to="." method="_on_player_name_edit_text_changed"]
-[connection signal="text_changed" from="ServerNameEdit" to="." method="_on_server_name_edit_text_changed"]
-[connection signal="pressed" from="StartGame" to="." method="_on_start_game"]
+[connection signal="text_changed" from="HBoxContainer3/PlayerNameEdit" to="." method="_on_player_name_edit_text_changed"]
+[connection signal="pressed" from="HBoxContainer/Host" to="." method="_create_server"]
+[connection signal="pressed" from="HBoxContainer/Join" to="." method="_join_server"]
+[connection signal="text_changed" from="HBoxContainer2/VBoxContainer/ServerNameEdit" to="." method="_on_server_name_edit_text_changed"]
+[connection signal="pressed" from="StartGame" to="." method="_start_the_game"]
