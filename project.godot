@@ -21,6 +21,7 @@ ProgressionService="*res://services/save/ProgressionService.gd"
 UiAudio="*res://components/uicontrols/UIAudio.gd"
 SceneTransition="*res://services/transition/SceneTransition.tscn"
 GlobalVariables="*res://global_variables.gd"
+PlayersManager="*res://scenes/menus/lobby/PlayersManager.gd"
 
 [debug]
 
