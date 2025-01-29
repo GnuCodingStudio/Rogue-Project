@@ -10,6 +10,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite = $AnimatedSprite
 @onready var player_name = $PlayerName
 
+# Properties
+@export var id: int = -1  # Default to -1 for uninitialized players
+@export var pseudo: String = ""  # Default to an empty name
+
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
@@ -18,11 +22,11 @@ func _ready():
 	$Camera2D.make_current()
 		
 	# display the ID for each player : OS name or Player name
-	if GlobalVariables.player_name == null:
+	if player_name == null or player_name.text=="":
 		#USERNAME for Windows, USER for others
 		player_name.text = OS.get_environment("USER")
 	else: 
-		player_name.text = GlobalVariables.player_name
+		player_name.text = name
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
