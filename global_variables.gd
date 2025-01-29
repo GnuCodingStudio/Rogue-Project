@@ -1,4 +1,3 @@
 extends Node
 
-var player_name
-var server_ip = "localhost"
+const SERVER_PORT = 9999
