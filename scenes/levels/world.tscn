@@ -1,8 +1,48 @@
-[gd_scene load_steps=31 format=4 uid="uid://d85f22juvq4b"]
+[gd_scene load_steps=31 format=4 uid="uid://rwihevdgp7q2"]
 
-[ext_resource type="Texture2D" uid="uid://cmdhhpqq8txdf" path="res://assets/image/Maps/kenney_pixel-platformer/Tilemap/tilemap.png" id="1_jmu3c"]
-[ext_resource type="Script" path="res://scenes/levels/world.gd" id="1_x4yki"]
-[ext_resource type="Texture2D" uid="uid://chck41lsrtig7" path="res://assets/image/Maps/kenney_pixel-platformer/atlas.png" id="4_chfm7"]
+[sub_resource type="GDScript" id="GDScript_jjj60"]
+script/source = "extends Node
+
+var _players_spawn_node
+
+func _unhandled_input(event):
+	if Input.is_action_just_pressed(\"exit\"):
+		var peer_id = multiplayer.get_unique_id()
+		remove_player(peer_id)
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
+		SceneTransition.change_scene(\"res://scenes/menus/lobby/LobbyMenu.tscn\")
+		
+func _ready() -> void:
+	if not multiplayer.is_server(): return
+	load_server_for_host()
+		
+func load_server_for_host():
+	print(\"Host load the server\")
+	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
+	_players_spawn_node = get_tree().get_current_scene().get_node(\"PlayerSpawnPoint\")
+	add_player(multiplayer.get_unique_id())
+
+func add_player(peer_id):
+	print(\"Player %s join the game\", peer_id)
+	var player_scene = preload(\"res://objects/actors/rogue-player/rogue-player.tscn\")
+	var player = player_scene.instantiate()
+	player.name = str(peer_id)
+	_players_spawn_node.add_child(player, true)
+#
+func remove_player(peer_id):
+	print(\"Player %s left the game!\" % peer_id)
+	if not _players_spawn_node.has_node(str(peer_id)):
+		return
+	_players_spawn_node.get_node(str(peer_id)).queue_free()
+	
+func _exit_tree():
+	if not multiplayer.is_server():
+		return
+	multiplayer.peer_connected.disconnect(add_player)
+	multiplayer.peer_disconnected.disconnect(remove_player)
+"
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_uj1vh"]
 tile_data = PackedInt32Array(0, 852330, 6, 1, 852330, 6, 2, 852330, 6, 3, 852330, 6, 4, 852330, 6, 5, 852330, 6, 6, 852330, 6, 7, 852330, 6, 8, 852330, 6, 9, 852330, 6, 10, 852330, 6, 11, 852330, 805306373, 65547, 852330, 1610612742, 131083, 852330, 1610612742, 196619, 852330, 1610612742, 262155, 852330, 5, 262156, 852330, 6, 262157, 852330, 6, 262158, 852330, 6, 262159, 852330, 6, 262160, 852330, 6, 262161, 852330, 6, 262162, 852330, 6)
@@ -238,8 +278,11 @@ _bundled = {
 resource_name = "Coin"
 scenes/1/scene = SubResource("PackedScene_dfuyu")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r8dm8"]
+load_path = "res://.godot/imported/tilemap.png-c2b66cec4a3bcb363187970be71a5a13.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gk3lt"]
-texture = ExtResource("1_jmu3c")
+texture = SubResource("CompressedTexture2D_r8dm8")
 separation = Vector2i(1, 1)
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
@@ -423,8 +466,11 @@ texture_region_size = Vector2i(18, 18)
 18:8/0 = 0
 19:8/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kb0tx"]
+load_path = "res://.godot/imported/atlas.png-d8fbff54133cc8d82741c24743d36d7a.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rh72i"]
-texture = ExtResource("4_chfm7")
+texture = SubResource("CompressedTexture2D_kb0tx")
 texture_region_size = Vector2i(18, 18)
 0:0/animation_speed = 2.0
 0:0/animation_frame_0/duration = 1.0
@@ -834,7 +880,7 @@ pattern_0 = SubResource("TileMapPattern_uj1vh")
 pattern_1 = SubResource("TileMapPattern_rq5ki")
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_x4yki")
+script = SubResource("GDScript_jjj60")
 
 [node name="Map" type="TileMapLayer" parent="."]
 position = Vector2(-68, 0)

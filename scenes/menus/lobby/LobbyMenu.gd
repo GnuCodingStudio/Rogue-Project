@@ -42,7 +42,9 @@ func _start_the_game():
 	
 @rpc("any_peer", "call_local")	
 func StartGame():
-	get_tree().change_scene_to_file("res://scenes/levels/world.tscn")
+	#Play the game
+	_log_to_ui("Play the game ! ")
+	
 
 ## Signals
 func _on_peer_connected(id):
@@ -93,7 +95,6 @@ func get_player_name(pos):
 ## Controls lobby
 func check_start_game():
 	if PlayersManager.players.size() > 1:
-		print("show start button")
 		startButton.disabled = false
 		startButton.visible = true
 	else:
