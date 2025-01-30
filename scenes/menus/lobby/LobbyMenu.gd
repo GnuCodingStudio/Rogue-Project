@@ -45,7 +45,6 @@ func StartGame():
 	#Play the game
 	_log_to_ui("Play the game ! ")
 	
-
 ## Signals
 func _on_peer_connected(id):
 	if not multiplayer.is_server():
@@ -81,7 +80,8 @@ func set_player_name(_name):
 	var sender = multiplayer.get_remote_sender_id()
 	rpc("update_player_name", sender, _name)
 	
-@rpc("any_peer", "call_local") func update_player_name(player, _name):
+@rpc("any_peer", "call_local") 
+func update_player_name(player, _name):
 	var pos = PlayersManager.players.find(player)
 	if pos != -1:
 		player_list.set_item_text(pos, _name)
@@ -110,14 +110,16 @@ func check_player_name():
 		joinButton.disabled = true
 
 ## Manage list of players
-@rpc("any_peer", "call_local") func add_player(id, _name=""):
+@rpc("any_peer", "call_local") 
+func add_player(id, _name=""):
 	PlayersManager.players.append(id)
 	if _name == "" or _name.is_empty():
 		player_list.add_item("Player", null, false)
 	else:
 		player_list.add_item(_name, null, false)
 		
-@rpc("any_peer", "call_local") func del_player(id):
+@rpc("any_peer", "call_local") 
+func del_player(id):
 	var pos = PlayersManager.players.find(id)
 	if pos == -1:
 		return
