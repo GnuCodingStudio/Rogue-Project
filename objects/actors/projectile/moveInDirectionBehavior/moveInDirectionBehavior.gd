@@ -1,18 +1,19 @@
 extends Node
 
-var _projectile: Projectile
+var _projectile: Attack
 
 func _ready() -> void:
-	assert(get_parent() is Projectile)
+	assert(get_parent() is Attack)
 	_projectile = get_parent()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if _projectile.targeted_direction != Vector2.ZERO:
-		_projectile.moving_direction = _projectile.targeted_direction.normalized()
 		
-		_projectile.distance_traveled += _projectile.moving_direction.length()
+		var movement = _projectile.targeted_direction.normalized() * delta * 400
+		_projectile.position += movement
+		_projectile.distance_traveled += movement.length()
 		
-		if _projectile.distance_traveled >= _projectile.max_range:
+		if _projectile.distance_traveled >= _projectile.range:
 			_projectile.queue_free()
