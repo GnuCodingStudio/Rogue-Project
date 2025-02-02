@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://du0c1yciw8ul6"]
+[gd_scene load_steps=3 format=3 uid="uid://du0c1yciw8ul6"]
 
 [ext_resource type="Script" path="res://objects/actors/Actor.gd" id="1_78mof"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4exr"]
 
 [node name="Actor" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -11,3 +13,9 @@ unique_name_in_owner = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
+
+[node name="FacingDebug" type="Node2D" parent="."]
+position = Vector2(11, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FacingDebug"]
+shape = SubResource("CircleShape2D_c4exr")
