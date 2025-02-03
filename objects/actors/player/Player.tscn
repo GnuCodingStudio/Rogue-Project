@@ -166,7 +166,7 @@ radius = 32.0
 [node name="Player" instance=ExtResource("1_wrkhm")]
 collision_mask = 3
 script = ExtResource("2_bhjnv")
-current_weapon = ExtResource("3_j6x8n")
+weapon = ExtResource("3_j6x8n")
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_67jtf")
@@ -174,3 +174,7 @@ animation = &"IdleLeft"
 
 [node name="CollisionShape" parent="." index="1"]
 shape = SubResource("CircleShape2D_rqsaa")
+
+[node name="AttackTimer" type="Timer" parent="." index="2"]
+unique_name_in_owner = true
+one_shot = true

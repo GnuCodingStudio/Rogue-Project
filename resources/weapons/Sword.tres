@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_7kwh5")
 name = "Weapon"
-damage = 1.0
-attack_speed = 1.0
 type = 0
+attack_damage = 1.0
+attack_range = 150.0
+attack_speed = 1.0
+attack_offset = 0.0

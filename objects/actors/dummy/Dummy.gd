@@ -1,6 +1,8 @@
 extends Actor
 class_name Mob
 
+var testing: String = "salut"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
