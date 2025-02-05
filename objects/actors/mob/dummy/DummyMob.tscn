@@ -191,11 +191,11 @@ debug_color = Color(0, 1, 0, 0.419608)
 [node name="RunToPlayerMovementBehavior" parent="." index="3" instance=ExtResource("4_04pgy")]
 
 [node name="CloseCombatStrikeAttackBehavior" parent="." index="4" node_paths=PackedStringArray("attack_animation") instance=ExtResource("5_n154y")]
-attack_animation = NodePath("AttackAnimatation")
+attack_animation = NodePath("AttackAnimation")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CloseCombatStrikeAttackBehavior" index="1"]
 shape = SubResource("CircleShape2D_vj8hx")
 debug_color = Color(1, 0, 0, 0.419608)
 
-[node name="AttackAnimatation" type="AnimatedSprite2D" parent="CloseCombatStrikeAttackBehavior" index="2"]
+[node name="AttackAnimation" type="AnimatedSprite2D" parent="CloseCombatStrikeAttackBehavior" index="2"]
 sprite_frames = SubResource("SpriteFrames_7icsa")
