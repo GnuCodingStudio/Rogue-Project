@@ -83,7 +83,6 @@ func _on_game_error(errtxt: String) -> void:
 
 
 func refresh_lobby() -> void:
-	print("refresh")
 	var players := Game.get_player_name_list()
 	var players_ids := Game.get_player_name_ids_list()
 	players.sort()
