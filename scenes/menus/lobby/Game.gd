@@ -1,5 +1,6 @@
 extends Node
 
+# Maybe we can export theses constants to a global variables project ?
 const DEFAULT_PORT = 28000
 const MAX_PEERS = 4
 
@@ -15,12 +16,14 @@ signal connection_failed()
 signal connection_succeeded()
 signal game_error(error: int)
 
+
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
 	multiplayer.connected_to_server.connect(_connected_to_server)
 	multiplayer.connection_failed.connect(_connection_failed)
 	multiplayer.server_disconnected.connect(_server_disconnected)
+
 
 func _peer_connected(id: int) -> void:
 	register_player.rpc_id(id, player_name)

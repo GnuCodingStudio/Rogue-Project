@@ -11,6 +11,7 @@ extends Control
 @onready var connect: Panel = $Connect
 @onready var error_label: Label = $Connect/VBoxContainer2/ErrorLabel
 
+
 func _ready() -> void:
 	Game.connection_failed.connect(_on_connection_failed)
 	Game.connection_succeeded.connect(_on_connection_success)
@@ -41,7 +42,6 @@ func _on_host_pressed() -> void:
 
 
 func _on_join_pressed() -> void:
-	
 	if player_name.text == "":
 		error_label.text = "Invalid name!"
 		return
@@ -63,6 +63,7 @@ func _on_join_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	Game.begin_game()
+
 
 func _on_connection_success() -> void:
 	connect.hide()
