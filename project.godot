@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 ProgressionService="*res://services/save/ProgressionService.gd"
 UiAudio="*res://components/uicontrols/UIAudio.gd"
 SceneTransition="*res://services/transition/SceneTransition.tscn"
-MultiplayerManager="*res://scenes/menus/lobby/MultiplayerManager.gd"
+MultiplayerManager="*res://services/multiplayer/MultiplayerManager.gd"
 
 [debug]
 

@@ -91,7 +91,7 @@ func _on_game_error(errtxt: String) -> void:
 
 func refresh_lobby() -> void:
 	var players := MultiplayerManager.get_player_name_list()
-	var players_ids := MultiplayerManager.get_player_name_ids_list()
+
 	players.sort()
 	players_list.clear()
 	players_list.add_item(MultiplayerManager.player_name + " (you)")
