@@ -15,13 +15,14 @@ var state := State.IDLE:
 
 var moving_direction := Vector2.ZERO:
 	set(value):
-		if moving_direction != value:
-			moving_direction = value
+		var rounded_value = _round_direction(value)
+		if not _are_close(moving_direction, rounded_value):
+			moving_direction = rounded_value
 			_on_moving_direction_changed()
 
 var facing_direction := Vector2.DOWN:
 	set(value):
-		if facing_direction != value:
+		if not _are_close(facing_direction, value):
 			facing_direction = value
 			_on_facing_direction_changed()
 
@@ -40,16 +41,15 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	move_and_collide(moving_direction * speed * delta)
+	move_and_collide(moving_direction.normalized() * speed * delta)
 
 
 func _direction_name() -> String:
-	match facing_direction:
-		Vector2.UP: return "Up"
-		Vector2.DOWN: return "Down"
-		Vector2.LEFT: return "Left"
-		Vector2.RIGHT: return "Right"
-		_: return "Down"
+	if (_are_close(facing_direction, Vector2.UP)): return "Up"
+	elif (_are_close(facing_direction, Vector2.DOWN)): return "Down"
+	elif (_are_close(facing_direction, Vector2.LEFT)): return "Left"
+	elif (_are_close(facing_direction, Vector2.RIGHT)): return "Right"
+	else: return "Down"
 
 
 func _update_animation():
@@ -67,7 +67,7 @@ func _on_state_changed():
 
 
 func _on_moving_direction_changed():
-	if moving_direction == Vector2.ZERO or moving_direction == facing_direction:
+	if moving_direction == Vector2.ZERO or _are_close(moving_direction, facing_direction):
 		return
 
 	if facing_direction.x == sign(moving_direction.x):
@@ -80,3 +80,17 @@ func _on_moving_direction_changed():
 
 func _on_facing_direction_changed():
 	_update_animation()
+
+
+func _are_close(vec1: Vector2, vec2: Vector2) -> bool:
+	return abs(vec1.angle_to(vec2)) < 0.0001 && abs(vec1.length() - vec2.length()) < 0.0001
+
+
+func _round_direction(vector: Vector2) -> Vector2:
+	var directions = 8
+	if vector == Vector2.ZERO:
+		return Vector2.ZERO
+
+	var scale = (2 * PI) / directions
+	var rounded_angle: float = roundf(vector.angle() / scale) * scale
+	return Vector2.from_angle(rounded_angle)

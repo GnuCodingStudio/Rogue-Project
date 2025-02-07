@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6123kykyglg8"]
+
+[ext_resource type="Script" path="res://components/behavior/movement/RunToPlayerMovementBehavior.gd" id="1_414we"]
+
+[node name="RunToPlayerMovementBehavior" type="Node"]
+script = ExtResource("1_414we")
