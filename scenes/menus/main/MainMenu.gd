@@ -10,7 +10,7 @@ func _ready():
 
 
 func _on_start_button_pressed():
-	SceneTransition.change_scene("res://scenes/menus/weapon/WeaponChoice.tscn")
+	SceneTransition.change_scene("res://scenes/map/Map.tscn")
 
 
 func _on_multiplayer_button_pressed() -> void:
