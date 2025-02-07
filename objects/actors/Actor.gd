@@ -15,7 +15,7 @@ var state := State.IDLE:
 
 var moving_direction := Vector2.ZERO:
 	set(value):
-		var rounded_value = _roundv(value, 8)
+		var rounded_value = _round_direction(value)
 		if not _are_close(moving_direction, rounded_value):
 			moving_direction = rounded_value
 			_on_moving_direction_changed()
@@ -86,7 +86,8 @@ func _are_close(vec1: Vector2, vec2: Vector2) -> bool:
 	return abs(vec1.angle_to(vec2)) < 0.0001 && abs(vec1.length() - vec2.length()) < 0.0001
 
 
-func _roundv(vector: Vector2, directions: int) -> Vector2:
+func _round_direction(vector: Vector2) -> Vector2:
+	var directions = 8
 	if vector == Vector2.ZERO:
 		return Vector2.ZERO
 
