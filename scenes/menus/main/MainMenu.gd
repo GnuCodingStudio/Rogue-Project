@@ -10,7 +10,7 @@ func _ready():
 
 
 func _on_start_button_pressed():
-	SceneTransition.change_scene("res://scenes/levels/debug/DebugLevel.tscn")
+	SceneTransition.change_scene("res://scenes/levels/world.tscn")
 
 
 func _on_credits_button_pressed():
