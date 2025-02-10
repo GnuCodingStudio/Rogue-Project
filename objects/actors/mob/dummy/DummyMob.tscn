@@ -173,6 +173,7 @@ animations = [{
 }]
 
 [node name="DummyMob" instance=ExtResource("1_v6bs4")]
+speed = 150.0
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_lscel")

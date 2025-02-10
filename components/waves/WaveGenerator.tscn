@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg1jxenps3n8j"]
+
+[ext_resource type="Script" path="res://components/waves/WaveGenerator.gd" id="1_pr15n"]
+
+[node name="WaveGenerator" type="Node"]
+script = ExtResource("1_pr15n")
