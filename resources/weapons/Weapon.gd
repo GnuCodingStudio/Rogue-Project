@@ -2,6 +2,7 @@ extends Resource
 class_name Weapon
 
 @export var name: String = "Weapon"
+@export var icon: Texture
 
 @export_group("Attack", "attack_")
 @export var attack_damage: float = 1.0
