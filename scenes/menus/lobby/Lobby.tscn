@@ -73,46 +73,46 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bgvch")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Connect"]
+[node name="LobbyInformations" type="VBoxContainer" parent="Connect"]
 layout_mode = 2
 offset_right = 570.0
 offset_bottom = 203.0
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Connect/VBoxContainer2"]
+[node name="UsernameContainer" type="HBoxContainer" parent="Connect/LobbyInformations"]
 layout_mode = 2
 
-[node name="UsernameInput" type="LineEdit" parent="Connect/VBoxContainer2/HBoxContainer"]
+[node name="UsernameInput" type="LineEdit" parent="Connect/LobbyInformations/UsernameContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 placeholder_text = "Username..."
 
-[node name="Host" type="Button" parent="Connect/VBoxContainer2/HBoxContainer"]
+[node name="Host" type="Button" parent="Connect/LobbyInformations/UsernameContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 40
 text = "HOST"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Connect/VBoxContainer2"]
+[node name="IPContainer" type="HBoxContainer" parent="Connect/LobbyInformations"]
 layout_mode = 2
 
-[node name="IPInput" type="LineEdit" parent="Connect/VBoxContainer2/HBoxContainer2"]
+[node name="IPInput" type="LineEdit" parent="Connect/LobbyInformations/IPContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "127.0.0.1"
 placeholder_text = "IP address..."
 
-[node name="Join" type="Button" parent="Connect/VBoxContainer2/HBoxContainer2"]
+[node name="Join" type="Button" parent="Connect/LobbyInformations/IPContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "JOIN "
 
-[node name="ErrorLabel" type="Label" parent="Connect/VBoxContainer2"]
+[node name="ErrorLabel" type="Label" parent="Connect/LobbyInformations"]
 layout_mode = 2
 
 [node name="AlertDialog" type="AcceptDialog" parent="."]
 size = Vector2i(175, 163)
 
 [connection signal="pressed" from="WaitingRoom/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Connect/VBoxContainer2/HBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="Connect/VBoxContainer2/HBoxContainer2/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Connect/LobbyInformations/UsernameContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Connect/LobbyInformations/IPContainer/Join" to="." method="_on_join_pressed"]

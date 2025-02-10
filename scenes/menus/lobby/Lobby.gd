@@ -1,21 +1,21 @@
 extends Control
 
-@onready var player_name: LineEdit = $Connect/VBoxContainer2/HBoxContainer/UsernameInput
-@onready var ip_server: LineEdit = $Connect/VBoxContainer2/HBoxContainer2/IPInput
-@onready var host_button: Button = $Connect/VBoxContainer2/HBoxContainer/Host
-@onready var join_button: Button = $Connect/VBoxContainer2/HBoxContainer2/Join
+@onready var player_name: LineEdit = $Connect/LobbyInformations/UsernameContainer/UsernameInput
+@onready var ip_server: LineEdit = $Connect/LobbyInformations/IPContainer/IPInput
+@onready var host_button: Button = $Connect/LobbyInformations/UsernameContainer/Host
+@onready var join_button: Button = $Connect/LobbyInformations/IPContainer/Join
 @onready var alert_dialog: AcceptDialog = $AlertDialog
 @onready var players_list: ItemList = $WaitingRoom/PlayersList
 @onready var play_button: Button = $WaitingRoom/Play
 @onready var waiting_room: Panel = $WaitingRoom
 @onready var connect: Panel = $Connect
-@onready var error_label: Label = $Connect/VBoxContainer2/ErrorLabel
+@onready var error_label: Label = $Connect/LobbyInformations/ErrorLabel
 
 
 func _ready() -> void:
 	MultiplayerManager.connection_failed.connect(_on_connection_failed)
 	MultiplayerManager.connection_succeeded.connect(_on_connection_success)
-	MultiplayerManager.player_list_changed.connect(refresh_lobby)
+	MultiplayerManager.player_list_changed.connect(refresh_waiting_room)
 	MultiplayerManager.game_error.connect(_on_game_error)
 
 	#MacOS
@@ -36,7 +36,7 @@ func _on_host_pressed() -> void:
 	error_label.text = ""
 
 	MultiplayerManager.host_game(player_name.text)
-	refresh_lobby()
+	refresh_waiting_room()
 
 
 func _on_join_pressed() -> void:
@@ -49,7 +49,7 @@ func _on_join_pressed() -> void:
 	play_button.visible = false
 
 	var player_name: String = player_name.text
-	var ip: String = ip_server.text
+	var ip: String = ip_server.text.strip_edges()
 	MultiplayerManager.join_game(ip, player_name)
 
 
@@ -61,8 +61,8 @@ func _check_player_name():
 		return true
 		
 func _check_ip():
-	if not ip_server.text.is_valid_ip_address():
-		error_label.text = "Invalid IP address! Set IPv4 or IPv6 address"
+	if ip_server.text.is_empty():
+		error_label.text = "Invalid IP address!"
 		return false
 	else:
 		return true
@@ -89,7 +89,7 @@ func _on_game_error(errtxt: String) -> void:
 	join_button.disabled = false
 
 
-func refresh_lobby() -> void:
+func refresh_waiting_room() -> void:
 	var players := MultiplayerManager.get_player_name_list()
 
 	players.sort()

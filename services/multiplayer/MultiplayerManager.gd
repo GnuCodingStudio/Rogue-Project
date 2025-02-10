@@ -1,16 +1,16 @@
 extends Node
 
-# Maybe we can export theses constants to a global variables project ?
+## Maybe we can export theses constants to a global variables project ?
 const DEFAULT_PORT = 28000
 const MAX_PEERS = 4
 
 var peer: ENetMultiplayerPeer
 var player_name := "Pirate"
 
-# Names for remote players in id:name format.
+## Names for remote players in id:name format.
 var players := {}
 
-# Signals to let lobby GUI know what's going on.
+## Signals to let lobby GUI know what's going on.
 signal player_list_changed()
 signal connection_failed()
 signal connection_succeeded()
@@ -34,23 +34,22 @@ func _peer_disconnected(id: int) -> void:
 	unregister_player(id)
 
 
-# Only for clients
+#region client-only
 func _connected_to_server() -> void:
 	connection_succeeded.emit()
 
 
-# Only for clients
 func _server_disconnected() -> void:
 	game_error.emit("Server disconnected")
 	
 
-# Only for clients
 func _connection_failed() -> void:
 	multiplayer.set_network_peer(null) # Remove peer
+	game_error.emit("Failed connection")
 	connection_failed.emit()
+#endregion client-only
 
-
-# Lobby management functions.
+#region Lobby management functions.
 @rpc("any_peer")
 func register_player(new_player_name: String) -> void:
 	var id := multiplayer.get_remote_sender_id()
@@ -66,23 +65,26 @@ func unregister_player(id: int) -> void:
 func host_game(new_player_name: String) -> void:
 	player_name = new_player_name
 	peer = ENetMultiplayerPeer.new()
-	peer.create_server(DEFAULT_PORT, MAX_PEERS)
-	multiplayer.set_multiplayer_peer(peer)
-
+	var result = peer.create_server(DEFAULT_PORT, MAX_PEERS)
+	if result == OK:
+		multiplayer.set_multiplayer_peer(peer)
+		print("Server created successfully on port %d" % DEFAULT_PORT)
+	else:
+		game_error.emit("Failed to create server. Error code: %d" % result)
 
 func join_game(ip: String, new_player_name: String) -> void:
 	player_name = new_player_name
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client(ip, DEFAULT_PORT)
-	multiplayer.set_multiplayer_peer(peer)
-
+	var result = peer.create_client(ip, DEFAULT_PORT)
+	if result == OK:
+		multiplayer.set_multiplayer_peer(peer)
+		print("Server joined successfully on ip %d" % ip)
+	else:
+		game_error.emit("Failed to join server. Error code: %d" % result)
+#endregion Lobby management functions.
 
 func get_player_name_list() -> Array:
 	return players.values()
-
-
-func get_player_name_ids_list() -> Array:
-	return players.keys()
 
 
 func begin_game() -> void:
