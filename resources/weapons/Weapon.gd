@@ -1,13 +1,7 @@
 extends Resource
 class_name Weapon
 
-enum WeaponType {
-	PROJECTILE,
-	MELEE
-}
-
 @export var name: String = "Weapon"
-@export var type: WeaponType = WeaponType.PROJECTILE
 
 @export_group("Attack", "attack_")
 @export var attack_damage: float = 1.0
