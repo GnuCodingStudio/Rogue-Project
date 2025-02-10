@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://mnloru3er2fc"]
+[gd_scene load_steps=6 format=3 uid="uid://mnloru3er2fc"]
 
 [ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="1_t7e46"]
 [ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="2_md0ag"]
 [ext_resource type="PackedScene" uid="uid://riml2gwgt1rh" path="res://objects/actors/mob/dummy/DummyMob.tscn" id="3_6ad02"]
+[ext_resource type="PackedScene" uid="uid://bg1jxenps3n8j" path="res://components/waves/WaveGenerator.tscn" id="4_0k6ps"]
+[ext_resource type="Script" path="res://components/waves/Wave.gd" id="5_48ayd"]
 
 [node name="DebugLevel" type="Node2D"]
 
@@ -15,6 +17,38 @@ position_smoothing_enabled = true
 [node name="GlobalGameConsole" parent="." instance=ExtResource("2_md0ag")]
 visible = false
 
-[node name="DummyMob" parent="." instance=ExtResource("3_6ad02")]
-position = Vector2(750, 135)
-speed = 150.0
+[node name="WaveGenerator" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("4_0k6ps")]
+target_node = NodePath("..")
+
+[node name="Wave1" type="Node" parent="WaveGenerator"]
+script = ExtResource("5_48ayd")
+spawn_interval = 5
+mobs_min_count = 10
+mobs_max_count = 10
+mobs_scene = ExtResource("3_6ad02")
+
+[node name="Spawn1" type="Node2D" parent="WaveGenerator/Wave1"]
+position = Vector2(-177, -468)
+
+[node name="Spawn2" type="Node2D" parent="WaveGenerator/Wave1"]
+position = Vector2(186, -460)
+
+[node name="Wave2" type="Node" parent="WaveGenerator"]
+script = ExtResource("5_48ayd")
+start_time = 60
+spawn_interval = 5
+mobs_min_count = 50
+mobs_max_count = 70
+mobs_scene = ExtResource("3_6ad02")
+
+[node name="Spawn1" type="Node2D" parent="WaveGenerator/Wave2"]
+position = Vector2(-519.445, 578.348)
+
+[node name="Spawn2" type="Node2D" parent="WaveGenerator/Wave2"]
+position = Vector2(-199.083, 565)
+
+[node name="Spawn3" type="Node2D" parent="WaveGenerator/Wave2"]
+position = Vector2(145.305, 567.67)
+
+[node name="Spawn4" type="Node2D" parent="WaveGenerator/Wave2"]
+position = Vector2(516.391, 575.679)
