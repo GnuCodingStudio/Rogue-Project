@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg6782x0k05a"
-path="res://.godot/imported/tile025.png-540c14fd1596d685557a47620824df49.ctex"
+uid="uid://ddx6s06y3nkvx"
+path="res://.godot/imported/ArtForTOPDOWN-GaeaTutorial.png-e0c2ad9fad451e45bc8b402c1714aed3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/island/16px/tiles/tile025.png"
-dest_files=["res://.godot/imported/tile025.png-540c14fd1596d685557a47620824df49.ctex"]
+source_file="res://assets/island/16px/ArtForTOPDOWN-GaeaTutorial.png"
+dest_files=["res://.godot/imported/ArtForTOPDOWN-GaeaTutorial.png-e0c2ad9fad451e45bc8b402c1714aed3.ctex"]
 
 [params]
 
