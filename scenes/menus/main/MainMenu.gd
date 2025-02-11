@@ -13,6 +13,10 @@ func _on_start_button_pressed():
 	SceneTransition.change_scene("res://scenes/levels/debug/DebugLevel.tscn")
 
 
+func _on_multiplayer_button_pressed() -> void:
+	SceneTransition.change_scene("res://scenes/menus/lobby/Lobby.tscn")
+
+
 func _on_credits_button_pressed():
 	SceneTransition.change_scene("res://scenes/menus/credits/CreditsMenu.tscn")
 

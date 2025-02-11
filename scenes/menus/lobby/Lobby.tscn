@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=3 uid="uid://dichwckdkqj4o"]
+
+[ext_resource type="Script" path="res://scenes/menus/lobby/Lobby.gd" id="1_y2wkh"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rtipl"]
+properties/0/path = NodePath(".:visible")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bgvch"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y2wkh")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/levels/debug/DebugLevel.tscn")
+spawn_path = NodePath("..")
+
+[node name="WaitingRoom" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -285.0
+offset_top = -1.0
+offset_right = 290.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="WaitingRoom"]
+replication_config = SubResource("SceneReplicationConfig_rtipl")
+
+[node name="Title" type="Label" parent="WaitingRoom"]
+layout_mode = 2
+offset_left = 98.0
+offset_top = 44.0
+offset_right = 487.0
+offset_bottom = 99.0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Waiting new players"
+horizontal_alignment = 1
+
+[node name="PlayersList" type="ItemList" parent="WaitingRoom"]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 2
+offset_left = 94.0
+offset_top = 140.0
+offset_right = 494.0
+offset_bottom = 640.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play" type="Button" parent="WaitingRoom"]
+layout_mode = 2
+offset_left = 190.0
+offset_top = 661.0
+offset_right = 430.0
+offset_bottom = 753.0
+size_flags_vertical = 8
+text = "Play ! "
+
+[node name="Connect" type="Panel" parent="."]
+z_index = 99
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -69.0
+offset_right = 285.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bgvch")
+
+[node name="LobbyInformations" type="VBoxContainer" parent="Connect"]
+layout_mode = 2
+offset_right = 570.0
+offset_bottom = 203.0
+theme_override_constants/separation = 20
+
+[node name="UsernameContainer" type="HBoxContainer" parent="Connect/LobbyInformations"]
+layout_mode = 2
+
+[node name="PlayerNameInput" type="LineEdit" parent="Connect/LobbyInformations/UsernameContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+placeholder_text = "Username..."
+
+[node name="Host" type="Button" parent="Connect/LobbyInformations/UsernameContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 40
+text = "HOST"
+
+[node name="HostContainer" type="HBoxContainer" parent="Connect/LobbyInformations"]
+layout_mode = 2
+
+[node name="HostAddressInput" type="LineEdit" parent="Connect/LobbyInformations/HostContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "IP address..."
+
+[node name="Join" type="Button" parent="Connect/LobbyInformations/HostContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "JOIN "
+
+[node name="ErrorLabel" type="Label" parent="Connect/LobbyInformations"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AlertDialog" type="AcceptDialog" parent="."]
+size = Vector2i(175, 163)
+
+[connection signal="pressed" from="WaitingRoom/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Connect/LobbyInformations/UsernameContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Connect/LobbyInformations/HostContainer/Join" to="." method="_on_join_pressed"]
