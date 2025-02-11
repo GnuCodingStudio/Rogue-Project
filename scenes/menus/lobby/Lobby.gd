@@ -1,15 +1,21 @@
 extends Control
 
-@onready var player_name: LineEdit = $Connect/LobbyInformations/UsernameContainer/UsernameInput
-@onready var ip_server: LineEdit = $Connect/LobbyInformations/IPContainer/IPInput
-@onready var host_button: Button = $Connect/LobbyInformations/UsernameContainer/Host
-@onready var join_button: Button = $Connect/LobbyInformations/IPContainer/Join
-@onready var alert_dialog: AcceptDialog = $AlertDialog
+#region connect-inputs
+@onready var connect: Panel = $Connect
+@onready var player_name_input: LineEdit = %PlayerNameInput
+@onready var host_address_input: LineEdit = %HostAddressInput
+@onready var host_button: Button = %Host
+@onready var join_button: Button = %Join
+@onready var error_label: Label = %ErrorLabel
+#endregion connect-inputs
+
+#region waiting-room
+@onready var waiting_room: Panel = $WaitingRoom
 @onready var players_list: ItemList = $WaitingRoom/PlayersList
 @onready var play_button: Button = $WaitingRoom/Play
-@onready var waiting_room: Panel = $WaitingRoom
-@onready var connect: Panel = $Connect
-@onready var error_label: Label = $Connect/LobbyInformations/ErrorLabel
+#endregion waiting-room
+
+@onready var alert_dialog: AcceptDialog = $AlertDialog
 
 
 func _ready() -> void:
@@ -20,52 +26,55 @@ func _ready() -> void:
 
 	#MacOS
 	if OS.has_environment("USER"):
-		player_name.text = OS.get_environment("USER")
+		player_name_input.text = OS.get_environment("USER")
 	#Windows
 	elif OS.has_environment("USERNAME"):
-		player_name.text = OS.get_environment("USERNAME")
+		player_name_input.text = OS.get_environment("USERNAME")
 	else:
-		player_name.text = "Pirate"
+		player_name_input.text = "Pirate"
 
 
-func _on_host_pressed() -> void:		
-	if !_check_player_name(): return
+func _on_host_pressed() -> void:
+	var player_name: String = player_name_input.text.strip_edges()
+	if !_check_player_name(player_name): return
 
 	connect.hide()
 	waiting_room.show()
 	error_label.text = ""
 
-	MultiplayerManager.host_game(player_name.text)
+	MultiplayerManager.host_game(player_name)
 	refresh_waiting_room()
 
 
 func _on_join_pressed() -> void:
-	if !_check_player_name(): return
-	if !_check_ip():return
+	var player_name: String = player_name_input.text.strip_edges()
+	var host_address: String = host_address_input.text.strip_edges()
+	if !_check_player_name(player_name): return
+	if !_check_address(host_address):return
 
 	error_label.text = ""
 	host_button.disabled = true
 	join_button.disabled = true
 	play_button.visible = false
 
-	var player_name: String = player_name.text.strip_edges()
-	var ip: String = ip_server.text.strip_edges()
-	MultiplayerManager.join_game(ip, player_name)
+	MultiplayerManager.join_game(host_address, player_name)
 
 
-func _check_player_name():
-	if player_name.text == "":
+func _check_player_name(name: String):
+	if name.is_empty():
 		error_label.text = "Invalid name!"
 		return false
 	else:
 		return true
-		
-func _check_ip():
-	if ip_server.text.is_empty():
-		error_label.text = "Invalid IP address!"
+
+
+func _check_address(address: String):
+	if address.is_empty():
+		error_label.text = "Invalid address!"
 		return false
 	else:
 		return true
+
 
 func _on_play_pressed() -> void:
 	MultiplayerManager.begin_game()

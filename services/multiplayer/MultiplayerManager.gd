@@ -1,6 +1,6 @@
 extends Node
 
-## Maybe we can export theses constants to a global variables project ?
+# Maybe we can export theses constants to a global variables project ?
 const DEFAULT_PORT = 28000
 const MAX_PEERS = 4
 
@@ -10,7 +10,7 @@ var player_name := "Pirate"
 ## Names for remote players in id:name format.
 var players := {}
 
-## Signals to let lobby GUI know what's going on.
+
 signal player_list_changed()
 signal connection_failed()
 signal connection_succeeded()
@@ -34,20 +34,21 @@ func _peer_disconnected(id: int) -> void:
 	unregister_player(id)
 
 
-#region client-only
+#region Client only
 func _connected_to_server() -> void:
 	connection_succeeded.emit()
 
 
 func _server_disconnected() -> void:
 	game_error.emit("Server disconnected")
-	
+
 
 func _connection_failed() -> void:
 	multiplayer.set_network_peer(null) # Remove peer
 	game_error.emit("Failed connection")
 	connection_failed.emit()
-#endregion client-only
+#endregion Client only
+
 
 #region Lobby management functions.
 @rpc("any_peer")
@@ -82,6 +83,7 @@ func join_game(ip: String, new_player_name: String) -> void:
 	else:
 		game_error.emit("Failed to join server. Error code: %d" % result)
 #endregion Lobby management functions.
+
 
 func get_player_name_list() -> Array:
 	return players.values()
