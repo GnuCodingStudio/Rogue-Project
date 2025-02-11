@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://ceqgydxr4orsn"]
 
-[ext_resource type="Texture2D" uid="uid://ddx6s06y3nkvx" path="res://assets/image/ArtForTOPDOWN-GaeaTutorial.png" id="8_c2qnm"]
+[ext_resource type="Texture2D" uid="uid://ddx6s06y3nkvx" path="res://assets/island/16px/ArtForTOPDOWN-GaeaTutorial.png" id="8_c2qnm"]
 [ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="9_ut76m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ch5u"]
