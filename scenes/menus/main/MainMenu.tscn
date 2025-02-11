@@ -93,6 +93,17 @@ focus_next = NodePath("../CreditsButton")
 focus_previous = NodePath("../QuitButton")
 text = "MAIN_START_BUTTON"
 
+[node name="MultiplayerButton" type="Button" parent="GlobalMargin/Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../CreditsButton")
+focus_next = NodePath("../CreditsButton")
+focus_previous = NodePath("../QuitButton")
+text = "MAIN_MULTIPLAYER_BUTTON"
+
 [node name="CreditsButton" type="Button" parent="GlobalMargin/Center/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -141,6 +152,7 @@ help = "Show info about the template used to create this game."
 parameters = Array[String](["time:float:0.6"])
 
 [connection signal="pressed" from="GlobalMargin/Center/VBox/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/Center/VBox/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="pressed" from="GlobalMargin/Center/VBox/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="GlobalMargin/Center/VBox/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="on_confirm" from="QuitDialog" to="." method="_on_quit_dialog_confirmed"]

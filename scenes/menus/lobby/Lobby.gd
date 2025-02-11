@@ -77,7 +77,9 @@ func _check_address(address: String):
 
 
 func _on_play_pressed() -> void:
-	MultiplayerManager.begin_game()
+	var debug_level = preload("res://scenes/levels/debug/DebugLevel.tscn").instantiate()
+	add_child(debug_level)
+	waiting_room.visible = false
 
 
 func _on_connection_success() -> void:

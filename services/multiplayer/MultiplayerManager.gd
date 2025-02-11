@@ -87,8 +87,3 @@ func join_game(ip: String, new_player_name: String) -> void:
 
 func get_player_name_list() -> Array:
 	return players.values()
-
-
-func begin_game() -> void:
-	print("Set sail for the Pirate’s World and summon all pirates for the grand treasure hunt! 🏴‍☠️💰⚓ !!!")
-	game_error.emit("Set sail for the Pirate’s World and summon all pirates for the grand treasure hunt! 🏴‍☠️💰⚓ !!!")
