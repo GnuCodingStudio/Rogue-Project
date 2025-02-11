@@ -48,7 +48,7 @@ func _on_join_pressed() -> void:
 	join_button.disabled = true
 	play_button.visible = false
 
-	var player_name: String = player_name.text
+	var player_name: String = player_name.text.strip_edges()
 	var ip: String = ip_server.text.strip_edges()
 	MultiplayerManager.join_game(ip, player_name)
 
