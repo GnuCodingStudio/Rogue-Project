@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://r3i80a6v2w0y"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://r3i80a6v2w0y"]
 
 [ext_resource type="PackedScene" uid="uid://b4f7h1agj1phf" path="res://objects/attacks/projectile/Projectile.tscn" id="1_fbn8p"]
 [ext_resource type="Script" path="res://resources/weapons/Weapon.gd" id="1_l8fov"]
+[ext_resource type="Texture2D" uid="uid://c3e5pghakbtdu" path="res://resources/weapons/gun/GunIcon.png" id="2_uv0cn"]
 
 [resource]
 script = ExtResource("1_l8fov")
 name = "Gun"
+icon = ExtResource("2_uv0cn")
 attack_damage = 1.0
 attack_range = 500.0
 attack_speed = 1.0
