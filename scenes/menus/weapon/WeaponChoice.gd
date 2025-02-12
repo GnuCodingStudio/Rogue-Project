@@ -4,28 +4,14 @@ extends Control
 @export var weapons: Array[Weapon] = []; 
 
 @onready var weaponsContainer: HBoxContainer = %WeaponsContainer
+var weapon_choice_button: PackedScene = load('res://scenes/menus/weapon/button/WeaponChoiceButton.tscn')
 
 func _ready() -> void:
 	for weapon in weapons:
-		var center = CenterContainer.new()
-		var vBox = VBoxContainer.new()
-		var icon = TextureRect.new()
-		var button = Button.new()
+		var button = weapon_choice_button.instantiate()
+		button.init(weapon)
 		
-		icon.texture = weapon.icon
-		icon.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
-		icon.expand_mode = TextureRect.EXPAND_KEEP_SIZE
-		
-		button.text = weapon.name
-		button.add_theme_font_size_override("font_size", 16)
-		button.pressed.connect(_button_pressed.bind(weapon))
-		
-		vBox.add_child(icon)
-		vBox.add_child(button)
-		
-		center.add_child(vBox)
-		
-		weaponsContainer.add_child(center)
+		weaponsContainer.add_child(button)
 
 func _button_pressed(weaponSelected: Weapon):
 	StoreManager.player_weapon = weaponSelected
