@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsfyypyhwfbs5"]
+[gd_scene load_steps=26 format=3 uid="uid://bsfyypyhwfbs5"]
 
 [ext_resource type="PackedScene" uid="uid://du0c1yciw8ul6" path="res://objects/actors/Actor.tscn" id="1_wrkhm"]
 [ext_resource type="Script" path="res://objects/actors/player/Player.gd" id="2_bhjnv"]
 [ext_resource type="Texture2D" uid="uid://cnwmhohk8wm23" path="res://objects/actors/player/Player.png" id="3_pkisr"]
+[ext_resource type="PackedScene" uid="uid://cxlkjx4h6gv5h" path="res://components/collector/Collector.tscn" id="5_q1uwo"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p4sxr"]
 properties/0/path = NodePath(".:position")
@@ -167,8 +168,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_rqsaa"]
 radius = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xu8dn"]
+radius = 80.0
+
 [node name="Player" instance=ExtResource("1_wrkhm")]
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("2_bhjnv")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
@@ -184,3 +188,11 @@ shape = SubResource("CircleShape2D_rqsaa")
 [node name="AttackTimer" type="Timer" parent="." index="3"]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Collector" parent="." index="4" instance=ExtResource("5_q1uwo")]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collector" index="1"]
+shape = SubResource("CircleShape2D_xu8dn")
+
+[connection signal="on_collecting" from="Collector" to="." method="_on_collecting"]

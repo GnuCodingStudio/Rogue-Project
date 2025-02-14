@@ -3,11 +3,9 @@ extends Area2D
 
 var _targeted_collectable: Collectable
 
-@onready var audio_player: AudioStreamPlayer = %AudioPlayer
-
+signal on_collecting(element)
 
 #region built-in
-
 
 func _process(delta: float) -> void:
 	_target_nearest_resource()
@@ -28,7 +26,6 @@ func _target_nearest_resource() -> void:
 	else:
 		_reset_targeted_resource()
 
-
 func _get_collectable_or_null(body: Node2D) -> Collectable:
 	var collectables = body.find_children("*", "Collectable", false)
 	if not collectables.is_empty():
@@ -36,12 +33,10 @@ func _get_collectable_or_null(body: Node2D) -> Collectable:
 			return collectables[0]
 	return null
 
-
 func _sort_by_distance(a: Node2D, b: Node2D) -> bool:
 	var distance_to_a = a.global_position.distance_to(self.global_position)
 	var distance_to_b = b.global_position.distance_to(self.global_position)
 	return (distance_to_a < distance_to_b)
-
 
 func _not_null(node: Node2D) -> bool:
 	return node != null
@@ -57,16 +52,14 @@ func _set_targeted_collectable(target: Collectable) -> void:
 		target.select()
 		_targeted_collectable = target
 
-
 func _reset_targeted_resource() -> void:
 	if _targeted_collectable != null:
 		_targeted_collectable.unselect()
 	_targeted_collectable = null
 
-
 func _collect_targeted_resource() -> void:
 	if _targeted_collectable != null:
+		on_collecting.emit(_targeted_collectable.get_element())
 		_targeted_collectable.collect()
-		audio_player.play()
 
 #endregion private

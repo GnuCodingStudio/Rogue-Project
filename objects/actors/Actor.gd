@@ -1,11 +1,10 @@
 extends RigidBody2D
 class_name Actor
 
-@export var speed = 300.0
+@export var _speed = 300.0
 
 @onready var animated_sprite = %AnimatedSprite
 @onready var collision_shape = %CollisionShape
-
 
 var state := State.IDLE:
 	set(value):
@@ -26,12 +25,10 @@ var facing_direction := Vector2.DOWN:
 			facing_direction = value
 			_on_facing_direction_changed()
 
-
 enum State {
 	IDLE,
 	MOVING
 }
-
 
 func _process(delta):
 	if moving_direction == Vector2.ZERO:
@@ -39,10 +36,8 @@ func _process(delta):
 	else:
 		state = State.MOVING
 
-
 func _physics_process(delta):
-	move_and_collide(moving_direction.normalized() * speed * delta)
-
+	move_and_collide(moving_direction.normalized() * get_speed() * delta)
 
 func _direction_name() -> String:
 	if (_are_close(facing_direction, Vector2.UP)): return "Up"
@@ -50,7 +45,6 @@ func _direction_name() -> String:
 	elif (_are_close(facing_direction, Vector2.LEFT)): return "Left"
 	elif (_are_close(facing_direction, Vector2.RIGHT)): return "Right"
 	else: return "Down"
-
 
 func _update_animation():
 	var state_name := ""
@@ -61,10 +55,8 @@ func _update_animation():
 	var animation_name = state_name + _direction_name()
 	animated_sprite.play(animation_name)
 
-
 func _on_state_changed():
 	_update_animation()
-
 
 func _on_moving_direction_changed():
 	if moving_direction == Vector2.ZERO or _are_close(moving_direction, facing_direction):
@@ -77,14 +69,11 @@ func _on_moving_direction_changed():
 	else:
 		facing_direction = moving_direction
 
-
 func _on_facing_direction_changed():
 	_update_animation()
 
-
 func _are_close(vec1: Vector2, vec2: Vector2) -> bool:
 	return abs(vec1.angle_to(vec2)) < 0.0001 && abs(vec1.length() - vec2.length()) < 0.0001
-
 
 func _round_direction(vector: Vector2) -> Vector2:
 	var directions = 8
@@ -94,3 +83,6 @@ func _round_direction(vector: Vector2) -> Vector2:
 	var scale = (2 * PI) / directions
 	var rounded_angle: float = roundf(vector.angle() / scale) * scale
 	return Vector2.from_angle(rounded_angle)
+
+func get_speed():
+	return _speed

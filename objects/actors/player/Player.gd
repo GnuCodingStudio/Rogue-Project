@@ -3,6 +3,7 @@ extends Actor
 
 var weapon: Weapon
 @onready var attackTimer = $AttackTimer
+var hasChest = false
 
 func _ready() -> void:
 	weapon = StoreManager.player_weapon
@@ -19,9 +20,14 @@ func _input(event):
 func apply_attack(force: int) -> void:
 	prints("Attacked with force", force)
 
+func get_speed():
+	if hasChest: return _speed * 0.7
+	
+	return _speed
 
 func attack():
 	if not weapon: return
+	if hasChest: return
 	if attackTimer.time_left > 0: return
 	
 	var mouseCoords = get_global_mouse_position()
@@ -32,3 +38,8 @@ func attack():
 	get_tree().current_scene.add_child(attack_scene)
 	
 	attackTimer.start()
+
+func _on_collecting(element):
+	if element is Chest:
+		print('collected')
+		hasChest = true
