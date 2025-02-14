@@ -18,14 +18,17 @@ script = ExtResource("1_bve3w")
 [node name="IslandMarker0" parent="." instance=ExtResource("2_k1m28")]
 unique_name_in_owner = true
 position = Vector2(250.084, 224.981)
+id = "island-0"
 
 [node name="IslandMarker1" parent="." instance=ExtResource("2_k1m28")]
 unique_name_in_owner = true
 position = Vector2(407.369, 151.825)
+id = "island-1"
 
 [node name="IslandMarker2" parent="." instance=ExtResource("2_k1m28")]
 unique_name_in_owner = true
 position = Vector2(320, 60)
+id = "Final"
 
 [node name="ShipSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
