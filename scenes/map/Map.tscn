@@ -1,18 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dscw6cfkblva7"]
+[gd_scene load_steps=6 format=3 uid="uid://dscw6cfkblva7"]
 
-[ext_resource type="PackedScene" uid="uid://disjjplik7m85" path="res://components/clickable/Clickable.tscn" id="1_3mm8m"]
-[ext_resource type="Script" path="res://scenes/map/map.gd" id="1_bve3w"]
+[ext_resource type="Script" path="res://scenes/map/Map.gd" id="1_bve3w"]
+[ext_resource type="PackedScene" uid="uid://b2cw2h2f6hqtg" path="res://scenes/map/IslandMarker.tscn" id="2_k1m28"]
+
+[sub_resource type="Gradient" id="Gradient_qfhi2"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.570314, 0.375457, 0.00366381, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ljjqu"]
+gradient = SubResource("Gradient_qfhi2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tl2x"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_i4h8t"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_bve3w")
 
+[node name="IslandMarker0" parent="." instance=ExtResource("2_k1m28")]
+unique_name_in_owner = true
+position = Vector2(250.084, 224.981)
+
+[node name="IslandMarker1" parent="." instance=ExtResource("2_k1m28")]
+unique_name_in_owner = true
+position = Vector2(407.369, 151.825)
+
+[node name="IslandMarker2" parent="." instance=ExtResource("2_k1m28")]
+unique_name_in_owner = true
+position = Vector2(320, 60)
+
 [node name="ShipSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(320, 300)
+texture = SubResource("GradientTexture2D_ljjqu")
 
 [node name="Area2D" type="Area2D" parent="ShipSprite"]
 
@@ -20,41 +38,6 @@ position = Vector2(320, 300)
 shape = SubResource("RectangleShape2D_6tl2x")
 debug_color = Color(1, 0, 0, 0.419608)
 
-[node name="Island0Sprite" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(320, 220)
-
-[node name="Clickable" parent="Island0Sprite" instance=ExtResource("1_3mm8m")]
-
-[node name="Area2D" type="Area2D" parent="Island0Sprite/Clickable"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Island0Sprite/Clickable/Area2D"]
-shape = SubResource("CircleShape2D_i4h8t")
-
-[node name="Island1Sprite" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(320, 140)
-
-[node name="Clickable" parent="Island1Sprite" instance=ExtResource("1_3mm8m")]
-
-[node name="Area2D" type="Area2D" parent="Island1Sprite/Clickable"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Island1Sprite/Clickable/Area2D"]
-shape = SubResource("CircleShape2D_i4h8t")
-
-[node name="Island2Sprite" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(320, 60)
-scale = Vector2(2, 2)
-
-[node name="Clickable" parent="Island2Sprite" instance=ExtResource("1_3mm8m")]
-
-[node name="Area2D" type="Area2D" parent="Island2Sprite/Clickable"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Island2Sprite/Clickable/Area2D"]
-shape = SubResource("CircleShape2D_i4h8t")
-
-[connection signal="area_entered" from="ShipSprite/Area2D" to="." method="_on_island_entered"]
-[connection signal="click" from="Island0Sprite/Clickable" to="." method="_on_island_clicked" binds= [0]]
-[connection signal="click" from="Island1Sprite/Clickable" to="." method="_on_island_clicked" binds= [1]]
-[connection signal="click" from="Island2Sprite/Clickable" to="." method="_on_island_clicked" binds= [2]]
+[connection signal="click" from="IslandMarker0" to="." method="_on_island_clicked"]
+[connection signal="click" from="IslandMarker1" to="." method="_on_island_clicked"]
+[connection signal="click" from="IslandMarker2" to="." method="_on_island_clicked"]
