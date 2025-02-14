@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_l8fov")
-name = "Gun"
+name = "WEAPON_GUN"
 icon = ExtResource("2_uv0cn")
 attack_damage = 1.0
 attack_range = 500.0

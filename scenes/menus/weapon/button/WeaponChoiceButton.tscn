@@ -59,7 +59,7 @@ layout_mode = 2
 [node name="AttributeName" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/Damage"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Damage"
+text = "WEAPON_ATTRIBUTE_DAMAGE"
 
 [node name="DamageValue" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/Damage"]
 unique_name_in_owner = true
@@ -76,7 +76,7 @@ layout_mode = 2
 [node name="AttributeName" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/Range"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Range"
+text = "WEAPON_ATTRIBUTE_RANGE"
 
 [node name="RangeValue" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/Range"]
 unique_name_in_owner = true
@@ -93,7 +93,7 @@ layout_mode = 2
 [node name="AttributeName" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/AttackSpeed"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Atck. Speed"
+text = "WEAPON_ATTRIBUTE_ATTACK_SPEED"
 
 [node name="AttackSpeedValue" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/AttackSpeed"]
 unique_name_in_owner = true
@@ -107,6 +107,6 @@ vertical_alignment = 3
 [node name="Button" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Take"
+text = "WEAPON_CHOICE_BUTTON"
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

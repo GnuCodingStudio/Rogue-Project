@@ -3,3 +3,5 @@
 *.tmp
 .release/
 .idea/
+resources/localization/MenuTranslations.en.translation
+resources/localization/MenuTranslations.fr.translation

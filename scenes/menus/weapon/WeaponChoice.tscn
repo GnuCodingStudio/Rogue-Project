@@ -39,7 +39,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
-text = "Choose your weapon"
+text = "WEAPON_CHOICE_MENU"
 
 [node name="WeaponsContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
