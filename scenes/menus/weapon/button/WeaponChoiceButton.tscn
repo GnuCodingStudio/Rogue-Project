@@ -1,0 +1,112 @@
+[gd_scene load_steps=3 format=3 uid="uid://dklhcripyx4g5"]
+
+[ext_resource type="Script" path="res://scenes/menus/weapon/button/WeaponChoiceButton.gd" id="1_cwq1r"]
+[ext_resource type="Texture2D" uid="uid://c3e5pghakbtdu" path="res://resources/weapons/gun/GunIcon.png" id="1_pgm81"]
+
+[node name="WeaponChoiceButton" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.5
+offset_top = -84.5
+offset_right = 94.5
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("1_cwq1r")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_pgm81")
+stretch_mode = 3
+
+[node name="WeaponName" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Weapon"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Attributes" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Damage" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes"]
+layout_mode = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/Damage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "WEAPON_ATTRIBUTE_DAMAGE"
+
+[node name="DamageValue" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/Damage"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="Range" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes"]
+layout_mode = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/Range"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "WEAPON_ATTRIBUTE_RANGE"
+
+[node name="RangeValue" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/Range"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="AttackSpeed" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes"]
+layout_mode = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/AttackSpeed"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "WEAPON_ATTRIBUTE_ATTACK_SPEED"
+
+[node name="AttackSpeedValue" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Attributes/AttackSpeed"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="Button" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "WEAPON_CHOICE_BUTTON"
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
