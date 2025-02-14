@@ -15,7 +15,6 @@ unique_name_in_owner = true
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
 bbcode_enabled = true
 text = "[b]toto[/b] par [b]toto[/b]
 "

@@ -83,18 +83,17 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [resource]
-default_font_size = 32
 BigTitle/base_type = &"Label"
 BigTitle/colors/font_shadow_color = Color(0, 0, 0, 1)
 BigTitle/constants/shadow_offset_x = 7
 BigTitle/constants/shadow_offset_y = 5
 BigTitle/constants/shadow_outline_size = 10
-BigTitle/font_sizes/font_size = 100
-Button/font_sizes/font_size = 64
+BigTitle/font_sizes/font_size = 40
+Button/font_sizes/font_size = 24
 Button/styles/disabled = SubResource("StyleBoxFlat_axijr")
 Button/styles/focus = SubResource("StyleBoxFlat_x0ubr")
 Button/styles/hover = SubResource("StyleBoxFlat_efog0")
 Button/styles/normal = SubResource("StyleBoxFlat_inqva")
 Button/styles/pressed = SubResource("StyleBoxFlat_bn2ea")
 SubTitle/base_type = &"Label"
-SubTitle/font_sizes/font_size = 50
+SubTitle/font_sizes/font_size = 20

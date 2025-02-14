@@ -79,7 +79,7 @@ text = "GAME_TAGLINE"
 
 [node name="HSeparator" type="HSeparator" parent="GlobalMargin/Center/VBox"]
 layout_mode = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_t1ilb")
 
 [node name="StartButton" type="Button" parent="GlobalMargin/Center/VBox"]
