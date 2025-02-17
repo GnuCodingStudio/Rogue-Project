@@ -10,8 +10,9 @@ func _ready() -> void:
 
 func _setup_wave(wave: Wave) -> void:
 	prints("Setting up wave", wave.name)
+	wave.init(target_node)
 	var wave_timer = get_tree().create_timer(wave.start_time)
 	wave_timer.timeout.connect(_start_wave.bind(wave))
 
 func _start_wave(wave: Wave) -> void:
-	wave.start(target_node)
+	wave.start()

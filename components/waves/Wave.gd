@@ -13,24 +13,35 @@ extends Node
 var _mobs_to_spawn: int
 var _mobs_spawned: int = 0
 
-var _spawn_points: Array[Node2D] = []
+var _spawn_points: Array[Marker2D] = []
 var _spawn_node: Node
 
 var _already_played: bool = false
 
 func _ready() -> void:
+	assert(mobs_scene != null, "Waves need a mob to spawn")
+
 	timer.wait_time = spawn_interval
 	_mobs_to_spawn = randi_range(mobs_min_count, mobs_max_count)
 	for child in get_children():
-		if child is Node2D:
+		if child is Marker2D:
 			_spawn_points.push_back(child)
+		if child is Area2D:
+			_setup_trigger_area(child)
+	assert(_spawn_points.size() > 0, "Waves need at least one spawn point")
 
-func start(parent: Node) -> void:
-	if timer.is_stopped() and not _already_played:
+func init(parent: Node) -> void:
+	_spawn_node = parent
+
+func start() -> void:
+	if not _already_played:
 		_already_played = true
-		_spawn_node = parent
 		_spawn()
 		timer.start()
+
+func _setup_trigger_area(area: Area2D) -> void:
+	if area:
+		area.body_entered.connect(_on_trigger_entered)
 
 func _spawn() -> void:
 	var wave_finished = _mobs_spawned >= _mobs_to_spawn
@@ -49,5 +60,12 @@ func _spawn_mob_at(global_position: Vector2) -> Node2D:
 	mob.global_position = global_position
 	return mob
 
+#region signal
+
 func _on_spawn_timeout() -> void:
 	_spawn()
+
+func _on_trigger_entered(body: RigidBody2D) -> void:
+	start()
+
+#endregion signal
