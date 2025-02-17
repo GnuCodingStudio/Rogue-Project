@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://mnloru3er2fc"]
+[gd_scene load_steps=8 format=3 uid="uid://mnloru3er2fc"]
 
 [ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="1_t7e46"]
 [ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="2_md0ag"]
 [ext_resource type="PackedScene" uid="uid://riml2gwgt1rh" path="res://objects/actors/mob/dummy/DummyMob.tscn" id="3_6ad02"]
 [ext_resource type="PackedScene" uid="uid://bg1jxenps3n8j" path="res://components/waves/WaveGenerator.tscn" id="4_0k6ps"]
 [ext_resource type="PackedScene" uid="uid://q0axnfkv00xp" path="res://components/waves/Wave.tscn" id="4_yi1vj"]
+[ext_resource type="PackedScene" uid="uid://dl2fit8pvotmx" path="res://objects/chest/Chest.tscn" id="6_7tyhf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neen3"]
 size = Vector2(255.125, 257.194)
@@ -12,7 +13,6 @@ size = Vector2(255.125, 257.194)
 [node name="DebugLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_t7e46")]
-speed = 200.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
@@ -71,6 +71,9 @@ position = Vector2(540, -256)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaveGenerator/Wave3/TriggerArea"]
-position = Vector2(540, 0)
+position = Vector2(320, 0)
 shape = SubResource("RectangleShape2D_neen3")
 debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="Chest" parent="." instance=ExtResource("6_7tyhf")]
+position = Vector2(289, 47)
