@@ -59,6 +59,7 @@ position = Vector2(516.391, 575.679)
 [node name="Wave3" parent="WaveGenerator" instance=ExtResource("4_yi1vj")]
 start_time = 99999
 spawn_interval = 2
+trigger_previous_waves = true
 mobs_min_count = 10
 mobs_max_count = 20
 mobs_scene = ExtResource("3_6ad02")

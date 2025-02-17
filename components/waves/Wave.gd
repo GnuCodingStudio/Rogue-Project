@@ -3,10 +3,13 @@ extends Node
 
 @export var start_time: int = 0
 @export var spawn_interval: int = 0
+@export var trigger_previous_waves: bool = false
 @export_group("Mobs", "mobs_")
 @export var mobs_min_count: int = 0
 @export var mobs_max_count: int = 0
 @export var mobs_scene: PackedScene
+
+signal on_start(Wave)
 
 @onready var timer: Timer = $Timer
 
@@ -35,6 +38,7 @@ func init(parent: Node) -> void:
 
 func start() -> void:
 	if not _already_played:
+		on_start.emit(self)
 		_already_played = true
 		_spawn()
 		timer.start()
