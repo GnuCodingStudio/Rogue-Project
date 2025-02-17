@@ -6,24 +6,22 @@ signal on_select()
 signal on_unselect()
 signal on_collect()
 
-var _collectable: bool = false
+var _collectable: bool = true
 
+func get_element() -> Node2D:
+	return get_parent()
 
 func select() -> void:
 	on_select.emit()
 
-
 func unselect() -> void:
 	on_unselect.emit()
-
 
 func collect() -> void:
 	on_collect.emit()
 
-
 func set_collectable(collectable: bool) -> void:
 	_collectable = collectable
-
 
 func is_collectable() -> bool:
 	return _collectable
