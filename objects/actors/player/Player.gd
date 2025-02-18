@@ -49,5 +49,11 @@ func attack():
 
 func _on_collecting(element):
 	if element is Chest:
-		print('collected')
 		hasChest = true
+	if element is Boat:
+		if hasChest:
+			element._can_enter = true
+			$AnimationPlayer.play("fade_away")
+		
+		if element._can_enter: $AnimationPlayer.play("fade_away")
+		

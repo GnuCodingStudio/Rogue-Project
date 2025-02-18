@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://mnloru3er2fc"]
+[gd_scene load_steps=10 format=3 uid="uid://mnloru3er2fc"]
 
 [ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="1_t7e46"]
 [ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="2_md0ag"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://riml2gwgt1rh" path="res://objects/actors/mob/dummy/DummyMob.tscn" id="3_6ad02"]
 [ext_resource type="PackedScene" uid="uid://bg1jxenps3n8j" path="res://components/waves/WaveGenerator.tscn" id="4_0k6ps"]
 [ext_resource type="PackedScene" uid="uid://q0axnfkv00xp" path="res://components/waves/Wave.tscn" id="4_yi1vj"]
-[ext_resource type="PackedScene" uid="uid://dl2fit8pvotmx" path="res://objects/chest/Chest.tscn" id="6_7tyhf"]
+[ext_resource type="PackedScene" uid="uid://dl2fit8pvotmx" path="res://objects/chest/Chest.tscn" id="4_juors"]
+[ext_resource type="PackedScene" uid="uid://cygo8e4lvo8ki" path="res://objects/boat/Boat.tscn" id="4_schvo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neen3"]
 size = Vector2(255.125, 257.194)
@@ -77,5 +78,8 @@ position = Vector2(320, 0)
 shape = SubResource("RectangleShape2D_neen3")
 debug_color = Color(0, 1, 0, 0.419608)
 
-[node name="Chest" parent="." instance=ExtResource("6_7tyhf")]
-position = Vector2(289, 47)
+[node name="Boat" parent="." instance=ExtResource("4_schvo")]
+position = Vector2(-191, 228)
+
+[node name="Chest" parent="." instance=ExtResource("4_juors")]
+position = Vector2(107, 280)
