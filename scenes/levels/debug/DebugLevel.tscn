@@ -8,6 +8,8 @@
 [node name="DebugLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_t7e46")]
+chestModifierSpeed = 0.7
+maxHealth = 100
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
