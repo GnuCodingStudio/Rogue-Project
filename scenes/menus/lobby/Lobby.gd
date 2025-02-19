@@ -77,9 +77,8 @@ func _check_address(address: String):
 
 
 func _on_play_pressed() -> void:
-	var debug_level = preload("res://scenes/levels/debug/DebugLevel.tscn").instantiate()
-	add_child(debug_level)
-	waiting_room.visible = false
+	SceneTransition.change_scene("res://scenes/map/Map.tscn")
+	waiting_room.hide()
 
 
 func _on_connection_success() -> void:

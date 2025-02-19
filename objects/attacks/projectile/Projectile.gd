@@ -2,7 +2,7 @@ class_name Projectile
 extends Area2D
 
 var range: float
-var damage: float
+var damage: int
 
 var _targeted_direction: Vector2
 var _distance_traveled: float = 0.0
@@ -16,7 +16,7 @@ func init(_damage: int, _range, _direction):
 
 func _on_body_entered(body: Node) -> void:
 	if body is Mob:
-		body.queue_free()
+		body.apply_attack(damage)
 		queue_free()
 
 

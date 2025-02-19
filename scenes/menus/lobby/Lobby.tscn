@@ -42,30 +42,30 @@ replication_config = SubResource("SceneReplicationConfig_rtipl")
 [node name="Title" type="Label" parent="WaitingRoom"]
 layout_mode = 2
 offset_left = 98.0
-offset_top = 44.0
+offset_top = 13.0
 offset_right = 487.0
-offset_bottom = 99.0
+offset_bottom = 68.0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Waiting new players"
 horizontal_alignment = 1
 
 [node name="PlayersList" type="ItemList" parent="WaitingRoom"]
-custom_minimum_size = Vector2(400, 500)
+custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 offset_left = 94.0
-offset_top = 140.0
+offset_top = 100.0
 offset_right = 494.0
-offset_bottom = 640.0
+offset_bottom = 258.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Play" type="Button" parent="WaitingRoom"]
 layout_mode = 2
-offset_left = 190.0
-offset_top = 661.0
-offset_right = 430.0
-offset_bottom = 753.0
+offset_left = 173.0
+offset_top = 274.0
+offset_right = 413.0
+offset_bottom = 339.0
 size_flags_vertical = 8
 text = "Play ! "
 
