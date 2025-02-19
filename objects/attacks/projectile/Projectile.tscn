@@ -43,6 +43,8 @@ animations = [{
 radius = 8.0
 
 [node name="Projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_kdsij")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
