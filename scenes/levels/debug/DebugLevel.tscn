@@ -5,9 +5,9 @@
 [ext_resource type="Resource" uid="uid://ca4y5d7kksi0h" path="res://resources/weapons/sword/Sword.tres" id="2_sywcb"]
 [ext_resource type="PackedScene" uid="uid://riml2gwgt1rh" path="res://objects/actors/mob/dummy/DummyMob.tscn" id="3_6ad02"]
 [ext_resource type="PackedScene" uid="uid://bg1jxenps3n8j" path="res://components/waves/WaveGenerator.tscn" id="4_0k6ps"]
-[ext_resource type="PackedScene" uid="uid://q0axnfkv00xp" path="res://components/waves/Wave.tscn" id="4_yi1vj"]
 [ext_resource type="PackedScene" uid="uid://dl2fit8pvotmx" path="res://objects/chest/Chest.tscn" id="4_juors"]
 [ext_resource type="PackedScene" uid="uid://cygo8e4lvo8ki" path="res://objects/boat/Boat.tscn" id="4_schvo"]
+[ext_resource type="PackedScene" uid="uid://q0axnfkv00xp" path="res://components/waves/Wave.tscn" id="4_yi1vj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neen3"]
 size = Vector2(255.125, 257.194)
