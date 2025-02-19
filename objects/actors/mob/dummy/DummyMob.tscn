@@ -1,9 +1,10 @@
-[gd_scene load_steps=49 format=3 uid="uid://riml2gwgt1rh"]
+[gd_scene load_steps=54 format=3 uid="uid://riml2gwgt1rh"]
 
 [ext_resource type="PackedScene" uid="uid://b3y0j0iqfou0u" path="res://objects/actors/mob/Mob.tscn" id="1_v6bs4"]
 [ext_resource type="PackedScene" uid="uid://brjpcb7460j1d" path="res://components/behavior/targeting/NearestPlayerTargetingBehavior.tscn" id="3_45raj"]
 [ext_resource type="Texture2D" uid="uid://by5yfeftc4s1v" path="res://objects/actors/mob/dummy/DummyMob.png" id="3_53wnf"]
 [ext_resource type="PackedScene" uid="uid://6123kykyglg8" path="res://components/behavior/movement/RunToPlayerMovementBehavior.tscn" id="4_04pgy"]
+[ext_resource type="PackedScene" uid="uid://c57dissnoyii4" path="res://objects/healthbar/Healthbar.tscn" id="5_fiitg"]
 [ext_resource type="PackedScene" uid="uid://b3gepyhwfd2ue" path="res://components/behavior/attack/CloseCombatStrikeAttackBehavior.tscn" id="5_n154y"]
 [ext_resource type="Texture2D" uid="uid://r0w487am0e0a" path="res://assets/image/attack/CloseCombarStrike01.png" id="6_bx5f8"]
 
@@ -340,9 +341,87 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_3ut40"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4py5w"]
+resource_name = "Hit"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0, 1, -0.2, 0, 0.2, 0, 0, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_4gskq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:material:shader_parameter/flash_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg7ak"]
+_data = {
+"Death": SubResource("Animation_3ut40"),
+"Hit": SubResource("Animation_4py5w"),
+"RESET": SubResource("Animation_4gskq")
+}
+
 [node name="DummyMob" instance=ExtResource("1_v6bs4")]
 collision_layer = 2
 collision_mask = 3
+maxHealth = 10
 
 [node name="AnimatedSprite" parent="." index="0"]
 scale = Vector2(2, 2)
@@ -362,7 +441,14 @@ debug_color = Color(0, 1, 0, 0.419608)
 
 [node name="RunToPlayerMovementBehavior" parent="." index="3" instance=ExtResource("4_04pgy")]
 
-[node name="CloseCombatStrikeAttackBehavior" parent="." index="4" node_paths=PackedStringArray("attack_animation") instance=ExtResource("5_n154y")]
+[node name="Healthbar" parent="." index="4" instance=ExtResource("5_fiitg")]
+unique_name_in_owner = true
+offset_left = -27.0
+offset_top = -23.0
+offset_right = 83.0
+offset_bottom = -11.0
+
+[node name="CloseCombatStrikeAttackBehavior" parent="." index="5" node_paths=PackedStringArray("attack_animation") instance=ExtResource("5_n154y")]
 attack_animation = NodePath("AttackAnimation")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CloseCombatStrikeAttackBehavior" index="1"]
@@ -371,3 +457,9 @@ debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="AttackAnimation" type="AnimatedSprite2D" parent="CloseCombatStrikeAttackBehavior" index="2"]
 sprite_frames = SubResource("SpriteFrames_7icsa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_wg7ak")
+}
