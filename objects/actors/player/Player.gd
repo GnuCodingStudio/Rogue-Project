@@ -6,7 +6,7 @@ extends Actor
 var lifePoint = maxHealth
 
 @onready var attackTimer = $AttackTimer
-@onready var healthbar = $HealthBar
+@onready var healthbar = $Healthbar
 
 var weapon: Weapon
 var hasChest = false
@@ -57,5 +57,4 @@ func attack():
 
 func _on_collecting(element):
 	if element is Chest:
-		print('collected')
 		hasChest = true

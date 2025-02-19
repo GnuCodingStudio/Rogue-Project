@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://objects/actors/player/damage_flash.gdshader" id="3_lj504"]
 [ext_resource type="Texture2D" uid="uid://cnwmhohk8wm23" path="res://objects/actors/player/Player.png" id="3_pkisr"]
 [ext_resource type="PackedScene" uid="uid://cxlkjx4h6gv5h" path="res://components/collector/Collector.tscn" id="5_q1uwo"]
-[ext_resource type="Script" path="res://objects/actors/player/health_bar.gd" id="6_eovrv"]
+[ext_resource type="PackedScene" uid="uid://c57dissnoyii4" path="res://objects/healthbar/Healthbar.tscn" id="6_ii3ml"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p4sxr"]
 properties/0/path = NodePath(".:position")
@@ -287,17 +287,9 @@ libraries = {
 "": SubResource("AnimationLibrary_wg7ak")
 }
 
-[node name="HealthBar" type="ProgressBar" parent="." index="6"]
-modulate = Color(0.227451, 0.768627, 0.156863, 1)
-z_index = 10
-offset_left = -68.0
-offset_top = -60.0
+[node name="Healthbar" parent="." index="6" instance=ExtResource("6_ii3ml")]
+z_index = 20
+offset_left = -69.0
 offset_right = 206.0
-offset_bottom = -33.0
-scale = Vector2(0.5, 0.5)
-mouse_filter = 2
-step = 1.0
-show_percentage = false
-script = ExtResource("6_eovrv")
 
 [connection signal="on_collecting" from="Collector" to="." method="_on_collecting"]
