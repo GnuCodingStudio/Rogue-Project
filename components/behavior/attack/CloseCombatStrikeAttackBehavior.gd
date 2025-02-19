@@ -1,25 +1,20 @@
 class_name CloseCombatStrikeAttackBehavior
 extends Area2D
 
-
 @export var force: int = 10
 @export var attack_animation: AnimatedSprite2D
 
 @onready var attack_timer: Timer = %AttackTimer
 
-
 var _mob: Mob
-
 
 func _ready() -> void:
 	assert(get_parent() is Mob)
 	_mob = get_parent()
 
-
 func _on_attack_timer_timeout() -> void:
 	if not _mob.targeted_players.is_empty():
 		_attack()
-
 
 func _attack() -> void:
 	var has_attacked := false
@@ -31,7 +26,6 @@ func _attack() -> void:
 
 	if has_attacked:
 		_play_attack_animation()
-
 
 func _play_attack_animation() -> void:
 	if attack_animation:
