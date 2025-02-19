@@ -2,8 +2,11 @@ class_name Player
 extends Actor
 
 @export var chestModifierSpeed: float = 0.7
+@export var maxHealth = 100
+var lifePoint = maxHealth
 
 @onready var attackTimer = $AttackTimer
+@onready var healthbar = $HealthBar
 
 @export var weapon: Weapon
 var hasChest = false
@@ -11,6 +14,8 @@ var hasChest = false
 func _ready() -> void:
 	if StoreManager.player_weapon != null:
 		weapon = StoreManager.player_weapon
+	healthbar.max_value = maxHealth
+	healthbar.value = maxHealth
 	attackTimer.wait_time = weapon.attack_speed
 
 func _input(event):
@@ -22,7 +27,15 @@ func _input(event):
 		attack()
 
 func apply_attack(force: int) -> void:
-	prints("Attacked with force", force)
+	if lifePoint == 0:
+		return
+
+	lifePoint -= force
+	$AnimationPlayer.play('Hit')
+	healthbar.value = lifePoint
+
+	if (lifePoint == 0):
+		$AnimationPlayer.play("Death")
 
 func get_speed():
 	if hasChest: return _speed * chestModifierSpeed
@@ -38,7 +51,7 @@ func attack():
 	var direction = global_position.direction_to(mouseCoords)
 	
 	var attack_scene = weapon.attackTo(direction)
-	
+
 	if weapon.attack_type == Weapon.ATTACK_TYPES.projectile:
 		attack_scene.global_position = global_position
 		get_tree().current_scene.add_child(attack_scene)
@@ -54,6 +67,6 @@ func _on_collecting(element):
 		if hasChest:
 			element.can_enter = true
 			$AnimationPlayer.play("fade_away")
-		
+
 		if element.can_enter: $AnimationPlayer.play("fade_away")
-		
+
