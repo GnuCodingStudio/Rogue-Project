@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cygo8e4lvo8ki"]
+
+[ext_resource type="Script" path="res://objects/boat/Boat.gd" id="1_fdo8m"]
+[ext_resource type="Texture2D" uid="uid://b04wij8m2thi4" path="res://objects/boat/Ship Pixel Sprite.png" id="2_lt2gf"]
+[ext_resource type="Script" path="res://components/collector/Collectable.gd" id="2_or5bb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qddgf"]
+size = Vector2(426, 204)
+
+[node name="Boat" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_fdo8m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_lt2gf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-23, 54)
+shape = SubResource("RectangleShape2D_qddgf")
+
+[node name="Collectable" type="Node2D" parent="."]
+script = ExtResource("2_or5bb")
+
+[connection signal="on_collect" from="Collectable" to="." method="_on_enter"]

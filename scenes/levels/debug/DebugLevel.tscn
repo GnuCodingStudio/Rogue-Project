@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://mnloru3er2fc"]
+[gd_scene load_steps=6 format=3 uid="uid://mnloru3er2fc"]
 
 [ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="1_t7e46"]
 [ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="2_md0ag"]
 [ext_resource type="PackedScene" uid="uid://riml2gwgt1rh" path="res://objects/actors/mob/dummy/DummyMob.tscn" id="3_6ad02"]
 [ext_resource type="PackedScene" uid="uid://dl2fit8pvotmx" path="res://objects/chest/Chest.tscn" id="4_juors"]
+[ext_resource type="PackedScene" uid="uid://cygo8e4lvo8ki" path="res://objects/boat/Boat.tscn" id="4_schvo"]
 
 [node name="DebugLevel" type="Node2D"]
 
@@ -17,6 +18,9 @@ visible = false
 
 [node name="DummyMob" parent="." instance=ExtResource("3_6ad02")]
 position = Vector2(750, 135)
+
+[node name="Boat" parent="." instance=ExtResource("4_schvo")]
+position = Vector2(-191, 228)
 
 [node name="Chest" parent="." instance=ExtResource("4_juors")]
 position = Vector2(107, 280)
