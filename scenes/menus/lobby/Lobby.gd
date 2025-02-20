@@ -33,7 +33,6 @@ func _ready() -> void:
 	else:
 		player_name_input.text = "Pirate"
 
-
 func _on_host_pressed() -> void:
 	var player_name: String = player_name_input.text.strip_edges()
 	if !_check_player_name(player_name): return
@@ -44,7 +43,6 @@ func _on_host_pressed() -> void:
 
 	MultiplayerManager.host_game(player_name)
 	refresh_waiting_room()
-
 
 func _on_join_pressed() -> void:
 	var player_name: String = player_name_input.text.strip_edges()
@@ -59,14 +57,12 @@ func _on_join_pressed() -> void:
 
 	MultiplayerManager.join_game(host_address, player_name)
 
-
 func _check_player_name(name: String):
 	if name.is_empty():
 		error_label.text = "Invalid name!"
 		return false
 	else:
 		return true
-
 
 func _check_address(address: String):
 	if address.is_empty():
@@ -75,29 +71,28 @@ func _check_address(address: String):
 	else:
 		return true
 
-
 func _on_play_pressed() -> void:
-	SceneTransition.change_scene("res://scenes/map/Map.tscn")
 	waiting_room.hide()
+	load_map.rpc()
 
+@rpc("call_local")
+func load_map() -> void:
+	SceneTransition.change_scene("res://scenes/map/Map.tscn")
 
 func _on_connection_success() -> void:
 	connect.hide()
 	waiting_room.show()
-
 
 func _on_connection_failed() -> void:
 	host_button.disabled = false
 	join_button.disabled = false
 	error_label.set_text("Connection failed.")
 
-
 func _on_game_error(errtxt: String) -> void:
 	alert_dialog.dialog_text = errtxt
 	alert_dialog.popup_centered()
 	host_button.disabled = false
 	join_button.disabled = false
-
 
 func refresh_waiting_room() -> void:
 	var players := MultiplayerManager.get_player_name_list()
