@@ -79,7 +79,7 @@ func join_game(ip: String, new_player_name: String) -> void:
 	var result = peer.create_client(ip, DEFAULT_PORT)
 	if result == OK:
 		multiplayer.set_multiplayer_peer(peer)
-		print("Server joined successfully on ip %d" % ip)
+		print("Server joined successfully on ip %s" % ip)
 	else:
 		game_error.emit("Failed to join server. Error code: %d" % result)
 #endregion Lobby management functions.

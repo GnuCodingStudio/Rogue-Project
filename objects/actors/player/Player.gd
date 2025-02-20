@@ -5,11 +5,12 @@ extends Actor
 
 @onready var attackTimer = $AttackTimer
 
-var weapon: Weapon
+@export var weapon: Weapon
 var hasChest = false
 
 func _ready() -> void:
-	weapon = StoreManager.player_weapon
+	if(StoreManager.player_weapon != null):
+		weapon = StoreManager.player_weapon
 	attackTimer.wait_time = weapon.attack_speed
 
 func _input(event):

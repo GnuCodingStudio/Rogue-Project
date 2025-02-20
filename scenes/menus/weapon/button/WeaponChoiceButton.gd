@@ -1,5 +1,7 @@
 extends Control
 
+signal player_choose_weapon()
+
 @onready var weapon_icon: TextureRect = %WeaponIcon
 @onready var weapon_name: Label = %WeaponName
 @onready var damage_value_label: Label = %DamageValue
@@ -23,4 +25,4 @@ func _ready() -> void:
 func _on_button_pressed() -> void:
 	StoreManager.player_weapon = _weapon
 	print("Weapon selected is ", _weapon.name, " : ", _weapon)
-	SceneTransition.change_scene("res://scenes/levels/islands/island.tscn")
+	player_choose_weapon.emit()
