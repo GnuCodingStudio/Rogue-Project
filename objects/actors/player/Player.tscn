@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bsfyypyhwfbs5"]
+[gd_scene load_steps=25 format=3 uid="uid://bsfyypyhwfbs5"]
 
 [ext_resource type="PackedScene" uid="uid://du0c1yciw8ul6" path="res://objects/actors/Actor.tscn" id="1_wrkhm"]
 [ext_resource type="Script" path="res://objects/actors/player/Player.gd" id="2_bhjnv"]
@@ -174,6 +174,7 @@ radius = 80.0
 [node name="Player" instance=ExtResource("1_wrkhm")]
 collision_mask = 7
 script = ExtResource("2_bhjnv")
+chestModifierSpeed = 0.7
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
 replication_config = SubResource("SceneReplicationConfig_p4sxr")

@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://mnloru3er2fc"]
+[gd_scene load_steps=8 format=3 uid="uid://mnloru3er2fc"]
 
 [ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="1_t7e46"]
 [ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="2_md0ag"]
 [ext_resource type="PackedScene" uid="uid://riml2gwgt1rh" path="res://objects/actors/mob/dummy/DummyMob.tscn" id="3_6ad02"]
-[ext_resource type="PackedScene" uid="uid://dl2fit8pvotmx" path="res://objects/chest/Chest.tscn" id="4_juors"]
+[ext_resource type="PackedScene" uid="uid://bg1jxenps3n8j" path="res://components/waves/WaveGenerator.tscn" id="4_0k6ps"]
+[ext_resource type="PackedScene" uid="uid://q0axnfkv00xp" path="res://components/waves/Wave.tscn" id="4_yi1vj"]
+[ext_resource type="PackedScene" uid="uid://dl2fit8pvotmx" path="res://objects/chest/Chest.tscn" id="6_7tyhf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_neen3"]
+size = Vector2(255.125, 257.194)
 
 [node name="DebugLevel" type="Node2D"]
 
@@ -12,11 +17,63 @@
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
 
+[node name="Mobs" type="Node2D" parent="."]
+
 [node name="GlobalGameConsole" parent="." instance=ExtResource("2_md0ag")]
 visible = false
 
-[node name="DummyMob" parent="." instance=ExtResource("3_6ad02")]
-position = Vector2(750, 135)
+[node name="WaveGenerator" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("4_0k6ps")]
+target_node = NodePath("../Mobs")
 
-[node name="Chest" parent="." instance=ExtResource("4_juors")]
-position = Vector2(107, 280)
+[node name="Wave1" parent="WaveGenerator" instance=ExtResource("4_yi1vj")]
+spawn_interval = 2
+mobs_min_count = 10
+mobs_max_count = 10
+mobs_scene = ExtResource("3_6ad02")
+
+[node name="Spawn1" type="Marker2D" parent="WaveGenerator/Wave1"]
+position = Vector2(-177, -468)
+
+[node name="Spawn2" type="Marker2D" parent="WaveGenerator/Wave1"]
+position = Vector2(186, -460)
+
+[node name="Wave2" parent="WaveGenerator" instance=ExtResource("4_yi1vj")]
+start_time = 30
+spawn_interval = 2
+mobs_min_count = 50
+mobs_max_count = 70
+mobs_scene = ExtResource("3_6ad02")
+
+[node name="Spawn1" type="Marker2D" parent="WaveGenerator/Wave2"]
+position = Vector2(-519.445, 578.348)
+
+[node name="Spawn2" type="Marker2D" parent="WaveGenerator/Wave2"]
+position = Vector2(-199.083, 565)
+
+[node name="Spawn3" type="Marker2D" parent="WaveGenerator/Wave2"]
+position = Vector2(145.305, 567.67)
+
+[node name="Spawn4" type="Marker2D" parent="WaveGenerator/Wave2"]
+position = Vector2(516.391, 575.679)
+
+[node name="Wave3" parent="WaveGenerator" instance=ExtResource("4_yi1vj")]
+start_time = 99999
+spawn_interval = 2
+trigger_previous_waves = true
+mobs_min_count = 10
+mobs_max_count = 20
+mobs_scene = ExtResource("3_6ad02")
+
+[node name="Spawn" type="Marker2D" parent="WaveGenerator/Wave3"]
+position = Vector2(540, -256)
+
+[node name="TriggerArea" type="Area2D" parent="WaveGenerator/Wave3"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveGenerator/Wave3/TriggerArea"]
+position = Vector2(320, 0)
+shape = SubResource("RectangleShape2D_neen3")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="Chest" parent="." instance=ExtResource("6_7tyhf")]
+position = Vector2(289, 47)

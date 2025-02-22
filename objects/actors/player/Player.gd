@@ -1,7 +1,7 @@
 class_name Player
 extends Actor
 
-@export var chestModifierSpeed = 0.7
+@export var chestModifierSpeed: float = 0.7
 
 @onready var attackTimer = $AttackTimer
 
