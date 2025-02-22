@@ -5,8 +5,8 @@ extends Node
 @export var spawn_interval: int = 0
 @export var trigger_previous_waves: bool = false
 @export_group("Mobs", "mobs_")
-@export var mobs_min_count: int = 0
-@export var mobs_max_count: int = 0
+@export var mobs_min_count: int = 20
+@export var mobs_max_count: int = 30
 @export var mobs_scene: PackedScene
 
 signal on_start(Wave)
