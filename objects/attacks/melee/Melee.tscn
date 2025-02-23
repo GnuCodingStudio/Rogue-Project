@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4syklpe6rus0"]
+
+[ext_resource type="Texture2D" uid="uid://2dullay0tbo5" path="res://objects/attacks/melee/melee.png" id="1_g80hq"]
+[ext_resource type="Script" path="res://objects/attacks/melee/Melee.gd" id="1_lns0q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51i3e"]
+size = Vector2(8, 18)
+
+[node name="Melee" type="Node2D"]
+script = ExtResource("1_lns0q")
+
+[node name="Sword" type="Area2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sword"]
+position = Vector2(0, -9.5)
+texture = ExtResource("1_g80hq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_51i3e")
+
+[connection signal="body_entered" from="Sword" to="." method="_on_melee_body_entered"]

@@ -175,6 +175,7 @@ radius = 80.0
 collision_mask = 7
 script = ExtResource("2_bhjnv")
 chestModifierSpeed = 0.7
+weapon = null
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
 replication_config = SubResource("SceneReplicationConfig_p4sxr")
