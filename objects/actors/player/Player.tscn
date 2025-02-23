@@ -571,7 +571,7 @@ replication_config = SubResource("SceneReplicationConfig_p4sxr")
 sprite_frames = SubResource("SpriteFrames_67jtf")
 animation = &"MoveUp"
 autoplay = "IdleDown"
-frame_progress = 0.922537
+frame_progress = 0.972247
 
 [node name="CollisionShape" parent="." index="2"]
 shape = SubResource("CircleShape2D_rqsaa")
