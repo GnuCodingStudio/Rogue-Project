@@ -24,7 +24,6 @@ func _on_body_entered(body: Node) -> void:
 		body.queue_free()
 		queue_free()
 
-
 func _physics_process(delta: float) -> void:
 	if _targeted_direction != Vector2.ZERO:
 		var movement = _targeted_direction.normalized() * delta * _speed
