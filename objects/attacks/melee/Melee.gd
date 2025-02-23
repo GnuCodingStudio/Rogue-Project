@@ -68,7 +68,6 @@ func _draw() -> void:
 	for i in range(_attack_points_count):
 		draw_line(_attack_points[i], _attack_points[i+1], Color(0,1,1), 2)
 
-
-func _on_melee_body_entered(body: Node2D) -> void:
+func _on_sword_body_entered(body: Node2D) -> void:
 	if body is Mob:
 		body.queue_free()

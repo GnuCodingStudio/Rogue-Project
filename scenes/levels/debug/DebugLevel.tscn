@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://mnloru3er2fc"]
+[gd_scene load_steps=9 format=3 uid="uid://mnloru3er2fc"]
 
 [ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="1_t7e46"]
 [ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="2_md0ag"]
+[ext_resource type="Resource" uid="uid://ca4y5d7kksi0h" path="res://resources/weapons/sword/Sword.tres" id="2_sywcb"]
 [ext_resource type="PackedScene" uid="uid://riml2gwgt1rh" path="res://objects/actors/mob/dummy/DummyMob.tscn" id="3_6ad02"]
 [ext_resource type="PackedScene" uid="uid://bg1jxenps3n8j" path="res://components/waves/WaveGenerator.tscn" id="4_0k6ps"]
 [ext_resource type="PackedScene" uid="uid://q0axnfkv00xp" path="res://components/waves/Wave.tscn" id="4_yi1vj"]
@@ -13,6 +14,7 @@ size = Vector2(255.125, 257.194)
 [node name="DebugLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_t7e46")]
+weapon = ExtResource("2_sywcb")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true

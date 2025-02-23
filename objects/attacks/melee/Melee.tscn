@@ -12,6 +12,8 @@ script = ExtResource("1_lns0q")
 [node name="Sword" type="Area2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Sword"]
 position = Vector2(0, -9.5)
@@ -21,4 +23,4 @@ texture = ExtResource("1_g80hq")
 position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_51i3e")
 
-[connection signal="body_entered" from="Sword" to="." method="_on_melee_body_entered"]
+[connection signal="body_entered" from="Sword" to="." method="_on_sword_body_entered"]
