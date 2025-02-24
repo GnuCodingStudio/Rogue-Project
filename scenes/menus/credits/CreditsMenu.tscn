@@ -80,10 +80,26 @@ author = "Gnu Coding Studio"
 link = "https://github.com/GnuCodingStudio/"
 link_text = "github.com / GnuCodingStudio"
 
-[node name="BackButton" type="Button" parent="GlobalMargin"]
+[node name="CreditsItem02" parent="GlobalMargin/VBox/Scroll/List" instance=ExtResource("1_gd18q")]
+layout_mode = 2
+size_flags_horizontal = 1
+title = "Free Pirate Stuff Icons"
+author = "Craftpix"
+link = "https://craftpix.net/freebies/free-pirate-stuff-pixel-art-icons/?num=1&count=510&sq=pirate%20icon&pos=5"
+link_text = "Craftpix.net"
+
+[node name="CreditsItem03" parent="GlobalMargin/VBox/Scroll/List" instance=ExtResource("1_gd18q")]
+layout_mode = 2
+size_flags_horizontal = 1
+title = "2D Pixel Art Crab Sprites"
+author = "Elthen's Pixel Art Shop"
+link = "https://elthen.itch.io/2d-pixel-art-crab-sprites"
+link_text = "itch.io"
+
+[node name="BackButton" type="Button" parent="GlobalMargin/VBox"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "CREDITS_BACK_BUTTON"
 
-[connection signal="pressed" from="GlobalMargin/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/VBox/BackButton" to="." method="_on_back_button_pressed"]
