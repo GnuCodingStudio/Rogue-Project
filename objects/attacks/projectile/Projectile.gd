@@ -8,12 +8,12 @@ var offset: float
 var _targeted_direction: Vector2
 var _distance_traveled: float = 0.0
 var _speed: float = 400
-	
-func init(_damage: int, _range, _direction, _offset):
-	damage = _damage
-	range = _range
-	_targeted_direction = _direction
-	offset = _offset
+
+func init(damage: int, range: float, direction: Vector2, offset: float):
+	self.damage = damage
+	self.range = range
+	self._targeted_direction = direction
+	self.offset = offset
 
 func _ready() -> void:
 	position = position + _targeted_direction * offset

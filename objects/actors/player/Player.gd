@@ -40,7 +40,7 @@ func attack():
 	var attack_scene = weapon.attackTo(direction)
 	
 	if weapon.attack_type == Weapon.ATTACK_TYPES.projectile:
-		attack_scene.position = global_position
+		attack_scene.global_position = global_position
 		get_tree().current_scene.add_child(attack_scene)
 	else:
 		add_child(attack_scene)

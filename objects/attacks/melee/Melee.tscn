@@ -11,6 +11,7 @@ script = ExtResource("1_lns0q")
 
 [node name="Sword" type="Area2D" parent="."]
 unique_name_in_owner = true
+rotation = 1.5708
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2

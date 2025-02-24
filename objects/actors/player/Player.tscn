@@ -194,7 +194,7 @@ one_shot = true
 [node name="Collector" parent="." index="4" instance=ExtResource("5_q1uwo")]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collector" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collector" index="0"]
 shape = SubResource("CircleShape2D_xu8dn")
 
 [connection signal="on_collecting" from="Collector" to="." method="_on_collecting"]
