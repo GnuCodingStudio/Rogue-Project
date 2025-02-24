@@ -15,8 +15,8 @@ func _navigate_to_island(target_position: Vector2) -> void:
 	tween.tween_callback(_on_island_entered)
 
 func _on_island_entered():
-	load_weapon_screen.rpc()
+	_load_weapon_screen.rpc()
 	
 @rpc("call_local")
-func load_weapon_screen() -> void:
+func _load_weapon_screen() -> void:
 	SceneTransition.change_scene("res://scenes/menus/weapon/WeaponChoice.tscn")

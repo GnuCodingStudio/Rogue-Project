@@ -73,10 +73,10 @@ func _check_address(address: String):
 
 func _on_play_pressed() -> void:
 	waiting_room.hide()
-	load_map.rpc()
+	_load_map.rpc()
 
 @rpc("call_local")
-func load_map() -> void:
+func _load_map() -> void:
 	SceneTransition.change_scene("res://scenes/map/Map.tscn")
 
 func _on_connection_success() -> void:
