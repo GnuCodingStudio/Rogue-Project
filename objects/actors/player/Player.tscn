@@ -175,6 +175,7 @@ radius = 80.0
 collision_mask = 7
 script = ExtResource("2_bhjnv")
 chestModifierSpeed = 0.7
+weapon = null
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
 replication_config = SubResource("SceneReplicationConfig_p4sxr")
@@ -193,7 +194,7 @@ one_shot = true
 [node name="Collector" parent="." index="4" instance=ExtResource("5_q1uwo")]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collector" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collector" index="0"]
 shape = SubResource("CircleShape2D_xu8dn")
 
 [connection signal="on_collecting" from="Collector" to="." method="_on_collecting"]

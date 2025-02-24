@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://ca4y5d7kksi0h"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://ca4y5d7kksi0h"]
 
 [ext_resource type="Texture2D" uid="uid://cwyul6b6w75d" path="res://resources/weapons/sword/SwordIcon.png" id="1_2prrv"]
+[ext_resource type="PackedScene" uid="uid://c4syklpe6rus0" path="res://objects/attacks/melee/Melee.tscn" id="1_gbs7y"]
 [ext_resource type="Script" path="res://resources/weapons/Weapon.gd" id="2_f21v1"]
 
 [resource]
 script = ExtResource("2_f21v1")
 name = "WEAPON_SWORD"
 icon = ExtResource("1_2prrv")
+attack_type = 1
 attack_damage = 2.0
 attack_range = 150.0
-attack_speed = 1.0
-attack_offset = 0.0
+attack_speed = 0.5
+attack_scene = ExtResource("1_gbs7y")
+attack_offset = 50.0

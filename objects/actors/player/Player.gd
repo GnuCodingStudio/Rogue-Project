@@ -5,11 +5,12 @@ extends Actor
 
 @onready var attackTimer = $AttackTimer
 
-var weapon: Weapon
+@export var weapon: Weapon
 var hasChest = false
 
 func _ready() -> void:
-	weapon = StoreManager.player_weapon
+	if weapon == null:
+		weapon = StoreManager.player_weapon
 	attackTimer.wait_time = weapon.attack_speed
 
 func _input(event):
@@ -34,11 +35,15 @@ func attack():
 	if attackTimer.time_left > 0: return
 	
 	var mouseCoords = get_global_mouse_position()
-	var direction = global_position.direction_to(mouseCoords).normalized()
+	var direction = global_position.direction_to(mouseCoords)
 	
 	var attack_scene = weapon.attackTo(direction)
-	attack_scene.global_position = global_position + (direction * weapon.attack_offset)
-	get_tree().current_scene.add_child(attack_scene)
+	
+	if weapon.attack_type == Weapon.ATTACK_TYPES.projectile:
+		attack_scene.global_position = global_position
+		get_tree().current_scene.add_child(attack_scene)
+	else:
+		add_child(attack_scene)
 	
 	attackTimer.start()
 
