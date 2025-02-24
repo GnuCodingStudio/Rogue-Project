@@ -1,21 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2cw2h2f6hqtg"]
+[gd_scene load_steps=5 format=3 uid="uid://b2cw2h2f6hqtg"]
 
 [ext_resource type="PackedScene" uid="uid://disjjplik7m85" path="res://components/clickable/Clickable.tscn" id="1_67y1u"]
+[ext_resource type="Texture2D" uid="uid://bnr3c44xyyc21" path="res://scenes/map/IslandMarker.png" id="1_m1chj"]
 [ext_resource type="Script" path="res://scenes/map/IslandMarker.gd" id="1_o3d84"]
 
-[sub_resource type="Gradient" id="Gradient_ukqtx"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.448953, 1, 0.760633, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_500bs"]
-gradient = SubResource("Gradient_ukqtx")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfwhs"]
-size = Vector2(64, 64)
+size = Vector2(132, 134)
 
 [node name="IslandMarker" type="Sprite2D"]
 position = Vector2(320, 220)
-texture = SubResource("GradientTexture2D_500bs")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_m1chj")
 script = ExtResource("1_o3d84")
 
 [node name="Clickable" parent="." instance=ExtResource("1_67y1u")]

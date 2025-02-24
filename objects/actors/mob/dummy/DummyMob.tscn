@@ -1,49 +1,60 @@
 [gd_scene load_steps=25 format=3 uid="uid://riml2gwgt1rh"]
 
 [ext_resource type="PackedScene" uid="uid://b3y0j0iqfou0u" path="res://objects/actors/mob/Mob.tscn" id="1_v6bs4"]
-[ext_resource type="Texture2D" uid="uid://cnwmhohk8wm23" path="res://objects/actors/player/Player.png" id="2_pp2c0"]
 [ext_resource type="PackedScene" uid="uid://brjpcb7460j1d" path="res://components/behavior/targeting/NearestPlayerTargetingBehavior.tscn" id="3_45raj"]
 [ext_resource type="PackedScene" uid="uid://6123kykyglg8" path="res://components/behavior/movement/RunToPlayerMovementBehavior.tscn" id="4_04pgy"]
 [ext_resource type="PackedScene" uid="uid://b3gepyhwfd2ue" path="res://components/behavior/attack/CloseCombatStrikeAttackBehavior.tscn" id="5_n154y"]
 [ext_resource type="Texture2D" uid="uid://r0w487am0e0a" path="res://assets/image/attack/CloseCombarStrike01.png" id="6_bx5f8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lo326"]
-atlas = ExtResource("2_pp2c0")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3xruo"]
+load_path = "res://.godot/imported/DummyMob.png-c22b3031e5d9fd089171c06559ac8c64.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4fw38"]
-atlas = ExtResource("2_pp2c0")
-region = Rect2(0, 64, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e02p"]
+atlas = SubResource("CompressedTexture2D_3xruo")
+region = Rect2(0, 0, 160, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kffs6"]
-atlas = ExtResource("2_pp2c0")
-region = Rect2(0, 128, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bja7s"]
+atlas = SubResource("CompressedTexture2D_3xruo")
+region = Rect2(160, 0, 160, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j301r"]
-atlas = ExtResource("2_pp2c0")
-region = Rect2(0, 192, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_68wqi"]
+atlas = SubResource("CompressedTexture2D_3xruo")
+region = Rect2(320, 0, 160, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uruf1"]
-atlas = ExtResource("2_pp2c0")
-region = Rect2(64, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qalfg"]
+atlas = SubResource("CompressedTexture2D_3xruo")
+region = Rect2(480, 0, 160, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ltf8"]
-atlas = ExtResource("2_pp2c0")
-region = Rect2(64, 64, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_28yf6"]
+atlas = SubResource("CompressedTexture2D_3xruo")
+region = Rect2(0, 160, 160, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xhiec"]
-atlas = ExtResource("2_pp2c0")
-region = Rect2(64, 128, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_s38vk"]
+atlas = SubResource("CompressedTexture2D_3xruo")
+region = Rect2(160, 160, 160, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkyod"]
-atlas = ExtResource("2_pp2c0")
-region = Rect2(64, 192, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp8tw"]
+atlas = SubResource("CompressedTexture2D_3xruo")
+region = Rect2(320, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7nq0"]
+atlas = SubResource("CompressedTexture2D_3xruo")
+region = Rect2(480, 160, 160, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lscel"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lo326")
+"texture": SubResource("AtlasTexture_5e02p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bja7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68wqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qalfg")
 }],
 "loop": true,
 "name": &"IdleDown",
@@ -51,63 +62,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4fw38")
-}],
-"loop": true,
-"name": &"IdleLeft",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_28yf6")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kffs6")
-}],
-"loop": true,
-"name": &"IdleRight",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_s38vk")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j301r")
-}],
-"loop": true,
-"name": &"IdleUp",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_pp8tw")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uruf1")
+"texture": SubResource("AtlasTexture_e7nq0")
 }],
 "loop": true,
 "name": &"MoveDown",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ltf8")
-}],
-"loop": true,
-"name": &"MoveLeft",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xhiec")
-}],
-"loop": true,
-"name": &"MoveRight",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dkyod")
-}],
-"loop": true,
-"name": &"MoveUp",
-"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ba10h"]
-radius = 32.0
+radius = 13.0384
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mh0q8"]
 radius = 431.167
@@ -177,8 +149,11 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="AnimatedSprite" parent="." index="0"]
+position = Vector2(0, -13)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_lscel")
-animation = &"MoveUp"
+animation = &"MoveDown"
+autoplay = "IdleDown"
 
 [node name="CollisionShape" parent="." index="1"]
 shape = SubResource("CircleShape2D_ba10h")
