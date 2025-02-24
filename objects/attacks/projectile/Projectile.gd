@@ -16,7 +16,7 @@ func init(damage: int, range: float, direction: Vector2, offset: float):
 	self.offset = offset
 
 func _ready() -> void:
-	position = position + _targeted_direction * offset
+	position += _targeted_direction * offset
 
 
 func _on_body_entered(body: Node) -> void:
