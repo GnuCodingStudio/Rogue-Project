@@ -1,5 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://mnloru3er2fc"]
 
+[ext_resource type="Script" path="res://scenes/levels/debug/debug_level.gd" id="1_ggoyj"]
 [ext_resource type="PackedScene" uid="uid://bsfyypyhwfbs5" path="res://objects/actors/player/Player.tscn" id="1_t7e46"]
 [ext_resource type="PackedScene" uid="uid://cetwdxtei7a5n" path="res://scenes/console/GlobalGameConsole.tscn" id="2_md0ag"]
 [ext_resource type="Resource" uid="uid://ca4y5d7kksi0h" path="res://resources/weapons/sword/Sword.tres" id="2_sywcb"]
@@ -13,6 +14,7 @@
 size = Vector2(255.125, 257.194)
 
 [node name="DebugLevel" type="Node2D"]
+script = ExtResource("1_ggoyj")
 
 [node name="Player" parent="." instance=ExtResource("1_t7e46")]
 weapon = ExtResource("2_sywcb")
@@ -83,3 +85,5 @@ position = Vector2(-191, 228)
 
 [node name="Chest" parent="." instance=ExtResource("4_juors")]
 position = Vector2(107, 280)
+
+[connection signal="on_leave_level" from="Boat" to="." method="_on_leave_level"]

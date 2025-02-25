@@ -52,8 +52,8 @@ func _on_collecting(element):
 		hasChest = true
 	if element is Boat:
 		if hasChest:
-			element._can_enter = true
+			element.can_enter = true
 			$AnimationPlayer.play("fade_away")
 		
-		if element._can_enter: $AnimationPlayer.play("fade_away")
+		if element.can_enter: $AnimationPlayer.play("fade_away")
 		
