@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://du0c1yciw8ul6" path="res://objects/actors/Actor.tscn" id="1_wrkhm"]
 [ext_resource type="Script" path="res://objects/actors/player/Player.gd" id="2_bhjnv"]
+[ext_resource type="Resource" uid="uid://r3i80a6v2w0y" path="res://resources/weapons/gun/Gun.tres" id="3_irbyu"]
 [ext_resource type="Texture2D" uid="uid://cnwmhohk8wm23" path="res://objects/actors/player/Player.png" id="3_pkisr"]
 [ext_resource type="PackedScene" uid="uid://cxlkjx4h6gv5h" path="res://components/collector/Collector.tscn" id="5_q1uwo"]
 
@@ -225,7 +226,7 @@ _data = {
 collision_mask = 7
 script = ExtResource("2_bhjnv")
 chestModifierSpeed = 0.7
-weapon = null
+weapon = ExtResource("3_irbyu")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
 replication_config = SubResource("SceneReplicationConfig_p4sxr")

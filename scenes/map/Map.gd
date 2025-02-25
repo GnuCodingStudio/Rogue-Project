@@ -6,7 +6,7 @@ extends Node2D
 func _on_island_clicked(island_marker: IslandMarker):
 	if !multiplayer.is_server(): return
 	prints("Island", island_marker.id, "clicked")
-	rpc("_navigate_to_island", island_marker.position)
+	_navigate_to_island.rpc(island_marker.position)
 
 @rpc("call_local")	
 func _navigate_to_island(target_position: Vector2) -> void:
