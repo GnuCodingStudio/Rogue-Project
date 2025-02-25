@@ -76,7 +76,7 @@ position = Vector2(540, -256)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaveGenerator/Wave3/TriggerArea"]
-position = Vector2(320, 0)
+position = Vector2(107, 280)
 shape = SubResource("RectangleShape2D_neen3")
 debug_color = Color(0, 1, 0, 0.419608)
 
