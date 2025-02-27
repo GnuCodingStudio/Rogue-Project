@@ -12,3 +12,12 @@ func _ready() -> void:
 		button.init(weapon)
 		
 		weapons_container.add_child(button)
+		button.player_choose_weapon.connect(_players_is_ready)
+
+func _players_is_ready():
+	if !multiplayer.is_server(): return
+	_load_island.rpc()
+
+@rpc("call_local", "reliable")
+func _load_island() -> void:
+	SceneTransition.change_scene("res://scenes/levels/islands/island.tscn")
