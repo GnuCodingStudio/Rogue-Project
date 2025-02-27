@@ -2,18 +2,29 @@ class_name Player
 extends Actor
 
 @export var chestModifierSpeed: float = 0.7
-
 @onready var attackTimer = $AttackTimer
-
+@onready var sprite = $AnimatedSprite
+@onready var player_name = %Label
+@onready var camera = %Camera2D
 @export var weapon: Weapon
+
 var hasChest = false
 
-func _ready() -> void:
+func _enter_tree():
+	print("_enter_tree : ", str(name).to_int())
+	set_multiplayer_authority(str(name).to_int())
+
+func _ready() -> void:	
+
+	if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
+		camera.make_current()
+		
 	if weapon == null:
 		weapon = StoreManager.player_weapon
 	attackTimer.wait_time = weapon.attack_speed
 
 func _input(event):
+	if not is_multiplayer_authority(): return
 	if event is InputEventKey:
 		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		moving_direction = direction.normalized()
@@ -22,8 +33,8 @@ func _input(event):
 		attack()
 
 func apply_attack(force: int) -> void:
-	prints("Attacked with force", force)
-
+	pass
+	
 func get_speed():
 	if hasChest: return _speed * chestModifierSpeed
 	
@@ -56,4 +67,14 @@ func _on_collecting(element):
 			$AnimationPlayer.play("fade_away")
 		
 		if element.can_enter: $AnimationPlayer.play("fade_away")
+		
+@rpc("any_peer", "call_local")
+func set_player_name(value: String) -> void:
+	print(value)
+	player_name.text = value
+	
+@rpc("any_peer", "call_local")
+func set_player_position(value: Vector2) -> void:
+	print(value)
+	position = value
 		
