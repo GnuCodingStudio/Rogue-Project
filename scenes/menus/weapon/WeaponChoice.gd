@@ -20,4 +20,5 @@ func _players_is_ready():
 
 @rpc("call_local", "reliable")
 func _load_island() -> void:
-	SceneTransition.change_scene("res://scenes/levels/islands/island.tscn")
+	MultiplayerManager.begin_game()
+	#SceneTransition.change_scene("res://scenes/levels/islands/island.tscn")

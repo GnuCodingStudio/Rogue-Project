@@ -9,7 +9,8 @@ var player_name := "Pirate"
 
 ## Names for remote players in id:name format.
 var players := {}
-
+var spawn_points := {}
+var spawn_point_index = 1
 
 signal player_list_changed()
 signal connection_failed()
@@ -87,3 +88,50 @@ func join_game(ip: String, new_player_name: String) -> void:
 
 func get_player_name_list() -> Array:
 	return players.values()
+	
+
+@rpc("any_peer", "call_local")
+func load_island() -> void:
+	prints("load_island", multiplayer.get_unique_id())
+
+	# Change scene.
+	var island: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
+	get_tree().get_root().add_child(island)
+	#get_tree().get_root().get_node("Lobby").hide()
+	
+	#SceneTransition.change_scene("res://scenes/levels/islands/Island.tscn")
+
+	
+func begin_game():
+	#assert(multiplayer.is_server())
+	if not is_multiplayer_authority(): return
+
+	prints("begin game", multiplayer.get_unique_id())
+	load_island.rpc()
+	
+	var island: Node2D = get_tree().get_root().get_node("Island")
+	var player_scene: PackedScene = preload("res://objects/actors/player/Player.tscn")
+	 
+	# Create a dictionary with peer ID link to spawn points.
+	# Host id = 1 and spawn point is 0
+	spawn_points[1] = 0
+	# Client id stock in players variable
+	# TODO: Need to choose the number of players can we have on the game
+	for p in players:
+		spawn_points[p] = spawn_point_index
+		spawn_point_index += 1
+		
+	for player_id in spawn_points:
+		prints("spawn point =", str(spawn_points[player_id]))
+		var spawn_position: Vector2 = island.get_node("SpawnPoint/" + str(spawn_points[player_id])).position
+		#var spawn_position: Vector2 = island.get_node("SpawnPoint/0").position
+		prints("spawn_position =", spawn_position)
+		var player = player_scene.instantiate()
+		player.name = str(player_id)
+		island.get_node("Players").add_child(player, true)
+		
+		if player_id != multiplayer.get_unique_id():
+			player_name = players[player_id]
+		
+		player.set_player_name.rpc(player_name)
+		player.set_player_position.rpc(spawn_position)
