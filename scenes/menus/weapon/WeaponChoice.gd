@@ -7,7 +7,6 @@ extends Control
 var weapon_choice_button: PackedScene = load('res://scenes/menus/weapon/button/WeaponChoiceButton.tscn')
 
 func _ready() -> void:
-	
 	for weapon in weapons:
 		var button = weapon_choice_button.instantiate()
 		button.init(weapon)
