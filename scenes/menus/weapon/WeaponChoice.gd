@@ -1,6 +1,5 @@
 extends Control
 
-
 ## TODO: this could be given dynamically when we have a boat scene
 @export var weapons: Array[Weapon] = []; 
 
