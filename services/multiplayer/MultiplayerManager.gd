@@ -97,13 +97,10 @@ func load_island() -> void:
 	# Change scene.
 	var island: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
 	get_tree().get_root().add_child(island)
-	#get_tree().get_root().get_node("Lobby").hide()
-	
 	#SceneTransition.change_scene("res://scenes/levels/islands/Island.tscn")
 
 	
 func begin_game():
-	#assert(multiplayer.is_server())
 	if not is_multiplayer_authority(): return
 
 	prints("begin game", multiplayer.get_unique_id())
@@ -122,10 +119,9 @@ func begin_game():
 		spawn_point_index += 1
 		
 	for player_id in spawn_points:
-		prints("spawn point =", str(spawn_points[player_id]))
+		#prints("spawn point =", str(spawn_points[player_id]))
 		var spawn_position: Vector2 = island.get_node("SpawnPoint/" + str(spawn_points[player_id])).position
-		#var spawn_position: Vector2 = island.get_node("SpawnPoint/0").position
-		prints("spawn_position =", spawn_position)
+		#prints("spawn_position =", spawn_position)
 		var player = player_scene.instantiate()
 		player.name = str(player_id)
 		island.get_node("Players").add_child(player, true)
