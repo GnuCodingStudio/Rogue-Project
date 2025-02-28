@@ -21,7 +21,6 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:	
-
 	if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
 		camera.make_current()
 		
@@ -31,13 +30,14 @@ func _ready() -> void:
 	attackTimer.wait_time = weapon.attack_speed
 
 func _input(event):
-	if not is_multiplayer_authority(): return
-	if event is InputEventKey:
-		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		moving_direction = direction.normalized()
+	if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
+		if event is InputEventKey:
+			var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+			moving_direction = direction.normalized()
 		
-	if event.is_action_pressed("attack"):
-		attack()
+		if event.is_action_pressed("attack"):
+			attack.rpc()
+			#attack()
 
 func apply_attack(force: int) -> void:
 	if life <= 0:
@@ -55,11 +55,11 @@ func get_speed():
 	
 	return _speed
 
+@rpc("call_local")
 func attack():
 	if not weapon: return
 	if hasChest: return
 	if attackTimer.time_left > 0: return
-	
 	var mouseCoords = get_global_mouse_position()
 	var direction = global_position.direction_to(mouseCoords)
 	
@@ -67,7 +67,8 @@ func attack():
 
 	if weapon.attack_type == Weapon.ATTACK_TYPES.projectile:
 		attack_scene.global_position = global_position
-		get_tree().current_scene.add_child(attack_scene)
+		#get_tree().current_scene.add_child(attack_scene)
+		get_tree().get_root().add_child(attack_scene)
 	else:
 		add_child(attack_scene)
 	
