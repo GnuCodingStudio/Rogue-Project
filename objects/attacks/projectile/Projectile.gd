@@ -5,7 +5,7 @@ var range: float
 var damage: float
 var offset: float
 
-var _targeted_direction: Vector2
+@export var _targeted_direction: Vector2
 var _distance_traveled: float = 0.0
 var _speed: float = 400
 
@@ -17,7 +17,6 @@ func init(damage: int, range: float, direction: Vector2, offset: float):
 
 func _ready() -> void:
 	position += _targeted_direction * offset
-
 
 func _on_body_entered(body: Node) -> void:
 	if body is Mob:
@@ -31,4 +30,6 @@ func _physics_process(delta: float) -> void:
 		_distance_traveled += movement.length()
 		
 		if _distance_traveled >= range:
-			queue_free()
+			if is_multiplayer_authority():
+				if is_inside_tree():
+					queue_free()

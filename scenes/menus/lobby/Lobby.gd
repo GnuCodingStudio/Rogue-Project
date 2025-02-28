@@ -73,8 +73,8 @@ func _check_address(address: String):
 
 func _on_play_pressed() -> void:
 	waiting_room.hide()
-	_load_map.rpc()
-	#MultiplayerManager.begin_game()
+	#_load_map.rpc()
+	MultiplayerManager.begin_game()
 	
 @rpc("call_local")
 func _load_map() -> void:
