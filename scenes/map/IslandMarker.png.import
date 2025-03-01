@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c471eyek8vfdl"
-path="res://.godot/imported/Projectile.png-c2817dfa1a3147cb2f3dfa9ec27051e7.ctex"
+uid="uid://bnr3c44xyyc21"
+path="res://.godot/imported/IslandMarker.png-63cf362ca55dd6ddd15ecac47ec8127c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/attacks/projectile/Projectile.png"
-dest_files=["res://.godot/imported/Projectile.png-c2817dfa1a3147cb2f3dfa9ec27051e7.ctex"]
+source_file="res://scenes/map/IslandMarker.png"
+dest_files=["res://.godot/imported/IslandMarker.png-63cf362ca55dd6ddd15ecac47ec8127c.ctex"]
 
 [params]
 
