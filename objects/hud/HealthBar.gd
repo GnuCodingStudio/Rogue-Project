@@ -1,3 +1,4 @@
+class_name HealthBar
 extends ProgressBar
 
 var RED_COLOR = "e7001f"
@@ -11,4 +12,8 @@ func _process(delta):
 		modulate = ORANGE_COLOR
 	else:
 		modulate = GREEN_COLOR
+
+func init(maxHealth: int) -> void:
+	max_value = maxHealth
+	value = maxHealth
 	

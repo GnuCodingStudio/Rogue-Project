@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dw5vuo3agm77m" path="res://objects/actors/player/template.png" id="3_q5uec"]
 [ext_resource type="Resource" uid="uid://ca4y5d7kksi0h" path="res://resources/weapons/sword/Sword.tres" id="3_uqweb"]
 [ext_resource type="PackedScene" uid="uid://cxlkjx4h6gv5h" path="res://components/collector/Collector.tscn" id="5_q1uwo"]
-[ext_resource type="Script" path="res://objects/actors/player/HealthBar.gd" id="7_ot68h"]
+[ext_resource type="PackedScene" uid="uid://c5w6dv2r65qsd" path="res://objects/hud/HealthBar.tscn" id="7_svy1a"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p4sxr"]
 properties/0/path = NodePath(".:position")
@@ -543,21 +543,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_fx0oj"]
-resource_name = "Hit"
-length = 0.4
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/flash_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0, 1, -0.2, 0, 0.2, 0, 0, -0.2, 0, 0.2, 0),
-"times": PackedFloat32Array(0, 0.2, 0.4)
-}
-
 [sub_resource type="Animation" id="Animation_l1t87"]
 resource_name = "fade_away"
 tracks/0/type = "value"
@@ -585,6 +570,21 @@ tracks/1/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_fx0oj"]
+resource_name = "Hit"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0, 1, -0.2, 0, 0.2, 0, 0, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4)
 }
 
 [sub_resource type="Animation" id="Animation_tc2ku"]
@@ -654,17 +654,6 @@ libraries = {
 "": SubResource("AnimationLibrary_mt86f")
 }
 
-[node name="HealthBar" type="ProgressBar" parent="." index="6"]
-modulate = Color(0.227451, 0.768627, 0.156863, 1)
-z_index = 10
-offset_left = -68.0
-offset_top = -60.0
-offset_right = 206.0
-offset_bottom = -33.0
-scale = Vector2(0.5, 0.5)
-mouse_filter = 2
-step = 1.0
-show_percentage = false
-script = ExtResource("7_ot68h")
+[node name="HealthBar" parent="." index="6" instance=ExtResource("7_svy1a")]
 
 [connection signal="on_collecting" from="Collector" to="." method="_on_collecting"]
