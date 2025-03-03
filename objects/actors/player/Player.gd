@@ -7,6 +7,7 @@ var lifePoint = maxHealth
 
 @onready var attackTimer = $AttackTimer
 @onready var healthbar = $HealthBar
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var weapon: Weapon
 var hasChest = false
@@ -31,11 +32,11 @@ func apply_attack(force: int) -> void:
 		return
 
 	lifePoint -= force
-	$AnimationPlayer.play('Hit')
+	animation_player.play('Hit')
 	healthbar.value = lifePoint
 
 	if (lifePoint == 0):
-		$AnimationPlayer.play("Death")
+		animation_player.play("Death")
 
 func get_speed():
 	if hasChest: return _speed * chestModifierSpeed
@@ -66,6 +67,6 @@ func _on_collecting(element):
 	if element is Boat:
 		if hasChest:
 			element.can_enter = true
-			$AnimationPlayer.play("FadeAway")
+			animation_player.play("FadeAway")
 
-		if element.can_enter: $AnimationPlayer.play("FadeAway")
+		if element.can_enter: animation_player.play("FadeAway")
