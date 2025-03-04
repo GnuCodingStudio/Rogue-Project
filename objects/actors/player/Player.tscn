@@ -1,9 +1,9 @@
-[gd_scene load_steps=73 format=3 uid="uid://bsfyypyhwfbs5"]
+[gd_scene load_steps=77 format=3 uid="uid://bsfyypyhwfbs5"]
 
 [ext_resource type="PackedScene" uid="uid://du0c1yciw8ul6" path="res://objects/actors/Actor.tscn" id="1_wrkhm"]
 [ext_resource type="Script" path="res://objects/actors/player/Player.gd" id="2_bhjnv"]
-[ext_resource type="Resource" uid="uid://r3i80a6v2w0y" path="res://resources/weapons/gun/Gun.tres" id="3_irbyu"]
 [ext_resource type="Texture2D" uid="uid://dw5vuo3agm77m" path="res://objects/actors/player/template.png" id="3_q5uec"]
+[ext_resource type="Resource" uid="uid://ca4y5d7kksi0h" path="res://resources/weapons/sword/Sword.tres" id="3_uqweb"]
 [ext_resource type="PackedScene" uid="uid://cxlkjx4h6gv5h" path="res://components/collector/Collector.tscn" id="5_q1uwo"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p4sxr"]
@@ -562,7 +562,7 @@ _data = {
 collision_mask = 7
 script = ExtResource("2_bhjnv")
 chestModifierSpeed = 0.7
-weapon = ExtResource("3_irbyu")
+weapon = ExtResource("3_uqweb")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
 replication_config = SubResource("SceneReplicationConfig_p4sxr")
