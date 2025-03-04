@@ -9,7 +9,7 @@ extends Actor
 var hasChest = false
 
 func _ready() -> void:
-	if weapon == null:
+	if StoreManager.player_weapon != null:
 		weapon = StoreManager.player_weapon
 	attackTimer.wait_time = weapon.attack_speed
 
