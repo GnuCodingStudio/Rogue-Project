@@ -18,6 +18,8 @@ script = ExtResource("1_ggoyj")
 
 [node name="Player" parent="." instance=ExtResource("1_t7e46")]
 weapon = ExtResource("2_sywcb")
+chestModifierSpeed = 0.7
+maxHealth = 100
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true

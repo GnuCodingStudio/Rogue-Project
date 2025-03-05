@@ -1,10 +1,11 @@
-[gd_scene load_steps=77 format=3 uid="uid://bsfyypyhwfbs5"]
+[gd_scene load_steps=80 format=3 uid="uid://bsfyypyhwfbs5"]
 
 [ext_resource type="PackedScene" uid="uid://du0c1yciw8ul6" path="res://objects/actors/Actor.tscn" id="1_wrkhm"]
 [ext_resource type="Script" path="res://objects/actors/player/Player.gd" id="2_bhjnv"]
+[ext_resource type="Resource" uid="uid://r3i80a6v2w0y" path="res://resources/weapons/gun/Gun.tres" id="3_irbyu"]
 [ext_resource type="Texture2D" uid="uid://dw5vuo3agm77m" path="res://objects/actors/player/template.png" id="3_q5uec"]
-[ext_resource type="Resource" uid="uid://ca4y5d7kksi0h" path="res://resources/weapons/sword/Sword.tres" id="3_uqweb"]
 [ext_resource type="PackedScene" uid="uid://cxlkjx4h6gv5h" path="res://components/collector/Collector.tscn" id="5_q1uwo"]
+[ext_resource type="PackedScene" uid="uid://c5w6dv2r65qsd" path="res://objects/hud/HealthBar.tscn" id="7_svy1a"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p4sxr"]
 properties/0/path = NodePath(".:position")
@@ -508,8 +509,8 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xu8dn"]
 radius = 80.0
 
-[sub_resource type="Animation" id="Animation_tc2ku"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_0v3ge"]
+resource_name = "Death"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -517,10 +518,24 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_l1t87"]
@@ -552,17 +567,62 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_fx0oj"]
+resource_name = "Hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.912963, 0.144798, 0.20362, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tc2ku"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mt86f"]
 _data = {
-"RESET": SubResource("Animation_tc2ku"),
-"fade_away": SubResource("Animation_l1t87")
+"Death": SubResource("Animation_0v3ge"),
+"FadeAway": SubResource("Animation_l1t87"),
+"Hit": SubResource("Animation_fx0oj"),
+"RESET": SubResource("Animation_tc2ku")
 }
 
 [node name="Player" instance=ExtResource("1_wrkhm")]
 collision_mask = 7
 script = ExtResource("2_bhjnv")
 chestModifierSpeed = 0.7
-weapon = ExtResource("3_uqweb")
+life = 100
+weapon = ExtResource("3_irbyu")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
 replication_config = SubResource("SceneReplicationConfig_p4sxr")
@@ -589,5 +649,11 @@ shape = SubResource("CircleShape2D_xu8dn")
 libraries = {
 "": SubResource("AnimationLibrary_mt86f")
 }
+
+[node name="HealthBar" parent="." index="6" instance=ExtResource("7_svy1a")]
+offset_left = -27.0
+offset_top = -34.0
+offset_right = 84.0
+offset_bottom = -23.0
 
 [connection signal="on_collecting" from="Collector" to="." method="_on_collecting"]
