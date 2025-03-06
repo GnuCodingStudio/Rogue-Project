@@ -3,6 +3,7 @@ extends Actor
 
 @export var chestModifierSpeed: float = 0.7
 @export var maxHealth = 100
+@export var currentHealth = maxHealth
 
 @onready var attackTimer = $AttackTimer
 @onready var healthbar: HealthBar = $HealthBar
@@ -10,7 +11,6 @@ extends Actor
 
 @export var weapon: Weapon
 
-var currentHealth = maxHealth
 var hasChest = false
 
 func _ready() -> void:
@@ -37,6 +37,7 @@ func apply_attack(force: int) -> void:
 
 	if (currentHealth <= 0):
 		animation_player.play("Death")
+		set_physics_process(false)
 
 func get_speed():
 	if hasChest: return _speed * chestModifierSpeed
@@ -47,6 +48,7 @@ func attack():
 	if not weapon: return
 	if hasChest: return
 	if attackTimer.time_left > 0: return
+	if currentHealth <= 0: return
 	
 	var mouseCoords = get_global_mouse_position()
 	var direction = global_position.direction_to(mouseCoords)

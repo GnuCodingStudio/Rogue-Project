@@ -5,13 +5,12 @@ extends Actor
 @onready var animationPlayer = %AnimationPlayer
 
 @export var maxHealth: int = 10
+@export var currentHealth: int = maxHealth
 
 var targeted_players: Array[Player]
-var currentHealth: int = maxHealth
 
 func _ready():
-	healthbar.value = maxHealth
-	healthbar.max_value = maxHealth
+	healthbar.init(currentHealth)
 
 func apply_attack(damage: int):	
 	if currentHealth <= 0: return
@@ -22,3 +21,4 @@ func apply_attack(damage: int):
 	
 	if currentHealth <= 0:
 		animationPlayer.play("Death")
+		set_physics_process(false)
