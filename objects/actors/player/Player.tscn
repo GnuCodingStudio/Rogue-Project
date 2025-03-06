@@ -11,6 +11,15 @@
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite:frame")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("HealthBar:value")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8sqi"]
 atlas = ExtResource("3_q5uec")
@@ -654,5 +663,17 @@ offset_left = -27.0
 offset_top = -34.0
 offset_right = 84.0
 offset_bottom = -23.0
+
+[node name="Camera2D" type="Camera2D" parent="." index="7"]
+unique_name_in_owner = true
+
+[node name="Label" type="Label" parent="." index="8"]
+unique_name_in_owner = true
+offset_left = -26.0
+offset_top = -58.0
+offset_right = 28.0
+offset_bottom = -35.0
+text = "toto"
+horizontal_alignment = 1
 
 [connection signal="on_collecting" from="Collector" to="." method="_on_collecting"]
