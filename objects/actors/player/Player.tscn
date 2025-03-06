@@ -622,6 +622,7 @@ collision_mask = 7
 script = ExtResource("2_bhjnv")
 chestModifierSpeed = 0.7
 maxHealth = 100
+currentHealth = 100
 weapon = ExtResource("3_irbyu")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0"]
