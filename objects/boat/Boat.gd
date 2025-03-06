@@ -7,4 +7,8 @@ var can_enter = false
 
 func _on_enter():
 	if can_enter:
-		on_leave_level.emit()
+		_navigate_to_map.rpc()
+
+@rpc("call_local")
+func _navigate_to_map():
+	on_leave_level.emit()
