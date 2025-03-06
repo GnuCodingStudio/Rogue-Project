@@ -24,8 +24,6 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	StoreManager.player_weapon = _weapon
-	StoreManager.player_name = MultiplayerManager.player_name
-	print("Player selected is ", StoreManager.player_name)
 	print("Weapon selected is ", _weapon.name, " : ", _weapon)
 
 	player_choose_weapon.emit()

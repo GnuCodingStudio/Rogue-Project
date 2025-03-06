@@ -8,7 +8,6 @@ extends Actor
 @onready var camera = %Camera2D
 @export var life = 100
 
-@onready var attackTimer = $AttackTimer
 @onready var healthbar: HealthBar = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 

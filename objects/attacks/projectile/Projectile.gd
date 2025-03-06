@@ -5,7 +5,7 @@ var range: float
 var damage: float
 var offset: float
 
-@export var _targeted_direction: Vector2
+var _targeted_direction: Vector2
 var _distance_traveled: float = 0.0
 var _speed: float = 400
 
