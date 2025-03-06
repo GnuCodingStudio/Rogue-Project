@@ -9,8 +9,8 @@ var player_name := "Pirate"
 
 ## Names for remote players in id:name format.
 var players := {}
-var spawn_points := {}
 var spawn_point_index = 1
+var spawn_points: Dictionary = {1: 0} # Host ID = 1, spawn point = 0
 
 signal player_list_changed()
 signal connection_failed()
@@ -82,25 +82,26 @@ func get_player_name_list() -> Array:
 @rpc("any_peer", "call_local")
 func load_island() -> void:
 	# Change scene.
-	var island: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
-	get_tree().get_root().add_child(island)
+	var island_scene: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
+	get_tree().get_root().add_child(island_scene)
 	
 func begin_game():
 	if not is_multiplayer_authority(): return
 	load_island.rpc()
-	
+	_add_player_and_spawn_position()
+
+func _add_player_and_spawn_position(): 
 	var island: Node2D = get_tree().get_root().get_node("Island")
-	var player_scene: PackedScene = preload("res://objects/actors/player/Player.tscn")
-	 
-	# Create a dictionary with peer ID link to spawn points.
-	# Host id = 1 and spawn point is 0
-	spawn_points[1] = 0
-	# Client id stock in players variable
-	# TODO: Need to choose the number of players can we have on the game
-	for p in players:
-		spawn_points[p] = spawn_point_index
+	_assign_spawn_point_to_players()
+	_spawn_players(island)
+
+func _assign_spawn_point_to_players():
+	for player_id in players:
+		spawn_points[player_id] = spawn_point_index
 		spawn_point_index += 1
 		
+func _spawn_players(island: Node2D):
+	var player_scene: PackedScene = preload("res://objects/actors/player/Player.tscn")
 	for player_id in spawn_points:
 		var spawn_position: Vector2 = island.get_node("SpawnPoint/" + str(spawn_points[player_id])).position
 		var player = player_scene.instantiate()
