@@ -2,19 +2,21 @@ class_name Player
 extends Actor
 
 @export var chestModifierSpeed: float = 0.7
-@export var life = 100
+@export var maxHealth = 100
 
 @onready var attackTimer = $AttackTimer
 @onready var healthbar: HealthBar = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var weapon: Weapon
+
+var currentHealth = maxHealth
 var hasChest = false
 
 func _ready() -> void:
 	if StoreManager.player_weapon != null:
 		weapon = StoreManager.player_weapon
-	healthbar.init(life)
+	healthbar.init(currentHealth)
 	attackTimer.wait_time = weapon.attack_speed
 
 func _input(event):
@@ -26,14 +28,14 @@ func _input(event):
 		attack()
 
 func apply_attack(force: int) -> void:
-	if life <= 0:
+	if currentHealth <= 0:
 		return
 
-	life -= force
+	currentHealth -= force
 	animation_player.play("Hit")
-	healthbar.value = life
+	healthbar.value = currentHealth
 
-	if (life <= 0):
+	if (currentHealth <= 0):
 		animation_player.play("Death")
 
 func get_speed():

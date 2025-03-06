@@ -7,18 +7,18 @@ extends Actor
 @export var maxHealth: int = 10
 
 var targeted_players: Array[Player]
-var lifePoint: int = maxHealth
+var currentHealth: int = maxHealth
 
 func _ready():
 	healthbar.value = maxHealth
 	healthbar.max_value = maxHealth
 
 func apply_attack(damage: int):	
-	if lifePoint <= 0: return
+	if currentHealth <= 0: return
 	
-	lifePoint -= damage
-	healthbar.value = lifePoint
+	currentHealth -= damage
+	healthbar.value = currentHealth
 	animationPlayer.play("Hit")
 	
-	if lifePoint <= 0:
+	if currentHealth <= 0:
 		animationPlayer.play("Death")
