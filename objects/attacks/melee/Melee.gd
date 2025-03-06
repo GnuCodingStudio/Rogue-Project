@@ -9,7 +9,6 @@ var _radius: float = 0
 var _animation_duration: float = .2
 
 @onready var attack: Area2D = %Sword
-@onready var _animation_player: AnimationPlayer = %AnimationPlayer
 
 func init(damage: int, range: float, direction: Vector2, offset: float):
 	self.damage = damage
