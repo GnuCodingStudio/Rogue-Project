@@ -17,7 +17,6 @@ signal connection_failed()
 signal connection_succeeded()
 signal game_error(error: int)
 
-
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
@@ -25,31 +24,25 @@ func _ready() -> void:
 	multiplayer.connection_failed.connect(_connection_failed)
 	multiplayer.server_disconnected.connect(_server_disconnected)
 
-
 func _peer_connected(id: int) -> void:
 	register_player.rpc_id(id, player_name)
-
 
 func _peer_disconnected(id: int) -> void:
 	game_error.emit("Player " + players[id] + " disconnected")
 	unregister_player(id)
 
-
 #region Client only
 func _connected_to_server() -> void:
 	connection_succeeded.emit()
 
-
 func _server_disconnected() -> void:
 	game_error.emit("Server disconnected")
-
 
 func _connection_failed() -> void:
 	multiplayer.set_network_peer(null) # Remove peer
 	game_error.emit("Failed connection")
 	connection_failed.emit()
 #endregion Client only
-
 
 #region Lobby management functions.
 @rpc("any_peer")
@@ -58,11 +51,9 @@ func register_player(new_player_name: String) -> void:
 	players[id] = new_player_name
 	player_list_changed.emit()
 
-
 func unregister_player(id: int) -> void:
 	players.erase(id)
 	player_list_changed.emit()
-
 
 func host_game(new_player_name: String) -> void:
 	player_name = new_player_name
@@ -85,25 +76,17 @@ func join_game(ip: String, new_player_name: String) -> void:
 		game_error.emit("Failed to join server. Error code: %d" % result)
 #endregion Lobby management functions.
 
-
 func get_player_name_list() -> Array:
 	return players.values()
-	
 
 @rpc("any_peer", "call_local")
 func load_island() -> void:
-	prints("load_island", multiplayer.get_unique_id())
-
 	# Change scene.
 	var island: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
 	get_tree().get_root().add_child(island)
-	#SceneTransition.change_scene("res://scenes/levels/islands/Island.tscn")
-
 	
 func begin_game():
 	if not is_multiplayer_authority(): return
-
-	prints("begin game", multiplayer.get_unique_id())
 	load_island.rpc()
 	
 	var island: Node2D = get_tree().get_root().get_node("Island")
@@ -119,9 +102,7 @@ func begin_game():
 		spawn_point_index += 1
 		
 	for player_id in spawn_points:
-		#prints("spawn point =", str(spawn_points[player_id]))
 		var spawn_position: Vector2 = island.get_node("SpawnPoint/" + str(spawn_points[player_id])).position
-		#prints("spawn_position =", spawn_position)
 		var player = player_scene.instantiate()
 		player.name = str(player_id)
 		island.get_node("Players").add_child(player, true)

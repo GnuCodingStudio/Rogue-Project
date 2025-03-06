@@ -28,8 +28,6 @@ func _physics_process(delta: float) -> void:
 		var movement = _targeted_direction.normalized() * delta * _speed
 		position += movement
 		_distance_traveled += movement.length()
-		
 		if _distance_traveled >= range:
-			if is_multiplayer_authority():
-				if is_inside_tree():
-					queue_free()
+			if is_inside_tree():
+				queue_free()

@@ -36,8 +36,7 @@ func _input(event):
 			moving_direction = direction.normalized()
 		
 		if event.is_action_pressed("attack"):
-			attack.rpc()
-			#attack()
+			attack()
 
 func _can_attack() -> bool:
 	if not weapon: return false
@@ -60,7 +59,6 @@ func get_speed():
 	
 	return _speed
 
-@rpc("call_local")
 func attack():
 	if !_can_attack(): return
 	
@@ -71,8 +69,7 @@ func attack():
 
 	if weapon.attack_type == Weapon.ATTACK_TYPES.projectile:
 		attack_scene.global_position = global_position
-		#get_tree().current_scene.add_child(attack_scene)
-		get_tree().get_root().add_child(attack_scene)
+		get_tree().get_root().get_node("Island").add_child(attack_scene)
 	else:
 		add_child(attack_scene)
 	
