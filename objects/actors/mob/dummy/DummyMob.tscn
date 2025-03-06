@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://brjpcb7460j1d" path="res://components/behavior/targeting/NearestPlayerTargetingBehavior.tscn" id="3_45raj"]
 [ext_resource type="Texture2D" uid="uid://by5yfeftc4s1v" path="res://objects/actors/mob/dummy/DummyMob.png" id="3_53wnf"]
 [ext_resource type="PackedScene" uid="uid://6123kykyglg8" path="res://components/behavior/movement/RunToPlayerMovementBehavior.tscn" id="4_04pgy"]
-[ext_resource type="PackedScene" uid="uid://c57dissnoyii4" path="res://objects/healthbar/Healthbar.tscn" id="5_fiitg"]
+[ext_resource type="PackedScene" uid="uid://c5w6dv2r65qsd" path="res://objects/hud/HealthBar.tscn" id="5_a2u6g"]
 [ext_resource type="PackedScene" uid="uid://b3gepyhwfd2ue" path="res://components/behavior/attack/CloseCombatStrikeAttackBehavior.tscn" id="5_n154y"]
 [ext_resource type="Texture2D" uid="uid://r0w487am0e0a" path="res://assets/image/attack/CloseCombarStrike01.png" id="6_bx5f8"]
 
@@ -441,12 +441,11 @@ debug_color = Color(0, 1, 0, 0.419608)
 
 [node name="RunToPlayerMovementBehavior" parent="." index="3" instance=ExtResource("4_04pgy")]
 
-[node name="Healthbar" parent="." index="4" instance=ExtResource("5_fiitg")]
-unique_name_in_owner = true
+[node name="HealthBar" parent="." index="4" instance=ExtResource("5_a2u6g")]
 offset_left = -27.0
 offset_top = -23.0
-offset_right = 83.0
-offset_bottom = -11.0
+offset_right = 84.0
+offset_bottom = -12.0
 
 [node name="CloseCombatStrikeAttackBehavior" parent="." index="5" node_paths=PackedStringArray("attack_animation") instance=ExtResource("5_n154y")]
 attack_animation = NodePath("AttackAnimation")

@@ -1,7 +1,7 @@
 class_name Mob
 extends Actor
 
-@onready var healthbar = %Healthbar
+@onready var healthbar = $HealthBar
 @onready var animationPlayer = %AnimationPlayer
 
 @export var maxHealth: int = 10
