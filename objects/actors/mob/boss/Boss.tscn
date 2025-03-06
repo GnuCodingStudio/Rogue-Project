@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://1562kt6mf0l3"]
+
+[ext_resource type="PackedScene" uid="uid://b3y0j0iqfou0u" path="res://objects/actors/mob/Mob.tscn" id="1_iq4jn"]
+[ext_resource type="Script" path="res://objects/actors/mob/boss/Boss.gd" id="2_mafjq"]
+
+[node name="Boss" instance=ExtResource("1_iq4jn")]
+script = ExtResource("2_mafjq")
