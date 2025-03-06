@@ -23,7 +23,7 @@ func _ready() -> void:
 	if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
 		camera.make_current()
 		
-    if StoreManager.player_weapon != null:
+	if StoreManager.player_weapon != null:
 		weapon = StoreManager.player_weapon
 	healthbar.init(_currentHealth)
 	attackTimer.wait_time = weapon.attack_speed
@@ -63,7 +63,10 @@ func attack():
 	
 	var mouseCoords = get_global_mouse_position()
 	var direction = global_position.direction_to(mouseCoords)
-	
+	_pop_attack.rpc(direction)
+
+@rpc("any_peer", "call_local")
+func _pop_attack(direction: Vector2):
 	var attack_scene = weapon.attackTo(direction)
 
 	if weapon.attack_type == Weapon.ATTACK_TYPES.projectile:
@@ -93,4 +96,3 @@ func set_player_name(value: String) -> void:
 func set_player_position(value: Vector2) -> void:
 	print(value)
 	position = value
-		
