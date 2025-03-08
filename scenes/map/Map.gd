@@ -25,6 +25,7 @@ func _navigate_to_island(target_position: Vector2) -> void:
 	tween.tween_callback(_on_island_entered)
 
 func _on_island_entered():
+	if not is_multiplayer_authority(): return
 	_load_weapon_screen.rpc()
 	
 @rpc("call_local")
