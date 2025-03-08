@@ -80,28 +80,28 @@ func get_player_name_list() -> Array:
 	return players.values()
 
 @rpc("any_peer", "call_local")
-func load_island() -> void:
-	# Change scene.
+func _load_island() -> void:
 	var island_scene: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
 	get_tree().get_root().add_child(island_scene)
 	
 func begin_game():
 	if not is_multiplayer_authority(): return
-	load_island.rpc()
+	_load_island.rpc()
 	_add_player_and_spawn_position()
 
 func _add_player_and_spawn_position(): 
-	var island: Node2D = get_tree().get_root().get_node("Island")
 	_assign_spawn_point_to_players()
-	_spawn_players(island)
+	_spawn_players()
 
 func _assign_spawn_point_to_players():
 	for player_id in players:
 		spawn_points[player_id] = spawn_point_index
 		spawn_point_index += 1
 		
-func _spawn_players(island: Node2D):
+func _spawn_players():
 	var player_scene: PackedScene = preload("res://objects/actors/player/Player.tscn")
+	var island: Node2D = get_tree().get_root().get_node("Island")
+
 	for player_id in spawn_points:
 		var spawn_position: Vector2 = island.get_node("SpawnPoint/" + str(spawn_points[player_id])).position
 		var player = player_scene.instantiate()
