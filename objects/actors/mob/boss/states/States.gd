@@ -1,7 +1,12 @@
 class_name States extends Node2D
 
 var previous_state: State
-var current_state: State
+var current_state: State:
+	set(value):
+		current_state = value
+		debug_label.text = current_state.name
+
+@onready var debug_label: Label = %Debug
 
 func _ready() -> void:
 	current_state = get_child(0)
