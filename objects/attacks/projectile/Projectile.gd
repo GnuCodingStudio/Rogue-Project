@@ -21,7 +21,9 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body is Mob:
 		body.receive_damage(damage)
-		queue_free()
+		if is_multiplayer_authority():
+			if is_inside_tree():
+				queue_free()
 
 func _physics_process(delta: float) -> void:
 	if _targeted_direction != Vector2.ZERO:
@@ -29,5 +31,6 @@ func _physics_process(delta: float) -> void:
 		position += movement
 		_distance_traveled += movement.length()
 		if _distance_traveled >= range:
-			if is_inside_tree():
-				queue_free()
+			if is_multiplayer_authority():
+				if is_inside_tree():
+					queue_free()

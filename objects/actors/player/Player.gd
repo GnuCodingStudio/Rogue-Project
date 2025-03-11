@@ -6,11 +6,10 @@ extends Actor
 @onready var sprite = $AnimatedSprite
 @onready var player_name = %Label
 @onready var camera = %Camera2D
-@export var life = 100
-
 @onready var healthbar: HealthBar = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var life = 100
 @export var weapon: Weapon
 
 var hasChest = false
@@ -55,7 +54,6 @@ func _on_death():
 
 func get_speed():
 	if hasChest: return _speed * chestModifierSpeed
-	
 	return _speed
 
 func attack():
