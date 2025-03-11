@@ -444,7 +444,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nq5mb")
 }],
 "loop": true,
-"name": &"WalkDown",
+"name": &"MoveDown",
 "speed": 12.0
 }, {
 "frames": [{
@@ -473,7 +473,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_oaitu")
 }],
 "loop": true,
-"name": &"WalkLeft",
+"name": &"MoveLeft",
 "speed": 12.0
 }, {
 "frames": [{
@@ -502,7 +502,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_co8ri")
 }],
 "loop": true,
-"name": &"WalkRight",
+"name": &"MoveRight",
 "speed": 12.0
 }, {
 "frames": [{
@@ -531,7 +531,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_14kwk")
 }],
 "loop": true,
-"name": &"WalkUp",
+"name": &"MoveUp",
 "speed": 12.0
 }]
 
