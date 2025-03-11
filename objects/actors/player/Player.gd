@@ -51,6 +51,9 @@ func _on_hit():
 func _on_death():
 	animation_player.play("Death")
 	set_physics_process(false)
+	if is_multiplayer_authority():
+		if is_inside_tree():
+			queue_free()
 
 func get_speed():
 	if hasChest: return _speed * chestModifierSpeed
