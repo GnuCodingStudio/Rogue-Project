@@ -1,14 +1,11 @@
 class_name RunToPlayerMovementBehavior
 extends Node
 
-
 var _mob: Mob
-
 
 func _ready() -> void:
 	assert(get_parent() is Mob)
 	_mob = get_parent()
-
 
 func _process(delta: float) -> void:
 	if not _mob.targeted_players.is_empty():

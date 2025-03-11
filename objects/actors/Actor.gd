@@ -2,6 +2,8 @@ extends RigidBody2D
 class_name Actor
 
 @export var _speed = 300.0
+@export var _maxHealth: int = 100
+@export var _currentHealth: float = _maxHealth
 
 @onready var animated_sprite = %AnimatedSprite
 @onready var collision_shape = %CollisionShape
@@ -83,6 +85,19 @@ func _round_direction(vector: Vector2) -> Vector2:
 	var scale = (2 * PI) / directions
 	var rounded_angle: float = roundf(vector.angle() / scale) * scale
 	return Vector2.from_angle(rounded_angle)
+	
+func _on_hit(): pass
+
+func _on_death(): pass
 
 func get_speed():
 	return _speed
+	
+func receive_damage(damage: int):
+	if _currentHealth <= 0: return
+
+	_currentHealth -= damage
+	_on_hit();
+
+	if (_currentHealth <= 0):
+		_on_death();
