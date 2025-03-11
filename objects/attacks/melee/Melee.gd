@@ -40,4 +40,4 @@ func _start_tween():
 
 func _on_sword_body_entered(body: Node2D) -> void:
 	if body is Mob:
-		body.apply_attack(damage)
+		body.receive_damage(damage)

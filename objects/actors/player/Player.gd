@@ -2,21 +2,19 @@ class_name Player
 extends Actor
 
 @export var chestModifierSpeed: float = 0.7
-@export var maxHealth = 100
-@export var currentHealth = maxHealth
+@export var weapon: Weapon
 
 @onready var attackTimer = $AttackTimer
 @onready var healthbar: HealthBar = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@export var weapon: Weapon
 
 var hasChest = false
 
 func _ready() -> void:
 	if StoreManager.player_weapon != null:
 		weapon = StoreManager.player_weapon
-	healthbar.init(currentHealth)
+	healthbar.init(_currentHealth)
 	attackTimer.wait_time = weapon.attack_speed
 
 func _input(event):
@@ -27,17 +25,21 @@ func _input(event):
 	if event.is_action_pressed("attack"):
 		attack()
 
-func apply_attack(force: int) -> void:
-	if currentHealth <= 0:
-		return
+func _can_attack() -> bool:
+	if not weapon: return false
+	if hasChest: return false
+	if _currentHealth <= 0: return false
+	if attackTimer.time_left > 0: return false
 
-	currentHealth -= force
+	return true
+
+func _on_hit():
 	animation_player.play("Hit")
-	healthbar.value = currentHealth
-
-	if (currentHealth <= 0):
-		animation_player.play("Death")
-		set_physics_process(false)
+	healthbar.value = _currentHealth
+	
+func _on_death():
+	animation_player.play("Death")
+	set_physics_process(false)
 
 func get_speed():
 	if hasChest: return _speed * chestModifierSpeed
@@ -45,10 +47,7 @@ func get_speed():
 	return _speed
 
 func attack():
-	if not weapon: return
-	if hasChest: return
-	if attackTimer.time_left > 0: return
-	if currentHealth <= 0: return
+	if !_can_attack(): return
 	
 	var mouseCoords = get_global_mouse_position()
 	var direction = global_position.direction_to(mouseCoords)

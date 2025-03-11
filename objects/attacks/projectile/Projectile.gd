@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is Mob:
-		body.apply_attack(damage)
+		body.receive_damage(damage)
 		queue_free()
 
 func _physics_process(delta: float) -> void:

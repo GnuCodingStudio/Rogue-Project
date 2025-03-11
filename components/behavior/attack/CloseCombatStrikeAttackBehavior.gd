@@ -21,7 +21,7 @@ func _attack() -> void:
 	var attackable_players = get_overlapping_bodies().filter(func(b):return b is Player)
 	for targeted_player in _mob.targeted_players:
 		if targeted_player in attackable_players:
-			targeted_player.apply_attack(force)
+			targeted_player.receive_damage(force)
 			has_attacked = true
 
 	if has_attacked:
