@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://1562kt6mf0l3"]
+[gd_scene load_steps=83 format=3 uid="uid://1562kt6mf0l3"]
 
 [ext_resource type="PackedScene" uid="uid://b3y0j0iqfou0u" path="res://objects/actors/mob/Mob.tscn" id="1_iq4jn"]
 [ext_resource type="Script" path="res://objects/actors/mob/boss/Boss.gd" id="2_mafjq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://objects/actors/mob/boss/states/Idle.gd" id="6_mfoa0"]
 [ext_resource type="Script" path="res://objects/actors/mob/boss/states/Follow.gd" id="7_h0hef"]
 [ext_resource type="Script" path="res://objects/actors/mob/boss/states/Attack.gd" id="8_n2euq"]
+[ext_resource type="Script" path="res://objects/actors/mob/boss/SpawnMob.gd" id="10_ogdny"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7elu"]
 atlas = ExtResource("3_20ajd")
@@ -583,7 +584,19 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_fyh5s")
 debug_color = Color(0, 1, 0, 0.419608)
 
-[node name="States" type="Node2D" parent="." index="4"]
+[node name="Minions" type="Node2D" parent="." index="4"]
+unique_name_in_owner = true
+
+[node name="Spanw1" type="Marker2D" parent="Minions" index="0"]
+position = Vector2(-43.0492, -43.0669)
+
+[node name="Spanw2" type="Marker2D" parent="Minions" index="1"]
+position = Vector2(53.4613, -14.3073)
+
+[node name="Spanw3" type="Marker2D" parent="Minions" index="2"]
+position = Vector2(-23.6918, 58.6978)
+
+[node name="States" type="Node2D" parent="." index="5"]
 script = ExtResource("5_8xxkf")
 
 [node name="Idle" type="Node2D" parent="States" index="0"]
@@ -596,7 +609,7 @@ script = ExtResource("7_h0hef")
 script = ExtResource("8_n2euq")
 
 [node name="SpawnMob" type="Node2D" parent="States" index="3"]
-script = ExtResource("5_mshb6")
+script = ExtResource("10_ogdny")
 
 [node name="Death" type="Node2D" parent="States" index="4"]
 script = ExtResource("5_mshb6")
