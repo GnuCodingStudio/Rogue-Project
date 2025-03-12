@@ -16,3 +16,8 @@ func _on_hit():
 func _on_death():
 	animationPlayer.play("Death")
 	set_physics_process(false)
+	_disable_collision()
+
+func _disable_collision() -> void:
+	collision_layer = 0
+	collision_mask = 0
