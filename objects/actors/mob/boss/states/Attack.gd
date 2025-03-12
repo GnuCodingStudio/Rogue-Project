@@ -12,9 +12,7 @@ func enter() -> void:
 
 func attack() -> void:
 	var direction = _boss._direction_name()
-	var attack_animation = "Attack" + direction
-	prints("attack_animation", attack_animation)
-	animated_sprite.play(attack_animation)
+	animated_sprite.play("Attack" + direction)
 	await animated_sprite.animation_finished
 	attack()
 
