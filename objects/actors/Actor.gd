@@ -2,8 +2,8 @@ extends RigidBody2D
 class_name Actor
 
 @export var _speed = 300.0
-@export var _maxHealth: int = 100
-@export var _currentHealth: float = _maxHealth
+@export var _maxHealth: float = 100
+@export var _currentHealth: float = 100
 @export var isAlive: bool = true
 
 @onready var animated_sprite = %AnimatedSprite
