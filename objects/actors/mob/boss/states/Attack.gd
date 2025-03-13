@@ -5,6 +5,7 @@ class_name Attack extends State
 @onready var states: States = $".."
 @onready var follow: Follow = $"../Follow"
 @onready var idle: Idle = $"../Idle"
+@onready var spawn_mob: SpawnMob = $"../SpawnMob"
 
 func enter() -> void:
 	super.enter()
@@ -25,4 +26,7 @@ func transition() -> void:
 	
 	var distance_to_player = _boss.global_position.distance_to(player.global_position)
 	if distance_to_player > 80:
-		states.change_state(follow)
+		if randi() % 10 < 3:
+			states.change_state(spawn_mob)
+		else:
+			states.change_state(follow)

@@ -13,8 +13,13 @@ func enter() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+	var player = _boss.get_targeted_player()
+	if not player:
+		states.change_state(idle)
+		return
+
 	if _following:
-		_boss.moving_direction = _boss.get_targeted_player().global_position - global_position
+		_boss.moving_direction = player.global_position - global_position
 
 func transition() -> void:
 	super.transition()
