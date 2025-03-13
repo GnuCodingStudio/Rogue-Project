@@ -20,15 +20,17 @@ script = ExtResource("1_ggoyj")
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource("1_t7e46")]
+position = Vector2(275, -17)
 weapon = ExtResource("2_sywcb")
 
 [node name="Camera2D" type="Camera2D" parent="Players/Player"]
+position = Vector2(-18, 62)
 position_smoothing_enabled = true
 
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Boss" parent="." node_paths=PackedStringArray("players_node") instance=ExtResource("10_mve1d")]
-position = Vector2(-249, -87)
+position = Vector2(550, -109)
 players_node = NodePath("../Players")
 
 [node name="GlobalGameConsole" parent="." instance=ExtResource("2_md0ag")]
