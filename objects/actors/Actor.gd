@@ -4,6 +4,7 @@ class_name Actor
 @export var _speed = 300.0
 @export var _maxHealth: int = 100
 @export var _currentHealth: float = _maxHealth
+@export var isAlive: bool = true
 
 @onready var animated_sprite = %AnimatedSprite
 @onready var collision_shape = %CollisionShape
