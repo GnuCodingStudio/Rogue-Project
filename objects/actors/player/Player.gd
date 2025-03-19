@@ -1,12 +1,14 @@
 class_name Player
 extends Actor
 
+signal on_player_dead(player: Player)
+
 @export var chestModifierSpeed: float = 0.7
 @export var weapon: Weapon
 
 @onready var attackTimer = $AttackTimer
 @onready var healthbar: HealthBar = $HealthBar
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 
 var hasChest = false
@@ -34,12 +36,14 @@ func _can_attack() -> bool:
 	return true
 
 func _on_hit():
-	animation_player.play("Hit")
+	animationPlayer.play("Hit")
 	healthbar.value = _currentHealth
 	
 func _on_death():
-	animation_player.play("Death")
+	isAlive = false
+	animationPlayer.play("Death")
 	set_physics_process(false)
+	on_player_dead.emit(self)
 
 func get_speed():
 	if hasChest: return _speed * chestModifierSpeed
@@ -68,6 +72,14 @@ func _on_collecting(element):
 	if element is Boat:
 		if hasChest:
 			element.can_enter = true
-			animation_player.play("FadeAway")
+			animationPlayer.play("FadeAway")
 
-		if element.can_enter: animation_player.play("FadeAway")
+		if element.can_enter: animationPlayer.play("FadeAway")
+		
+func respawn():
+	_currentHealth = _maxHealth
+	healthbar.init(_maxHealth)
+	animationPlayer.play("Respawn")
+	await animationPlayer.animation_finished
+	isAlive = true
+	set_physics_process(true)
