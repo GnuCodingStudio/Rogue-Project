@@ -79,13 +79,12 @@ func join_game(ip: String, new_player_name: String) -> void:
 func get_player_name_list() -> Array:
 	return players.values()
 
-@rpc("any_peer", "call_local")
-func _load_island() -> void:
+@rpc("call_local", "reliable")
+func _load_island():
 	var island_scene: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
 	get_tree().get_root().add_child(island_scene)
-	
+
 func begin_game():
-	if not is_multiplayer_authority(): return
 	_load_island.rpc()
 	_add_player_and_spawn_position()
 
@@ -113,3 +112,5 @@ func _spawn_players():
 		
 		player.set_player_name.rpc(player_name)
 		player.set_player_position.rpc(spawn_position)
+		 
+		print("Multiplayer - player:", multiplayer.get_unique_id(), "are selected this ", StoreManager.player_weapon.name, " : ", StoreManager.player_weapon)

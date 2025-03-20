@@ -16,9 +16,4 @@ func _ready() -> void:
 
 func _players_is_ready():
 	if !multiplayer.is_server(): return
-	_load_island.rpc()
-
-@rpc("call_local", "reliable")
-func _load_island() -> void:
 	MultiplayerManager.begin_game()
-	#SceneTransition.change_scene("res://scenes/levels/islands/island.tscn")

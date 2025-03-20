@@ -19,11 +19,13 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:	
-	if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
-		camera.make_current()
+	if !is_multiplayer_authority(): return
 		
+	camera.make_current()
+	
 	if StoreManager.player_weapon != null:
 		weapon = StoreManager.player_weapon
+			
 	healthbar.init(_currentHealth)
 	attackTimer.wait_time = weapon.attack_speed
 
@@ -66,7 +68,7 @@ func attack():
 	var direction = global_position.direction_to(mouseCoords)
 	_pop_attack.rpc(direction)
 
-@rpc("any_peer", "call_local")
+@rpc("call_local")
 func _pop_attack(direction: Vector2):
 	var attack_scene = weapon.attackTo(direction)
 
@@ -95,5 +97,4 @@ func set_player_name(value: String) -> void:
 	
 @rpc("any_peer", "call_local")
 func set_player_position(value: Vector2) -> void:
-	print(value)
 	position = value
