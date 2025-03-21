@@ -18,17 +18,17 @@ func init(damage: int, range: float, direction: Vector2, offset: float):
 func _ready() -> void:
 	position += _targeted_direction * offset
 
-
 func _on_body_entered(body: Node) -> void:
 	if body is Mob:
 		body.receive_damage(damage)
-		queue_free()
+		if is_inside_tree():
+			queue_free()
 
 func _physics_process(delta: float) -> void:
 	if _targeted_direction != Vector2.ZERO:
 		var movement = _targeted_direction.normalized() * delta * _speed
 		position += movement
 		_distance_traveled += movement.length()
-		
 		if _distance_traveled >= range:
-			queue_free()
+			if is_inside_tree():
+				queue_free()
