@@ -1,7 +1,6 @@
 class_name Player
 extends Actor
 
-@export var chestModifierSpeed: float = 0.7
 @onready var attackTimer = $AttackTimer
 @onready var sprite = $AnimatedSprite
 @onready var player_name = %Label
@@ -11,6 +10,7 @@ extends Actor
 
 @export var life = 100
 @export var weapon: Weapon
+@export var chestModifierSpeed: float = 0.7
 
 var hasChest = false
 
@@ -52,8 +52,9 @@ func _on_hit():
 	healthbar.value = _currentHealth
 	
 func _on_death():
-	animation_player.play("Death")
 	set_physics_process(false)
+	animation_player.play("Death")
+	await animation_player.animation_finished
 	if is_multiplayer_authority():
 		if is_inside_tree():
 			queue_free()
@@ -91,11 +92,10 @@ func _on_collecting(element):
 
 		if element.can_enter: animation_player.play("FadeAway")
 		
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func set_player_name(value: String) -> void:
-	print(value)
 	player_name.text = value
 	
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func set_player_position(value: Vector2) -> void:
 	position = value

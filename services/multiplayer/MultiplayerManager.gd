@@ -107,10 +107,10 @@ func _spawn_players():
 		player.name = str(player_id)
 		island.get_node("Players").add_child(player, true)
 		
-		if player_id != multiplayer.get_unique_id():
-			player_name = players[player_id]
-		
-		player.set_player_name.rpc(player_name)
+		if players.has(player_id):
+			player.set_player_name.rpc(players[player_id])
+		else:
+			player.set_player_name.rpc(player_name)
 		player.set_player_position.rpc(spawn_position)
 		 
 		print("Multiplayer - player:", multiplayer.get_unique_id(), "are selected this ", StoreManager.player_weapon.name, " : ", StoreManager.player_weapon)
