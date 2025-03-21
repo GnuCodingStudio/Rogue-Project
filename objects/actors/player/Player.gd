@@ -30,13 +30,14 @@ func _ready() -> void:
 	attackTimer.wait_time = weapon.attack_speed
 
 func _input(event):
-	if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
-		if event is InputEventKey:
-			var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-			moving_direction = direction.normalized()
-		
-		if event.is_action_pressed("attack"):
-			attack()
+	if !is_multiplayer_authority(): return
+	
+	if event is InputEventKey:
+		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		moving_direction = direction.normalized()
+	
+	if event.is_action_pressed("attack"):
+		attack()
 
 func _can_attack() -> bool:
 	if not weapon: return false
