@@ -20,3 +20,6 @@ WEAPON_SWORD,Sword,Épée
 WEAPON_ATTRIBUTE_DAMAGE,Damage,Dégats
 WEAPON_ATTRIBUTE_RANGE,Range,Portée
 WEAPON_ATTRIBUTE_ATTACK_SPEED,Attack Speed,Vitesse d'attaque
+DEATH_TEXT,You are dead...,Vous êtes mort
+RESPAWN_TEXT,Respawn in...,Réapparition dans...
+SECOND_TEXT,second(s),seconde(s)
