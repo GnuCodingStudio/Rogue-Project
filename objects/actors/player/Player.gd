@@ -54,6 +54,7 @@ func _on_hit():
 	healthbar.value = _currentHealth
 	
 func _on_death():
+	collision_layer = 0
 	animationPlayer.play("Death")
 	set_physics_process(false)
 	on_player_dead.emit(self)
@@ -102,6 +103,7 @@ func set_player_position(value: Vector2) -> void:
 func respawn():
 	_currentHealth = _maxHealth
 	healthbar.init(_maxHealth)
+	collision_layer = 1
 	set_physics_process(true)
 	animationPlayer.play("Respawn")
 	await animationPlayer.animation_finished

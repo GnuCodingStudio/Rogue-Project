@@ -12,9 +12,9 @@ func _on_player_dead(player: Player):
 func _on_leave_level():
 	SceneTransition.change_scene("res://scenes/map/Map.tscn")
 
-func _chest_drop(player: Player):
-	chest.drop(player.global_position)
+func _chest_drop():
 	player.hasChest = false
+	chest.drop(player.global_position)
 
 func _on_multiplayer_spawner_spawned(node):
 	if node is Player and node.name == str(multiplayer.get_unique_id()):

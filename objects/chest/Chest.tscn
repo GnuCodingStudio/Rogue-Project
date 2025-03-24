@@ -1,8 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl2fit8pvotmx"]
+[gd_scene load_steps=10 format=3 uid="uid://dl2fit8pvotmx"]
 
 [ext_resource type="Script" path="res://objects/chest/Chest.gd" id="1_0ro2r"]
 [ext_resource type="Texture2D" uid="uid://bi8jljn6y0y6b" path="res://objects/chest/chest.png" id="1_iq1pi"]
 [ext_resource type="PackedScene" uid="uid://clpbo8krg15ng" path="res://components/collector/Collectable.tscn" id="2_o5d4y"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_la1al"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:collision_layer")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upfic"]
 size = Vector2(30, 25)
@@ -93,6 +104,9 @@ _data = {
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_0ro2r")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_la1al")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_iq1pi")
