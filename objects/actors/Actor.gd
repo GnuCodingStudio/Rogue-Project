@@ -101,4 +101,5 @@ func receive_damage(damage: int):
 	_on_hit();
 
 	if (_currentHealth <= 0):
+		isAlive = false
 		_on_death();
