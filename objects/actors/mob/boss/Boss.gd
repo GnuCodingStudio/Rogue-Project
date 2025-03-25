@@ -4,10 +4,14 @@ class_name Boss extends Mob
 
 @onready var states: States = $States
 @onready var follow: Follow = $States/Follow
+@onready var death: Death = $States/Death
+
+@onready var health_bar: HealthBar = %HealthBar
 
 var players: Array[Player] = []
 
-func _ready() -> void:
+func _ready():
+	health_bar.init(_currentHealth)
 	for node in players_node.get_children():
 		if node is Player:
 			players.push_back(node)
@@ -28,3 +32,11 @@ func _sort_by_distance(a: Node2D, b: Node2D) -> bool:
 func _update_animation() -> void:
 	if states.current_state == follow:
 		super._update_animation()
+
+func _on_hit():
+	super._on_hit()
+	health_bar.value = _currentHealth
+
+func _on_death() -> void:
+	super._on_death()
+	states.change_state(death)

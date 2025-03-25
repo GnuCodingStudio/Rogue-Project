@@ -19,13 +19,9 @@ script = ExtResource("1_ggoyj")
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Player" parent="Players" instance=ExtResource("1_t7e46")]
+[node name="1" parent="Players" instance=ExtResource("1_t7e46")]
 position = Vector2(275, -17)
 weapon = ExtResource("2_sywcb")
-
-[node name="Camera2D" type="Camera2D" parent="Players/Player"]
-position = Vector2(-18, 62)
-position_smoothing_enabled = true
 
 [node name="Mobs" type="Node2D" parent="."]
 
@@ -46,10 +42,10 @@ mobs_max_count = 10
 mobs_scene = ExtResource("3_6ad02")
 
 [node name="Spawn1" type="Marker2D" parent="WaveGenerator/Wave1"]
-position = Vector2(-188, -520)
+position = Vector2(-188, -630)
 
 [node name="Spawn2" type="Marker2D" parent="WaveGenerator/Wave1"]
-position = Vector2(247, -514)
+position = Vector2(259, -637)
 
 [node name="Wave2" parent="WaveGenerator" instance=ExtResource("4_yi1vj")]
 start_time = 30
