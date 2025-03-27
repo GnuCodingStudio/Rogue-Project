@@ -1,7 +1,8 @@
 class_name Attack extends State
 
-@onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite
 @onready var _boss: Boss = owner
+@onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite
+
 @onready var states: States = $".."
 @onready var follow: Follow = $"../Follow"
 @onready var idle: Idle = $"../Idle"
