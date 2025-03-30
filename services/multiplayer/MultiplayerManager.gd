@@ -99,11 +99,11 @@ func _assign_spawn_point_to_players():
 		
 func _spawn_players():
 	var player_scene: PackedScene = preload("res://objects/actors/player/Player.tscn")
-	var island: Node2D = get_tree().get_root().get_node("Island")
+	var island: Island = get_tree().get_root().get_node("Island")
 
 	for player_id in spawn_points:
 		var spawn_position: Vector2 = island.get_node("SpawnPoint/" + str(spawn_points[player_id])).position
-		var player = player_scene.instantiate()
+		var player: Player = player_scene.instantiate()
 		player.name = str(player_id)
 		island.get_node("Players").add_child(player, true)
 		
@@ -112,5 +112,8 @@ func _spawn_players():
 		else:
 			player.set_player_name.rpc(player_name)
 		player.set_player_position.rpc(spawn_position)
+		
+		if player_id == 1:
+			player.on_player_dead.connect(island._on_player_dead)
 		 
 		print("Multiplayer - player:", multiplayer.get_unique_id(), "are selected this ", StoreManager.player_weapon.name, " : ", StoreManager.player_weapon)

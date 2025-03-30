@@ -17,6 +17,8 @@ func _on_attack_timer_timeout() -> void:
 		_attack()
 
 func _attack() -> void:
+	if not _mob.isAlive: return
+
 	var has_attacked := false
 	var attackable_players = get_overlapping_bodies().filter(func(b):return b is Player)
 	for targeted_player in _mob.targeted_players:
