@@ -8,7 +8,7 @@ var peer: ENetMultiplayerPeer
 var player_name := "Pirate"
 
 ## Names for remote players in id:name format.
-var players := {}
+var players: Dictionary = {}
 var spawn_point_index = 1
 var spawn_points: Dictionary = {1: 0} # Host ID = 1, spawn point = 0
 
@@ -28,7 +28,7 @@ func _peer_connected(id: int) -> void:
 	register_player.rpc_id(id, player_name)
 
 func _peer_disconnected(id: int) -> void:
-	game_error.emit("Player " + players[id] + " disconnected")
+	game_error.emit("Player " + get_player(id).pseudo + " disconnected")
 	unregister_player(id)
 
 #region Client only
@@ -48,7 +48,7 @@ func _connection_failed() -> void:
 @rpc("any_peer")
 func register_player(new_player_name: String) -> void:
 	var id := multiplayer.get_remote_sender_id()
-	players[id] = new_player_name
+	players[id] = PlayerData.new(id, new_player_name)
 	player_list_changed.emit()
 
 func unregister_player(id: int) -> void:
@@ -76,8 +76,16 @@ func join_game(ip: String, new_player_name: String) -> void:
 		game_error.emit("Failed to join server. Error code: %d" % result)
 #endregion Lobby management functions.
 
-func get_player_name_list() -> Array:
-	return players.values()
+func get_players() -> Array[PlayerData]:
+	var x : Array[PlayerData] = []
+	for p in players.values():
+		if p is PlayerData:
+			x.push_back(p)
+	return x
+
+func get_player(id: int) -> PlayerData:
+	if players.has(id): return players[id]
+	else: return null
 
 @rpc("call_local", "reliable")
 func _load_island():
@@ -96,7 +104,7 @@ func _assign_spawn_point_to_players():
 	for player_id in players:
 		spawn_points[player_id] = spawn_point_index
 		spawn_point_index += 1
-		
+
 func _spawn_players():
 	var player_scene: PackedScene = preload("res://objects/actors/player/Player.tscn")
 	var island: Island = get_tree().get_root().get_node("Island")
@@ -107,13 +115,12 @@ func _spawn_players():
 		player.name = str(player_id)
 		island.get_node("Players").add_child(player, true)
 		
-		if players.has(player_id):
-			player.set_player_name.rpc(players[player_id])
+		var player_data = get_player(player_id)
+		if player_data:
+			player.set_player_name.rpc(player_data.pseudo)
 		else:
 			player.set_player_name.rpc(player_name)
 		player.set_player_position.rpc(spawn_position)
 		
 		if player_id == 1:
 			player.on_player_dead.connect(island._on_player_dead)
-		 
-		print("Multiplayer - player:", multiplayer.get_unique_id(), "are selected this ", StoreManager.player_weapon.name, " : ", StoreManager.player_weapon)
