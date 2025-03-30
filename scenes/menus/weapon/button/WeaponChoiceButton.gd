@@ -1,3 +1,4 @@
+class_name WeaponChoiceButton
 extends Control
 
 signal player_choose_weapon()
@@ -7,6 +8,7 @@ signal player_choose_weapon()
 @onready var damage_value_label: Label = %DamageValue
 @onready var range_value_label: Label = %RangeValue
 @onready var attack_speed_value_label: Label = %AttackSpeedValue
+@onready var selectioners_container: VBoxContainer = %Selectioners
 
 var _weapon: Weapon
 
@@ -22,7 +24,15 @@ func _ready() -> void:
 	range_value_label.text = str(_weapon.attack_range)
 	attack_speed_value_label.text = str(_weapon.attack_speed)
 
+func set_selectioners(players: Array[PlayerData]):
+	for old_selectioner in selectioners_container.get_children():
+		old_selectioner.queue_free()
+	for player in players:
+		var label := Label.new()
+		label.text = player.pseudo
+		selectioners_container.add_child(label)
+
 func _on_button_pressed() -> void:
 	StoreManager.player_weapon = _weapon
-	print("WeaponChoiceButton - player:", multiplayer.get_unique_id(), "are selected this ", _weapon.name, " : ", _weapon)
+	print("WeaponChoiceButton - player:", multiplayer.get_unique_id(), " has selected this ", _weapon.name, " : ", _weapon)
 	player_choose_weapon.emit()

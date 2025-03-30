@@ -87,6 +87,12 @@ func get_player(id: int) -> PlayerData:
 	if players.has(id): return players[id]
 	else: return null
 
+func weapon_are_selected() -> bool:
+	for player in players.values():
+		if player.weapon < 0:
+			return false
+	return true
+
 @rpc("call_local", "reliable")
 func _load_island():
 	var island_scene: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
