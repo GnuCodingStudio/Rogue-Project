@@ -21,10 +21,8 @@ func _ready() -> void:
 
 @rpc("reliable", "any_peer", "call_local")
 func _select_weapon(id: int):
-	# Ce if est nécessaire car le client courant n'a pas son entrée dans "get_players"
-	if multiplayer.get_unique_id() != multiplayer.get_remote_sender_id():
-		MultiplayerManager.get_player(multiplayer.get_remote_sender_id()).weapon = id
-		_update_weapon_selection()
+	MultiplayerManager.get_player(multiplayer.get_remote_sender_id()).weapon = id
+	_update_weapon_selection()
 
 func _update_weapon_selection():
 	for weapon_id in weapons_container.get_child_count():

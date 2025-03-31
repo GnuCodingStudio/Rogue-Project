@@ -99,9 +99,11 @@ func refresh_waiting_room() -> void:
 
 	players.sort_custom(_sort_by_pseudo)
 	players_list.clear()
-	players_list.add_item(MultiplayerManager.player_name + " (you)")
 	for player in players:
-		players_list.add_item(player.pseudo)
+		if player.id == multiplayer.get_unique_id():
+			players_list.add_item(player.pseudo + " (you)")
+		else:
+			players_list.add_item(player.pseudo)
 
 	host_button.disabled = not multiplayer.is_server()
 

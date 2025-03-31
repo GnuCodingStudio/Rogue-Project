@@ -9,8 +9,7 @@ var player_name := "Pirate"
 
 ## Names for remote players in id:name format.
 var players: Dictionary = {}
-var spawn_point_index = 1
-var spawn_points: Dictionary = {1: 0} # Host ID = 1, spawn point = 0
+var spawn_points: Dictionary = {}
 
 signal player_list_changed()
 signal connection_failed()
@@ -33,6 +32,8 @@ func _peer_disconnected(id: int) -> void:
 
 #region Client only
 func _connected_to_server() -> void:
+	var id := multiplayer.get_unique_id()
+	players[id] = PlayerData.new(id, player_name)
 	connection_succeeded.emit()
 
 func _server_disconnected() -> void:
@@ -61,6 +62,8 @@ func host_game(new_player_name: String) -> void:
 	var result = peer.create_server(DEFAULT_PORT, MAX_PEERS)
 	if result == OK:
 		multiplayer.set_multiplayer_peer(peer)
+		players[1] = PlayerData.new(1, new_player_name)
+		player_list_changed.emit()
 		print("Server created successfully on port %d" % DEFAULT_PORT)
 	else:
 		game_error.emit("Failed to create server. Error code: %d" % result)
@@ -107,6 +110,7 @@ func _add_player_and_spawn_position():
 	_spawn_players()
 
 func _assign_spawn_point_to_players():
+	var spawn_point_index = 0
 	for player_id in players:
 		spawn_points[player_id] = spawn_point_index
 		spawn_point_index += 1
@@ -122,10 +126,7 @@ func _spawn_players():
 		island.get_node("Players").add_child(player, true)
 		
 		var player_data = get_player(player_id)
-		if player_data:
-			player.set_player_name.rpc(player_data.pseudo)
-		else:
-			player.set_player_name.rpc(player_name)
+		player.set_player_name.rpc(player_data.pseudo)
 		player.set_player_position.rpc(spawn_position)
 		
 		if player_id == 1:
