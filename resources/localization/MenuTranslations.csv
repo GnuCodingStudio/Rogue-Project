@@ -15,6 +15,7 @@ CREDITS_TITLE_N_AUTHOR,[b]{title}[/b] by [b]{author}[/b],[b]{title}[/b] par [b]{
 CREDITS_BACK_BUTTON,BACK,RETOUR
 WEAPON_CHOICE_MENU,Choose your weapon,Choisis ton arme
 WEAPON_CHOICE_BUTTON,Take,Prendre
+WEAPON_CHOICE_LAND,Land,Débarquer
 WEAPON_GUN,Gun,Pistolet
 WEAPON_SWORD,Sword,Épée
 WEAPON_ATTRIBUTE_DAMAGE,Damage,Dégats
