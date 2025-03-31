@@ -1,7 +1,7 @@
 class_name WeaponChoiceButton
 extends Control
 
-signal player_choose_weapon()
+signal on_pressed(weapon: Weapon)
 
 @onready var weapon_icon: TextureRect = %WeaponIcon
 @onready var weapon_name: Label = %WeaponName
@@ -11,6 +11,9 @@ signal player_choose_weapon()
 @onready var selectioners_container: VBoxContainer = %Selectioners
 
 var _weapon: Weapon
+
+var _NOMRAL_COLOR = Color.WHITE
+var _SELECTED_COLOR = Color(0.565, 0.0, 0.969, 1.0)
 
 func init(weapon):
 	_weapon = weapon
@@ -32,7 +35,11 @@ func set_selectioners(players: Array[PlayerData]):
 		label.text = player.pseudo
 		selectioners_container.add_child(label)
 
+func set_selected_if_matching(weapon: Weapon) -> void:
+	if weapon == _weapon:
+		self_modulate = _SELECTED_COLOR
+	else:
+		self_modulate = _NOMRAL_COLOR
+
 func _on_button_pressed() -> void:
-	StoreManager.player_weapon = _weapon
-	print("WeaponChoiceButton - player:", multiplayer.get_unique_id(), " has selected this ", _weapon.name, " : ", _weapon)
-	player_choose_weapon.emit()
+	on_pressed.emit(_weapon)

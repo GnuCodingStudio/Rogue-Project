@@ -100,7 +100,6 @@ vertical_alignment = 3
 
 [node name="Button" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-toggle_mode = true
 text = "WEAPON_CHOICE_BUTTON"
 
 [node name="Selectioners" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
