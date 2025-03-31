@@ -9,8 +9,7 @@ extends Control
 var weapon_choice_button: PackedScene = load('res://scenes/menus/weapon/button/WeaponChoiceButton.tscn')
 
 func _ready() -> void:
-	if multiplayer.is_server():
-		land_button.show()
+	land_button.visible = multiplayer.is_server()
 	
 	for i in weapons.size():
 		var weapon = weapons[i]

@@ -33,6 +33,7 @@ func set_selectioners(players: Array[PlayerData]):
 	for player in players:
 		var label := Label.new()
 		label.text = player.pseudo
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		selectioners_container.add_child(label)
 
 func set_selected_if_matching(weapon: Weapon) -> void:
