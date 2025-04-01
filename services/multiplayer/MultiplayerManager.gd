@@ -5,7 +5,7 @@ const DEFAULT_PORT = 28000
 const MAX_PEERS = 4
 
 var peer: ENetMultiplayerPeer
-var player_name := "Pirate"
+var player_name := "Yaaarg"
 
 ## Names for remote players in id:name format.
 var players: Dictionary = {}
@@ -29,6 +29,13 @@ func _peer_connected(id: int) -> void:
 func _peer_disconnected(id: int) -> void:
 	game_error.emit("Player " + get_player(id).pseudo + " disconnected")
 	unregister_player(id)
+
+func init_soloplayer() -> void:
+	players.clear()
+	_add_player(1, player_name)
+
+func init_multiplayer() -> void:
+	players.clear()
 
 #region Client only
 func _connected_to_server() -> void:

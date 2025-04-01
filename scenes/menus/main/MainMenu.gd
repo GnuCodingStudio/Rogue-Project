@@ -10,10 +10,12 @@ func _ready():
 
 
 func _on_start_button_pressed():
+	MultiplayerManager.init_soloplayer()
 	SceneTransition.change_scene("res://scenes/map/Map.tscn")
 
 
 func _on_multiplayer_button_pressed() -> void:
+	MultiplayerManager.init_multiplayer()
 	SceneTransition.change_scene("res://scenes/menus/lobby/Lobby.tscn")
 
 
