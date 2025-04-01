@@ -62,7 +62,8 @@ theme_override_constants/separation = 10
 [node name="LandButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 disabled = true
-text = "WEAPON_CHOICE_LAND"
+text = "WEAPON_CHOICE_SELECT_WEAPONS"
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/LandButton" to="." method="_on_land_button_pressed"]

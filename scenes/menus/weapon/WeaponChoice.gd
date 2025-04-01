@@ -21,7 +21,12 @@ func _ready() -> void:
 @rpc("reliable", "any_peer", "call_local")
 func _select_weapon(name: String):
 	MultiplayerManager.set_weapon(multiplayer.get_remote_sender_id(), name)
-	land_button.disabled = !MultiplayerManager.weapon_are_selected()
+	if MultiplayerManager.weapon_are_selected():
+		land_button.disabled = false
+		land_button.text = "WEAPON_CHOICE_LAND"
+	else:
+		land_button.disabled = true
+		land_button.text = "WEAPON_CHOICE_SELECT_WEAPONS"
 
 func _on_weapon_selected(weapon: Weapon):
 	StoreManager.player_weapon = weapon
