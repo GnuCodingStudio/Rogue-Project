@@ -32,9 +32,7 @@ func _peer_disconnected(id: int) -> void:
 
 #region Client only
 func _connected_to_server() -> void:
-	var id := multiplayer.get_unique_id()
-	players[id] = PlayerData.new(id, player_name)
-	connection_succeeded.emit()
+	_add_player(multiplayer.get_unique_id(), player_name)
 
 func _server_disconnected() -> void:
 	game_error.emit("Server disconnected")
@@ -48,9 +46,7 @@ func _connection_failed() -> void:
 #region Lobby management functions.
 @rpc("any_peer")
 func register_player(new_player_name: String) -> void:
-	var id := multiplayer.get_remote_sender_id()
-	players[id] = PlayerData.new(id, new_player_name)
-	player_list_changed.emit()
+	_add_player(multiplayer.get_remote_sender_id(), new_player_name)
 
 func unregister_player(id: int) -> void:
 	players.erase(id)
@@ -62,7 +58,7 @@ func host_game(new_player_name: String) -> void:
 	var result = peer.create_server(DEFAULT_PORT, MAX_PEERS)
 	if result == OK:
 		multiplayer.set_multiplayer_peer(peer)
-		players[1] = PlayerData.new(1, new_player_name)
+		_add_player(1, new_player_name)
 		player_list_changed.emit()
 		print("Server created successfully on port %d" % DEFAULT_PORT)
 	else:
@@ -79,6 +75,7 @@ func join_game(ip: String, new_player_name: String) -> void:
 		game_error.emit("Failed to join server. Error code: %d" % result)
 #endregion Lobby management functions.
 
+#region Players management
 func get_players() -> Array[PlayerData]:
 	var x : Array[PlayerData] = []
 	for p in players.values():
@@ -90,12 +87,23 @@ func get_player(id: int) -> PlayerData:
 	if players.has(id): return players[id]
 	else: return null
 
+func set_weapon(player_id: int, weapon: int) -> void:
+	players[player_id].weapon = weapon
+	player_list_changed.emit()
+
 func weapon_are_selected() -> bool:
 	for player in players.values():
 		if player.weapon < 0:
 			return false
 	return true
 
+func _add_player(id: int, pseudo: String) -> void:
+	players[id] = PlayerData.new(id, pseudo)
+	connection_succeeded.emit()
+	player_list_changed.emit()
+#endregion Players management
+
+#region Island management
 @rpc("call_local", "reliable")
 func _load_island():
 	var island_scene: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
@@ -131,3 +139,4 @@ func _spawn_players():
 		
 		if player_id == 1:
 			player.on_player_dead.connect(island._on_player_dead)
+#endregion Island management

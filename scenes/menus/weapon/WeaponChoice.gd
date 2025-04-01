@@ -21,7 +21,7 @@ func _ready() -> void:
 
 @rpc("reliable", "any_peer", "call_local")
 func _select_weapon(id: int):
-	MultiplayerManager.get_player(multiplayer.get_remote_sender_id()).weapon = id
+	MultiplayerManager.set_weapon(multiplayer.get_remote_sender_id(), id)
 	_update_weapon_selection()
 
 func _update_weapon_selection():

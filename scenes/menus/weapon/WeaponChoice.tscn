@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnr8d3lrx4wtg"]
+[gd_scene load_steps=6 format=3 uid="uid://cnr8d3lrx4wtg"]
 
 [ext_resource type="Script" path="res://scenes/menus/weapon/WeaponChoice.gd" id="1_ewmg6"]
 [ext_resource type="Script" path="res://resources/weapons/Weapon.gd" id="2_syk6l"]
 [ext_resource type="Resource" uid="uid://r3i80a6v2w0y" path="res://resources/weapons/gun/Gun.tres" id="3_5y3nb"]
 [ext_resource type="Resource" uid="uid://ca4y5d7kksi0h" path="res://resources/weapons/sword/Sword.tres" id="4_oj2js"]
+[ext_resource type="PackedScene" uid="uid://b380ifv48r4k5" path="res://objects/hud/players_panel/PlayersPanel.tscn" id="5_wc88p"]
 
 [node name="WeaponChoice" type="Control"]
 layout_mode = 3
@@ -14,6 +15,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ewmg6")
 weapons = Array[ExtResource("2_syk6l")]([ExtResource("3_5y3nb"), ExtResource("4_oj2js")])
+
+[node name="PlayersPanel" parent="." instance=ExtResource("5_wc88p")]
+layout_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
