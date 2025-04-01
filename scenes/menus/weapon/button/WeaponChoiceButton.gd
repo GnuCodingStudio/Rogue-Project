@@ -12,7 +12,7 @@ signal on_pressed(weapon: Weapon)
 
 var _weapon: Weapon
 
-var _NOMRAL_COLOR = Color.WHITE
+var _NORMAL_COLOR = Color.WHITE
 var _SELECTED_COLOR = Color(0.565, 0.0, 0.969, 1.0)
 
 func init(weapon):
@@ -40,7 +40,7 @@ func set_selected_if_matching(weapon: Weapon) -> void:
 	if weapon == _weapon:
 		self_modulate = _SELECTED_COLOR
 	else:
-		self_modulate = _NOMRAL_COLOR
+		self_modulate = _NORMAL_COLOR
 
 func _on_button_pressed() -> void:
 	on_pressed.emit(_weapon)
