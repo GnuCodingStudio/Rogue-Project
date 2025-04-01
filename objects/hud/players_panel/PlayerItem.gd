@@ -6,6 +6,7 @@ extends HBoxContainer
 
 const GUN_ICON = preload("res://resources/weapons/gun/GunIcon.png")
 const SWORD_ICON = preload("res://resources/weapons/sword/SwordIcon.png")
+const STEERING_WHEEL_ICON = preload("res://resources/weapons/steering_wheel/SteeringWheelIcon.png")
 
 var _player: PlayerData
 
@@ -21,4 +22,4 @@ func _get_weapon_texture(player: PlayerData) -> Texture2D:
 		return GUN_ICON
 	elif _player.weapon == "WEAPON_SWORD":
 		return SWORD_ICON
-	return null
+	return STEERING_WHEEL_ICON
