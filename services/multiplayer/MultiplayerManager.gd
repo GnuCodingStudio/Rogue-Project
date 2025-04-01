@@ -87,13 +87,13 @@ func get_player(id: int) -> PlayerData:
 	if players.has(id): return players[id]
 	else: return null
 
-func set_weapon(player_id: int, weapon: int) -> void:
-	players[player_id].weapon = weapon
+func set_weapon(player_id: int, weapon_name: String) -> void:
+	players[player_id].weapon = weapon_name
 	player_list_changed.emit()
 
 func weapon_are_selected() -> bool:
 	for player in players.values():
-		if player.weapon < 0:
+		if not player.weapon:
 			return false
 	return true
 
