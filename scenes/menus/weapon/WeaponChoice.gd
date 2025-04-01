@@ -20,15 +20,10 @@ func _ready() -> void:
 
 @rpc("reliable", "any_peer", "call_local")
 func _select_weapon(name: String):
+	# TODO ça crash en solo
 	MultiplayerManager.set_weapon(multiplayer.get_remote_sender_id(), name)
-	_update_weapon_selection()
-
-func _update_weapon_selection():
-	for weapon_button: WeaponChoiceButton in weapons_container.get_children():
-		var selectionner_players = MultiplayerManager.get_players().filter(func(p): return p.weapon == weapon_button._weapon.name)
-		weapon_button.set_selectioners(selectionner_players)
-	
 	land_button.disabled = !MultiplayerManager.weapon_are_selected()
+	
 
 func _on_weapon_selected(weapon: Weapon):
 	StoreManager.player_weapon = weapon

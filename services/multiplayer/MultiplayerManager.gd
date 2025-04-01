@@ -59,7 +59,6 @@ func host_game(new_player_name: String) -> void:
 	if result == OK:
 		multiplayer.set_multiplayer_peer(peer)
 		_add_player(1, new_player_name)
-		player_list_changed.emit()
 		print("Server created successfully on port %d" % DEFAULT_PORT)
 	else:
 		game_error.emit("Failed to create server. Error code: %d" % result)

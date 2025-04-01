@@ -102,9 +102,4 @@ vertical_alignment = 3
 layout_mode = 2
 text = "WEAPON_CHOICE_BUTTON"
 
-[node name="Selectioners" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-alignment = 1
-
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

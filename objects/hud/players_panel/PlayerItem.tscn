@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://iuvbpyduw71m"]
+[gd_scene load_steps=2 format=3 uid="uid://iuvbpyduw71m"]
 
-[ext_resource type="Texture2D" uid="uid://cwyul6b6w75d" path="res://resources/weapons/sword/SwordIcon.png" id="1_2a3jd"]
 [ext_resource type="Script" path="res://objects/hud/players_panel/PlayerItem.gd" id="1_uyn4i"]
 
 [node name="PlayerItem" type="HBoxContainer"]
@@ -11,7 +10,6 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture = ExtResource("1_2a3jd")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
