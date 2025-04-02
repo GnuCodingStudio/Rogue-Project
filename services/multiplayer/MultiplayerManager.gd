@@ -138,10 +138,11 @@ func _spawn_players():
 		var player: Player = player_scene.instantiate()
 		player.name = str(player_id)
 		island.get_node("Players").add_child(player, true)
-		
+
 		var player_data = get_player(player_id)
 		player.set_player_name.rpc(player_data.pseudo)
 		player.set_player_position.rpc(spawn_position)
+		player.set_player_weapon.rpc(player_data.weapon)
 		
 		if player_id == 1:
 			player.on_player_dead.connect(island._on_player_dead)
