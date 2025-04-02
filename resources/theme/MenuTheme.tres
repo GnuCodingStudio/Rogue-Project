@@ -1,19 +1,21 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cwahu64hfgl1x"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cwahu64hfgl1x"]
 
 [ext_resource type="StyleBox" uid="uid://bv3jlksfbh7ci" path="res://resources/theme/Button/Button_disabled.tres" id="1_r7xal"]
 [ext_resource type="StyleBox" uid="uid://c82gc0o8c75om" path="res://resources/theme/Button/Button_focus.tres" id="2_1towe"]
 [ext_resource type="StyleBox" uid="uid://bwb3gylnxokiy" path="res://resources/theme/Button/Button_hover.tres" id="3_exf7q"]
 [ext_resource type="StyleBox" uid="uid://c845c6yg7sikv" path="res://resources/theme/Button/Button_normal.tres" id="4_111uo"]
 [ext_resource type="StyleBox" uid="uid://ban33pc2jpojr" path="res://resources/theme/Button/Button_pressed.tres" id="5_koxw0"]
+[ext_resource type="StyleBox" uid="uid://d3pfyths27tsd" path="res://resources/theme/SmallButton/SmallButton_focus.tres" id="6_1idnh"]
 [ext_resource type="StyleBox" uid="uid://bp8316sb1q1bx" path="res://resources/theme/SmallButton/SmallButton_normal.tres" id="6_8o685"]
 [ext_resource type="StyleBox" uid="uid://dyhd14l53wwg0" path="res://resources/theme/SmallButton/SmallButton_hover.tres" id="6_jm7rt"]
+[ext_resource type="StyleBox" uid="uid://dknr2oqnfhp6x" path="res://resources/theme/SmallButton/SmallButton_pressed.tres" id="9_v616c"]
 
 [resource]
 BigTitle/base_type = &"Label"
 BigTitle/colors/font_shadow_color = Color(0, 0, 0, 1)
-BigTitle/constants/shadow_offset_x = 7
-BigTitle/constants/shadow_offset_y = 5
-BigTitle/constants/shadow_outline_size = 10
+BigTitle/constants/shadow_offset_x = 3
+BigTitle/constants/shadow_offset_y = 2
+BigTitle/constants/shadow_outline_size = 0
 BigTitle/font_sizes/font_size = 40
 Button/colors/font_color = Color(0.201172, 0.12952, 0.0628662, 1)
 Button/font_sizes/font_size = 24
@@ -24,7 +26,12 @@ Button/styles/normal = ExtResource("4_111uo")
 Button/styles/pressed = ExtResource("5_koxw0")
 SmallButton/base_type = &"Button"
 SmallButton/font_sizes/font_size = 14
+SmallButton/styles/focus = ExtResource("6_1idnh")
 SmallButton/styles/hover = ExtResource("6_jm7rt")
 SmallButton/styles/normal = ExtResource("6_8o685")
+SmallButton/styles/pressed = ExtResource("9_v616c")
 SubTitle/base_type = &"Label"
+SubTitle/colors/font_shadow_color = Color(0, 0, 0, 1)
+SubTitle/constants/shadow_offset_x = 1
+SubTitle/constants/shadow_offset_y = 1
 SubTitle/font_sizes/font_size = 20
