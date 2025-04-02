@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://iuvbpyduw71m"]
+
+[ext_resource type="Script" path="res://objects/hud/players_panel/PlayerItem.gd" id="1_uyn4i"]
+
+[node name="PlayerItem" type="HBoxContainer"]
+script = ExtResource("1_uyn4i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+expand_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Joueur 1"

@@ -5,12 +5,11 @@ const DEFAULT_PORT = 28000
 const MAX_PEERS = 4
 
 var peer: ENetMultiplayerPeer
-var player_name := "Pirate"
+var player_name := "Yaaarg"
 
 ## Names for remote players in id:name format.
-var players := {}
-var spawn_point_index = 1
-var spawn_points: Dictionary = {1: 0} # Host ID = 1, spawn point = 0
+var players: Dictionary = {}
+var spawn_points: Dictionary = {}
 
 signal player_list_changed()
 signal connection_failed()
@@ -28,12 +27,19 @@ func _peer_connected(id: int) -> void:
 	register_player.rpc_id(id, player_name)
 
 func _peer_disconnected(id: int) -> void:
-	game_error.emit("Player " + players[id] + " disconnected")
+	game_error.emit("Player " + get_player(id).pseudo + " disconnected")
 	unregister_player(id)
+
+func init_soloplayer() -> void:
+	players.clear()
+	_add_player(1, player_name)
+
+func init_multiplayer() -> void:
+	players.clear()
 
 #region Client only
 func _connected_to_server() -> void:
-	connection_succeeded.emit()
+	_add_player(multiplayer.get_unique_id(), player_name)
 
 func _server_disconnected() -> void:
 	game_error.emit("Server disconnected")
@@ -47,9 +53,7 @@ func _connection_failed() -> void:
 #region Lobby management functions.
 @rpc("any_peer")
 func register_player(new_player_name: String) -> void:
-	var id := multiplayer.get_remote_sender_id()
-	players[id] = new_player_name
-	player_list_changed.emit()
+	_add_player(multiplayer.get_remote_sender_id(), new_player_name)
 
 func unregister_player(id: int) -> void:
 	players.erase(id)
@@ -61,6 +65,7 @@ func host_game(new_player_name: String) -> void:
 	var result = peer.create_server(DEFAULT_PORT, MAX_PEERS)
 	if result == OK:
 		multiplayer.set_multiplayer_peer(peer)
+		_add_player(1, new_player_name)
 		print("Server created successfully on port %d" % DEFAULT_PORT)
 	else:
 		game_error.emit("Failed to create server. Error code: %d" % result)
@@ -76,9 +81,35 @@ func join_game(ip: String, new_player_name: String) -> void:
 		game_error.emit("Failed to join server. Error code: %d" % result)
 #endregion Lobby management functions.
 
-func get_player_name_list() -> Array:
-	return players.values()
+#region Players management
+func get_players() -> Array[PlayerData]:
+	var x : Array[PlayerData] = []
+	for p in players.values():
+		if p is PlayerData:
+			x.push_back(p)
+	return x
 
+func get_player(id: int) -> PlayerData:
+	if players.has(id): return players[id]
+	else: return null
+
+func set_weapon(player_id: int, weapon_name: String) -> void:
+	players[player_id].weapon = weapon_name
+	player_list_changed.emit()
+
+func weapon_are_selected() -> bool:
+	for player in players.values():
+		if not player.weapon:
+			return false
+	return true
+
+func _add_player(id: int, pseudo: String) -> void:
+	players[id] = PlayerData.new(id, pseudo)
+	connection_succeeded.emit()
+	player_list_changed.emit()
+#endregion Players management
+
+#region Island management
 @rpc("call_local", "reliable")
 func _load_island():
 	var island_scene: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
@@ -93,10 +124,11 @@ func _add_player_and_spawn_position():
 	_spawn_players()
 
 func _assign_spawn_point_to_players():
+	var spawn_point_index = 0
 	for player_id in players:
 		spawn_points[player_id] = spawn_point_index
 		spawn_point_index += 1
-		
+
 func _spawn_players():
 	var player_scene: PackedScene = preload("res://objects/actors/player/Player.tscn")
 	var island: Island = get_tree().get_root().get_node("Island")
@@ -107,13 +139,10 @@ func _spawn_players():
 		player.name = str(player_id)
 		island.get_node("Players").add_child(player, true)
 		
-		if players.has(player_id):
-			player.set_player_name.rpc(players[player_id])
-		else:
-			player.set_player_name.rpc(player_name)
+		var player_data = get_player(player_id)
+		player.set_player_name.rpc(player_data.pseudo)
 		player.set_player_position.rpc(spawn_position)
 		
 		if player_id == 1:
 			player.on_player_dead.connect(island._on_player_dead)
-		 
-		print("Multiplayer - player:", multiplayer.get_unique_id(), "are selected this ", StoreManager.player_weapon.name, " : ", StoreManager.player_weapon)
+#endregion Island management

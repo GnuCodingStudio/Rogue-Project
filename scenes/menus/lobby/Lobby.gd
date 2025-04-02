@@ -95,12 +95,17 @@ func _on_game_error(errtxt: String) -> void:
 	join_button.disabled = false
 
 func refresh_waiting_room() -> void:
-	var players := MultiplayerManager.get_player_name_list()
+	var players := MultiplayerManager.get_players()
 
-	players.sort()
+	players.sort_custom(_sort_by_pseudo)
 	players_list.clear()
-	players_list.add_item(MultiplayerManager.player_name + " (you)")
-	for player: String in players:
-		players_list.add_item(player)
+	for player in players:
+		if player.id == multiplayer.get_unique_id():
+			players_list.add_item(player.pseudo + " (you)")
+		else:
+			players_list.add_item(player.pseudo)
 
 	host_button.disabled = not multiplayer.is_server()
+
+func _sort_by_pseudo(a: PlayerData, b: PlayerData) -> int:
+	return a.pseudo < b.pseudo
