@@ -98,8 +98,10 @@ func set_player_position(value: Vector2) -> void:
 func set_player_weapon(value: String) -> void:
 	if (value == "WEAPON_SWORD"):
 		weapon = preload("res://resources/weapons/sword/Sword.tres")
-	else:
+	elif (value == "WEAPON_GUN"):
 		weapon = preload("res://resources/weapons/gun/Gun.tres")
+	else:
+		assert(false, "Weapon not handled!")
 
 func respawn():
 	_currentHealth = _maxHealth
