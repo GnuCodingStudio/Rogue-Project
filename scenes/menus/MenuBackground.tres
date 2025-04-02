@@ -133,8 +133,8 @@ nodes/fragment/connections = PackedInt32Array(4, 0, 2, 2, 5, 0, 20, 1, 20, 0, 2,
 
 [sub_resource type="Gradient" id="Gradient_0qjq8"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.121849, 0.672269, 1)
-colors = PackedColorArray(0.0150261, 9.16937e-06, 0.0325546, 1, 0.396162, 1.25087e-05, 0.301761, 1, 0.56448, 0.00398887, 0.968884, 1)
+offsets = PackedFloat32Array(0, 0.322058, 0.37914, 0.430585, 0.489782, 0.603946, 0.788584, 0.920366)
+colors = PackedColorArray(0, 0.149091, 0.59375, 1, 0, 0.222656, 0.890625, 1, 0.0180128, 0.237031, 0.880903, 1, 0.976471, 0.866667, 0.568627, 1, 0.796078, 0.666667, 0.34902, 1, 0.000930786, 0.476562, 0.0306578, 1, 0.000930786, 0.476562, 0.0306578, 1, 0, 0.326172, 0.0203857, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_33ib8"]
 fractal_gain = 0.6
