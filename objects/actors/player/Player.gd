@@ -22,12 +22,7 @@ func _enter_tree():
 
 func _ready() -> void:
 	if !is_multiplayer_authority(): return
-
 	camera.make_current()
-
-	if StoreManager.player_weapon != null:
-		weapon = StoreManager.player_weapon
-
 	healthbar.init(_currentHealth)
 	attackTimer.wait_time = weapon.attack_speed
 
@@ -98,6 +93,13 @@ func set_player_name(value: String) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func set_player_position(value: Vector2) -> void:
 	position = value
+	
+@rpc("any_peer", "call_local", "reliable")
+func set_player_weapon(value: String) -> void:
+	if (value == "WEAPON_SWORD"):
+		weapon = preload("res://resources/weapons/sword/Sword.tres")
+	else:
+		weapon = preload("res://resources/weapons/gun/Gun.tres")
 
 func respawn():
 	_currentHealth = _maxHealth
