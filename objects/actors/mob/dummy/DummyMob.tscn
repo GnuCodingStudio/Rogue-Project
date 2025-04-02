@@ -1,6 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://riml2gwgt1rh"]
+[gd_scene load_steps=55 format=3 uid="uid://riml2gwgt1rh"]
 
 [ext_resource type="PackedScene" uid="uid://b3y0j0iqfou0u" path="res://objects/actors/mob/Mob.tscn" id="1_v6bs4"]
+[ext_resource type="Script" path="res://objects/actors/mob/dummy/DummyMob.gd" id="2_5eqej"]
 [ext_resource type="PackedScene" uid="uid://brjpcb7460j1d" path="res://components/behavior/targeting/NearestPlayerTargetingBehavior.tscn" id="3_45raj"]
 [ext_resource type="Texture2D" uid="uid://by5yfeftc4s1v" path="res://objects/actors/mob/dummy/DummyMob.png" id="3_53wnf"]
 [ext_resource type="PackedScene" uid="uid://6123kykyglg8" path="res://components/behavior/movement/RunToPlayerMovementBehavior.tscn" id="4_04pgy"]
@@ -351,7 +352,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(0.267943, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
@@ -423,6 +424,7 @@ _data = {
 [node name="DummyMob" instance=ExtResource("1_v6bs4")]
 collision_layer = 2
 collision_mask = 3
+script = ExtResource("2_5eqej")
 
 [node name="AnimatedSprite" parent="." index="0"]
 scale = Vector2(2, 2)
@@ -443,6 +445,7 @@ debug_color = Color(0, 1, 0, 0.419608)
 [node name="RunToPlayerMovementBehavior" parent="." index="3" instance=ExtResource("4_04pgy")]
 
 [node name="HealthBar" parent="." index="4" instance=ExtResource("5_a2u6g")]
+unique_name_in_owner = true
 offset_left = -27.0
 offset_top = -23.0
 offset_right = 84.0
