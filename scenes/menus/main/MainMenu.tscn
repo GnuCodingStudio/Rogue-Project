@@ -52,10 +52,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="Center" type="CenterContainer" parent="GlobalMargin"]
 layout_mode = 2
@@ -87,44 +87,31 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../CreditsButton")
-focus_next = NodePath("../CreditsButton")
-focus_previous = NodePath("../QuitButton")
+focus_neighbor_top = NodePath("../../../SecondButtons/QuitButton")
+focus_neighbor_bottom = NodePath("../../../SecondButtons/CreditsButton")
+focus_next = NodePath("../../../SecondButtons/CreditsButton")
+focus_previous = NodePath("../../../SecondButtons/QuitButton")
 text = "MAIN_START_BUTTON"
 
-[node name="MultiplayerButton" type="Button" parent="GlobalMargin/Center/VBox"]
-unique_name_in_owner = true
+[node name="CreateCrewButton" type="Button" parent="GlobalMargin/Center/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../CreditsButton")
-focus_next = NodePath("../CreditsButton")
-focus_previous = NodePath("../QuitButton")
-text = "MAIN_MULTIPLAYER_BUTTON"
+focus_neighbor_top = NodePath("../../../SecondButtons/QuitButton")
+focus_neighbor_bottom = NodePath("../../../SecondButtons/CreditsButton")
+focus_next = NodePath("../../../SecondButtons/CreditsButton")
+focus_previous = NodePath("../../../SecondButtons/QuitButton")
+text = "MAIN_CREATE_CREW_BUTTON"
 
-[node name="CreditsButton" type="Button" parent="GlobalMargin/Center/VBox"]
-unique_name_in_owner = true
+[node name="JoinCrewButton" type="Button" parent="GlobalMargin/Center/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../StartButton")
-text = "MAIN_CREDITS_BUTTON"
-
-[node name="QuitButton" type="Button" parent="GlobalMargin/Center/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_top = NodePath("../CreditsButton")
-focus_neighbor_bottom = NodePath("../StartButton")
-focus_next = NodePath("../StartButton")
-focus_previous = NodePath("../CreditsButton")
-text = "MAIN_QUIT_BUTTON"
+focus_neighbor_top = NodePath("../../../SecondButtons/QuitButton")
+focus_neighbor_bottom = NodePath("../../../SecondButtons/CreditsButton")
+focus_next = NodePath("../../../SecondButtons/CreditsButton")
+focus_previous = NodePath("../../../SecondButtons/QuitButton")
+text = "MAIN_JOIN_CREW_BUTTON"
 
 [node name="TemplateFromGCS" type="Label" parent="GlobalMargin"]
 visible = false
@@ -133,6 +120,35 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "A Gnu Coding Studio's template"
 script = SubResource("GDScript_b4ev4")
+
+[node name="SecondButtons" type="HBoxContainer" parent="GlobalMargin"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="CreditsButton" type="Button" parent="GlobalMargin/SecondButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../Center/VBox/StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../../Center/VBox/StartButton")
+theme_type_variation = &"SmallButton"
+text = "MAIN_CREDITS_BUTTON"
+
+[node name="QuitButton" type="Button" parent="GlobalMargin/SecondButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../../Center/VBox/StartButton")
+focus_next = NodePath("../../Center/VBox/StartButton")
+focus_previous = NodePath("../CreditsButton")
+theme_type_variation = &"SmallButton"
+text = "MAIN_QUIT_BUTTON"
 
 [node name="QuitDialog" parent="." instance=ExtResource("3_pus6v")]
 unique_name_in_owner = true
@@ -152,7 +168,8 @@ help = "Show info about the template used to create this game."
 parameters = Array[String](["time:float:0.6"])
 
 [connection signal="pressed" from="GlobalMargin/Center/VBox/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="GlobalMargin/Center/VBox/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
-[connection signal="pressed" from="GlobalMargin/Center/VBox/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="GlobalMargin/Center/VBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/Center/VBox/CreateCrewButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/Center/VBox/JoinCrewButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/SecondButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/SecondButtons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="on_confirm" from="QuitDialog" to="." method="_on_quit_dialog_confirmed"]
