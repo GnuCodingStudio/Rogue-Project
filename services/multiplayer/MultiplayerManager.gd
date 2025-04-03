@@ -63,6 +63,7 @@ func unregister_player(id: int) -> void:
 	players.erase(id)
 	player_list_changed.emit()
 
+# TODO Supprimer
 func host_game(new_player_name: String) -> void:
 	player_name = new_player_name
 	peer = ENetMultiplayerPeer.new()
@@ -74,6 +75,7 @@ func host_game(new_player_name: String) -> void:
 	else:
 		game_error.emit("Failed to create server. Error code: %d" % result)
 
+# TODO Supprimer
 func join_game(ip: String, new_player_name: String) -> void:
 	player_name = new_player_name
 	peer = ENetMultiplayerPeer.new()

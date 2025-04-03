@@ -17,7 +17,7 @@ func _on_create_crew_button_pressed() -> void:
 
 func _on_multiplayer_button_pressed() -> void:
 	MultiplayerManager.init_multiplayer()
-	SceneTransition.change_scene("res://scenes/menus/lobby/Lobby.tscn")
+	SceneTransition.change_scene("res://scenes/menus/lobby/join/JoinLobby.tscn")
 
 func _on_credits_button_pressed():
 	SceneTransition.change_scene("res://scenes/menus/credits/CreditsMenu.tscn")

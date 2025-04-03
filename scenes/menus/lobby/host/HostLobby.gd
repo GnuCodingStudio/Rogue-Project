@@ -1,7 +1,7 @@
 extends Control
 
 @onready var crew_name_field: LineEdit = %CrewNameField
-@onready var capitain_name_field: LineEdit = %CapitainNameField
+@onready var captain_name_field: LineEdit = %CaptainNameField
 @onready var port_field: LineEdit = %PortField
 @onready var error_label: Label = %ErrorLabel
 @onready var start_button: Button = %StartButton
@@ -25,7 +25,7 @@ func _host_game(player_name: String, port: int) -> void:
 func _check_form() -> void:
 	var valid = true
 	
-	if capitain_name_field.text.is_empty():
+	if captain_name_field.text.is_empty():
 		valid = false
 	if not port_field.text.is_valid_int():
 		valid = false
@@ -46,7 +46,9 @@ func _on_crew_name_text_changed(new_text: String) -> void:
 	_check_form()
 
 func _on_start_button_pressed() -> void:
-	_host_game(capitain_name_field.text, port_field.text.to_int())
+	var captain_name = captain_name_field.text
+	var port = port_field.text.to_int()
+	_host_game(captain_name, port)
 
 func _on_multiplayer_error(code: int) -> void:
 	error_label.text = "Failed to create server. Error code: %d" % code

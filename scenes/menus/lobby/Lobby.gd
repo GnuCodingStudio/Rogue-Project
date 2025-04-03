@@ -1,5 +1,7 @@
 extends Control
 
+# TODO Supprimer ce fichier + son .tscn
+
 #region connect-inputs
 @onready var connect: Panel = $Connect
 @onready var player_name_input: LineEdit = %PlayerNameInput
