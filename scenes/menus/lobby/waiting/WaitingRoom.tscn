@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://dng2fi1m3reag"]
+
+[ext_resource type="Script" path="res://scenes/menus/lobby/waiting/WaitingRoom.gd" id="1_qwjdv"]
+[ext_resource type="PackedScene" uid="uid://wdqk4jv113lg" path="res://components/uicontrols/UIContols.tscn" id="1_rbuie"]
+[ext_resource type="Material" uid="uid://dygopb8fee5xt" path="res://scenes/menus/MenuBackground.tres" id="2_e7xk1"]
+
+[node name="WaitingRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qwjdv")
+
+[node name="UiContols" parent="." instance=ExtResource("1_rbuie")]
+
+[node name="Background" type="ColorRect" parent="."]
+material = ExtResource("2_e7xk1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"BigTitle"
+theme_override_font_sizes/font_size = 40
+text = "Todo Waiting players"
+horizontal_alignment = 1
+
+[node name="PlayersList" type="ItemList" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "Todo Play !"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

@@ -51,7 +51,11 @@ func _connection_failed() -> void:
 #endregion Client only
 
 #region Lobby management functions.
-@rpc("any_peer")
+func register_me(player_name: String) -> void:
+	self.player_name = player_name
+	_add_player(multiplayer.get_unique_id(), player_name)
+	
+@rpc("any_peer", "reliable")
 func register_player(new_player_name: String) -> void:
 	_add_player(multiplayer.get_remote_sender_id(), new_player_name)
 
@@ -115,6 +119,7 @@ func _load_island():
 	var island_scene: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
 	get_tree().get_root().add_child(island_scene)
 
+# TODO Rename this to land_on_island()
 func begin_game():
 	_load_island.rpc()
 	_add_player_and_spawn_position()

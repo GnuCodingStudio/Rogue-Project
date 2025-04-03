@@ -171,7 +171,7 @@ help = "Show info about the template used to create this game."
 parameters = Array[String](["time:float:0.6"])
 
 [connection signal="pressed" from="GlobalMargin/Center/VBox/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="GlobalMargin/Center/VBox/CreateCrewButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/Center/VBox/CreateCrewButton" to="." method="_on_create_crew_button_pressed"]
 [connection signal="pressed" from="GlobalMargin/Center/VBox/JoinCrewButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="pressed" from="GlobalMargin/SecondButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="GlobalMargin/SecondButtons/QuitButton" to="." method="_on_quit_button_pressed"]

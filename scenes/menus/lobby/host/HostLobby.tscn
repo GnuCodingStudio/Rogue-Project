@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbug1eglmbl47"]
+
+[ext_resource type="PackedScene" uid="uid://wdqk4jv113lg" path="res://components/uicontrols/UIContols.tscn" id="1_esjmv"]
+[ext_resource type="Script" path="res://scenes/menus/lobby/host/HostLobby.gd" id="1_s4vpe"]
+[ext_resource type="Material" uid="uid://dygopb8fee5xt" path="res://scenes/menus/MenuBackground.tres" id="2_glhhh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t5d3g"]
+
+[node name="HostLobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s4vpe")
+
+[node name="UiContols" parent="." instance=ExtResource("1_esjmv")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("2_glhhh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.583954, 0, 0.695312, 1)
+
+[node name="GlobalMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Center" type="CenterContainer" parent="GlobalMargin"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="GlobalMargin/Center"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="GlobalMargin/Center/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"BigTitle"
+text = "HOST_TITLE"
+
+[node name="HSeparator" type="HSeparator" parent="GlobalMargin/Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_t5d3g")
+
+[node name="GridContainer" type="GridContainer" parent="GlobalMargin/Center/VBox"]
+layout_mode = 2
+columns = 2
+
+[node name="CrewNameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
+layout_mode = 2
+text = "Todo Crew name"
+
+[node name="CrewNameField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CapitainNameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
+layout_mode = 2
+text = "Todo Capitain name"
+
+[node name="CapitainNameField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
+layout_mode = 2
+text = "Todo Port"
+
+[node name="PortField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "28000"
+
+[node name="ErrorLabel" type="Label" parent="GlobalMargin/Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="GlobalMargin/Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "HOST_GO_BUTTON"
+
+[node name="SecondButtons" type="HBoxContainer" parent="GlobalMargin"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="BackButton" type="Button" parent="GlobalMargin/SecondButtons"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_type_variation = &"SmallButton"
+text = "HOST_BACK_BUTTON"
+
+[connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/CrewNameField" to="." method="_on_crew_name_text_changed"]
+[connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/CapitainNameField" to="." method="_on_capitain_name_text_changed"]
+[connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/PortField" to="." method="_on_port_text_changed"]
+[connection signal="pressed" from="GlobalMargin/Center/VBox/StartButton" to="." method="_on_start_button_pressed"]
