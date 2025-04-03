@@ -11,7 +11,7 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0.564706, 0.00392157, 0.968627, 1)
+border_color = Color(0.568627, 0.4, 0.243137, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -65,7 +65,6 @@ layout_mode = 2
 focus_neighbor_right = NodePath("../ConfirmButton")
 focus_next = NodePath("../ConfirmButton")
 focus_previous = NodePath("../ConfirmButton")
-theme_override_font_sizes/font_size = 40
 
 [node name="ConfirmButton" type="Button" parent="Center/ConfirmPanel/MarginContainer/VBox/Buttons"]
 unique_name_in_owner = true
@@ -73,7 +72,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../CancelButton")
 focus_next = NodePath("../CancelButton")
 focus_previous = NodePath("../CancelButton")
-theme_override_font_sizes/font_size = 40
 
 [connection signal="pressed" from="Center/ConfirmPanel/MarginContainer/VBox/Buttons/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="Center/ConfirmPanel/MarginContainer/VBox/Buttons/ConfirmButton" to="." method="_on_confirm_button_pressed"]

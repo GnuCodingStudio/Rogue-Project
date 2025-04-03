@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7p8jls1peqwp"]
+[gd_scene load_steps=5 format=3 uid="uid://b7p8jls1peqwp"]
 
 [ext_resource type="Script" path="res://scenes/menus/credits/CreditsMenu.gd" id="1_35ggl"]
 [ext_resource type="PackedScene" uid="uid://wdqk4jv113lg" path="res://components/uicontrols/UIContols.tscn" id="1_f0kuf"]
 [ext_resource type="PackedScene" uid="uid://bb1d5ajohbgpi" path="res://scenes/menus/credits/CreditsItem.tscn" id="1_gd18q"]
 [ext_resource type="Material" uid="uid://dygopb8fee5xt" path="res://scenes/menus/MenuBackground.tres" id="1_lx2dq"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_el4jv"]
-thickness = 2
 
 [node name="CreditsMenu" type="Control"]
 layout_mode = 3
@@ -35,10 +32,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBox" type="VBoxContainer" parent="GlobalMargin"]
 layout_mode = 2
@@ -49,18 +46,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"BigTitle"
-text = "GAME_NAME"
-
-[node name="SubTitle" type="Label" parent="GlobalMargin/VBox"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"SubTitle"
 text = "CREDITS_TAGLINE"
-
-[node name="Separator" type="HSeparator" parent="GlobalMargin/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-theme_override_styles/separator = SubResource("StyleBoxLine_el4jv")
 
 [node name="Scroll" type="ScrollContainer" parent="GlobalMargin/VBox"]
 layout_mode = 2
@@ -100,6 +86,7 @@ link_text = "OpenGameArt"
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_type_variation = &"SmallButton"
 text = "CREDITS_BACK_BUTTON"
 
 [connection signal="pressed" from="GlobalMargin/VBox/BackButton" to="." method="_on_back_button_pressed"]
