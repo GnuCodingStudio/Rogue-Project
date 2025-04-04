@@ -21,6 +21,7 @@ func _bind_node(node: Node) -> void:
 
 func _bind_button(button: Button) -> void:
 	button.mouse_entered.connect(UiAudio.play_ui.bind(UI_HOVER))
+	button.focus_entered.connect(UiAudio.play_ui.bind(UI_HOVER))
 	button.pressed.connect(UiAudio.play_ui.bind(UI_CLICK))
 
 

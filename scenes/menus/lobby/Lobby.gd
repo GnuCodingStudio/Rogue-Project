@@ -1,5 +1,7 @@
 extends Control
 
+# TODO Supprimer ce fichier + son .tscn
+
 #region connect-inputs
 @onready var connect: Panel = $Connect
 @onready var player_name_input: LineEdit = %PlayerNameInput
@@ -80,8 +82,7 @@ func _load_map() -> void:
 	SceneTransition.change_scene("res://scenes/map/Map.tscn")
 
 func _on_connection_success() -> void:
-	connect.hide()
-	waiting_room.show()
+	SceneTransition.change_scene("res://scenes/menus/lobby/waiting/WaitingRoom.tscn")
 
 func _on_connection_failed() -> void:
 	host_button.disabled = false

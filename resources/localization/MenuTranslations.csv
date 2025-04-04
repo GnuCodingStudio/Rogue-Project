@@ -13,7 +13,19 @@ CONSOLE_INPUT_PLACEHOLDER,Enter command here…,Entre une commande ici…
 CONSOLE_INPUT_SUBMIT,Submit,Envoyer
 CREDITS_TAGLINE,Credits,Crédits
 CREDITS_TITLE_N_AUTHOR,[b]{title}[/b] by [b]{author}[/b],[b]{title}[/b] par [b]{author}[/b]
+CREATE_TITLE,Create Crew,Créer un équipage
+CREATE_CREW_NAME,Crew name,Nom d’équipage
+CREATE_CAPTAIN_NAME,Captain name,Nom de capitaine
+CREATE_PORT,Port,Port
+CREATE_BUTTON,Create,Créer
+CREATE_BACK_BUTTON,BACK,RETOUR
 CREDITS_BACK_BUTTON,BACK,RETOUR
+JOIN_TITLE,Join Crew,Rejoindre un équipage
+JOIN_PIRATE_NAME,Pirate name,Nom de pirate
+JOIN_HOST,Host,Hôte
+JOIN_PORT,Port,Port
+JOIN_BUTTON,Join,Rejoindre
+JOIN_BACK_BUTTON,BACK,RETOUR
 WEAPON_CHOICE_MENU,Choose your weapon,Choisis ton arme
 WEAPON_CHOICE_BUTTON,Take,Prendre
 WEAPON_CHOICE_LAND,Land,Débarquer
