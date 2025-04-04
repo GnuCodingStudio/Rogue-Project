@@ -51,7 +51,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"BigTitle"
-text = "HOST_TITLE"
+text = "CREATE_TITLE"
 
 [node name="HSeparator" type="HSeparator" parent="GlobalMargin/Center/VBox"]
 layout_mode = 2
@@ -64,29 +64,34 @@ columns = 2
 
 [node name="CrewNameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
-text = "Todo Crew name"
+text = "CREATE_CREW_NAME"
+horizontal_alignment = 2
 
 [node name="CrewNameField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="CaptainNameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
-text = "Todo Capitain name"
+text = "CREATE_CAPTAIN_NAME"
+horizontal_alignment = 2
 
 [node name="CaptainNameField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PortLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
-text = "Todo Port"
+text = "CREATE_PORT"
+horizontal_alignment = 2
 
 [node name="PortField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "28000"
@@ -99,7 +104,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
-text = "HOST_GO_BUTTON"
+text = "CREATE_BUTTON"
 
 [node name="SecondButtons" type="HBoxContainer" parent="GlobalMargin"]
 layout_mode = 2
@@ -111,7 +116,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_type_variation = &"SmallButton"
-text = "HOST_BACK_BUTTON"
+text = "CREATE_BACK_BUTTON"
 
 [connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/CrewNameField" to="." method="_on_crew_name_text_changed"]
 [connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/CaptainNameField" to="." method="_on_capitain_name_text_changed"]

@@ -64,29 +64,35 @@ columns = 2
 
 [node name="NameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
-text = "Todo Name"
+text = "JOIN_PIRATE_NAME"
+horizontal_alignment = 2
 
 [node name="NameField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="HostLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
-text = "Todo Port"
+text = "JOIN_HOST"
+horizontal_alignment = 2
 
 [node name="HostField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "127.0.0.1"
 
 [node name="PortLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
-text = "Todo Port"
+text = "JOIN_PORT"
+horizontal_alignment = 2
 
 [node name="PortField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "28000"
