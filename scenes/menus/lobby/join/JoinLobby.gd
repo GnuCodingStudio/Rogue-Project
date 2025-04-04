@@ -6,6 +6,9 @@ extends Control
 @onready var error_label: Label = %ErrorLabel
 @onready var join_button: Button = %JoinButton
 
+func _ready() -> void:
+	name_field.text = MultiplayerManager.get_default_player_name()
+
 #region signal
 
 func _on_name_changed(new_text: String) -> void:

@@ -155,3 +155,13 @@ func _spawn_players():
 		if player_id == 1:
 			player.on_player_dead.connect(island._on_player_dead)
 #endregion Island management
+
+func get_default_player_name() -> String:
+	#MacOS
+	if OS.has_environment("USER"):
+		return OS.get_environment("USER")
+	#Windows
+	elif OS.has_environment("USERNAME"):
+		return OS.get_environment("USERNAME")
+	else:
+		return "Pirate"
