@@ -66,6 +66,7 @@ func _join_game(host: String, port: int, player_name: String) -> void:
 		multiplayer.multiplayer_peer = peer
 		multiplayer.connected_to_server.connect(_on_connected_to_server)
 		multiplayer.connection_failed.connect(_connection_failed)
+		MultiplayerManager.register_me(player_name)
 	else:
 		_show_error(result)
 		_enable_form(true)
