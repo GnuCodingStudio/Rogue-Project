@@ -64,6 +64,7 @@ columns = 2
 
 [node name="CrewNameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
+theme_type_variation = &"MenuLabel"
 text = "CREATE_CREW_NAME"
 horizontal_alignment = 2
 
@@ -75,6 +76,7 @@ size_flags_horizontal = 3
 
 [node name="CaptainNameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
+theme_type_variation = &"MenuLabel"
 text = "CREATE_CAPTAIN_NAME"
 horizontal_alignment = 2
 
@@ -86,6 +88,7 @@ size_flags_horizontal = 3
 
 [node name="PortLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
+theme_type_variation = &"MenuLabel"
 text = "CREATE_PORT"
 horizontal_alignment = 2
 

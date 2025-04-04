@@ -8,6 +8,7 @@ extends Control
 
 func _ready() -> void:
 	name_field.text = MultiplayerManager.get_default_player_name()
+	_check_form()
 
 #region signal
 

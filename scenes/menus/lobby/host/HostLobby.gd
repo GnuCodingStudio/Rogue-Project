@@ -11,6 +11,7 @@ const MAX_PEERS = 4
 func _ready() -> void:
 	crew_name_field.text = MultiplayerManager.get_default_player_name()
 	captain_name_field.text = MultiplayerManager.get_default_player_name()
+	_check_form()
 
 #region signal
 
