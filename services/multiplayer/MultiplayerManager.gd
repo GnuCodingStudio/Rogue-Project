@@ -20,7 +20,8 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
 	multiplayer.connected_to_server.connect(_connected_to_server)
-	multiplayer.connection_failed.connect(_connection_failed)
+	# TODO Virer ça non ? ça devrait être géré par HostLobby ou JoinLobby
+	#multiplayer.connection_failed.connect(_connection_failed)
 	multiplayer.server_disconnected.connect(_server_disconnected)
 
 func _peer_connected(id: int) -> void:
