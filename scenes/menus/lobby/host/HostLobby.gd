@@ -1,6 +1,5 @@
 extends Control
 
-@onready var crew_name_field: LineEdit = %CrewNameField
 @onready var captain_name_field: LineEdit = %CaptainNameField
 @onready var port_field: LineEdit = %PortField
 @onready var error_label: Label = %ErrorLabel
@@ -9,19 +8,15 @@ extends Control
 const MAX_PEERS = 4
 
 func _ready() -> void:
-	crew_name_field.text = MultiplayerManager.get_default_player_name()
 	captain_name_field.text = MultiplayerManager.get_default_player_name()
 	_check_form()
 
 #region signal
 
-func _on_port_text_changed(new_text: String) -> void:
-	_check_form()
-
 func _on_capitain_name_text_changed(new_text: String) -> void:
 	_check_form()
 
-func _on_crew_name_text_changed(new_text: String) -> void:
+func _on_port_text_changed(new_text: String) -> void:
 	_check_form()
 
 func _on_start_button_pressed() -> void:

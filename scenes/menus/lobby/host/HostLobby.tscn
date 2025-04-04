@@ -62,18 +62,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_t5d3g")
 layout_mode = 2
 columns = 2
 
-[node name="CrewNameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
-layout_mode = 2
-theme_type_variation = &"MenuLabel"
-text = "CREATE_CREW_NAME"
-horizontal_alignment = 2
-
-[node name="CrewNameField" type="LineEdit" parent="GlobalMargin/Center/VBox/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="CaptainNameLabel" type="Label" parent="GlobalMargin/Center/VBox/GridContainer"]
 layout_mode = 2
 theme_type_variation = &"MenuLabel"
@@ -121,7 +109,6 @@ size_flags_vertical = 8
 theme_type_variation = &"SmallButton"
 text = "CREATE_BACK_BUTTON"
 
-[connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/CrewNameField" to="." method="_on_crew_name_text_changed"]
 [connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/CaptainNameField" to="." method="_on_capitain_name_text_changed"]
 [connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/PortField" to="." method="_on_port_text_changed"]
 [connection signal="pressed" from="GlobalMargin/Center/VBox/StartButton" to="." method="_on_start_button_pressed"]
