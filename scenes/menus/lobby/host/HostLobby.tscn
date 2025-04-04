@@ -122,3 +122,4 @@ text = "CREATE_BACK_BUTTON"
 [connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/CaptainNameField" to="." method="_on_capitain_name_text_changed"]
 [connection signal="text_changed" from="GlobalMargin/Center/VBox/GridContainer/PortField" to="." method="_on_port_text_changed"]
 [connection signal="pressed" from="GlobalMargin/Center/VBox/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/SecondButtons/BackButton" to="." method="_on_back_button_pressed"]

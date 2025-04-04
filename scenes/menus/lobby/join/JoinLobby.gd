@@ -28,7 +28,7 @@ func _on_connected_to_server() -> void:
 	SceneTransition.change_scene("res://scenes/menus/lobby/waiting/WaitingRoom.tscn")
 
 func _connection_failed() -> void:
-	_on_multiplayer_error(-1000)
+	_show_error(-1000)
 	_enable_form(true)
 
 func _on_back_button_pressed() -> void:
@@ -63,7 +63,7 @@ func _join_game(host: String, port: int, player_name: String) -> void:
 		multiplayer.connected_to_server.connect(_on_connected_to_server)
 		multiplayer.connection_failed.connect(_connection_failed)
 	else:
-		_on_multiplayer_error(result)
+		_show_error(result)
 		_enable_form(true)
 
 func _enable_form(enabled: bool) -> void:
@@ -72,7 +72,7 @@ func _enable_form(enabled: bool) -> void:
 	host_field.editable = enabled
 	port_field.editable = enabled
 
-func _on_multiplayer_error(code: int) -> void:
+func _show_error(code: int) -> void:
 	error_label.text = "Failed to join crew, code: %d" % code
 
 #endregion private
