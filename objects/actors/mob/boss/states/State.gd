@@ -13,4 +13,5 @@ func transition() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	transition()
+	if multiplayer.is_server():
+		transition()

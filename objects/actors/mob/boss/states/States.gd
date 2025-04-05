@@ -13,6 +13,8 @@ func _ready() -> void:
 	current_state.enter()
 
 func change_state(new_state: State) -> void:
+	if not multiplayer.is_server(): return
+
 	prints("Boss is changing state from", current_state, "to", new_state)
 	previous_state = current_state
 	current_state = new_state
