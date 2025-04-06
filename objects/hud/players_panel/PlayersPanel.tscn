@@ -9,10 +9,7 @@ script = ExtResource("1_njfp7")
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_type_variation = &"PanelMargin"
 
 [node name="PlayersContainer" type="VBoxContainer" parent="Margin"]
 unique_name_in_owner = true
