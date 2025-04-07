@@ -1,6 +1,6 @@
 [gd_scene load_steps=54 format=3 uid="uid://riml2gwgt1rh"]
 
-[ext_resource type="PackedScene" uid="uid://b3y0j0iqfou0u" path="res://objects/actors/mob/Mob.tscn" id="1_v6bs4"]
+[ext_resource type="PackedScene" path="res://objects/actors/mob/Mob.tscn" id="1_v6bs4"]
 [ext_resource type="PackedScene" uid="uid://brjpcb7460j1d" path="res://components/behavior/targeting/NearestPlayerTargetingBehavior.tscn" id="3_45raj"]
 [ext_resource type="Texture2D" uid="uid://by5yfeftc4s1v" path="res://objects/actors/mob/dummy/DummyMob.png" id="3_53wnf"]
 [ext_resource type="PackedScene" uid="uid://6123kykyglg8" path="res://components/behavior/movement/RunToPlayerMovementBehavior.tscn" id="4_04pgy"]
@@ -120,21 +120,21 @@ region = Rect2(64, 128, 32, 32)
 atlas = ExtResource("3_53wnf")
 region = Rect2(96, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ds62"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_61x8a"]
 atlas = ExtResource("3_53wnf")
-region = Rect2(0, 128, 32, 32)
+region = Rect2(0, 160, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iw7gp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsfck"]
 atlas = ExtResource("3_53wnf")
-region = Rect2(32, 128, 32, 32)
+region = Rect2(32, 160, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v37v4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k5ti"]
 atlas = ExtResource("3_53wnf")
-region = Rect2(64, 128, 32, 32)
+region = Rect2(64, 160, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h5tei"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv510"]
 atlas = ExtResource("3_53wnf")
-region = Rect2(96, 128, 32, 32)
+region = Rect2(96, 160, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lscel"]
 animations = [{
@@ -259,16 +259,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ds62")
+"texture": SubResource("AtlasTexture_61x8a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iw7gp")
+"texture": SubResource("AtlasTexture_nsfck")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v37v4")
+"texture": SubResource("AtlasTexture_7k5ti")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h5tei")
+"texture": SubResource("AtlasTexture_vv510")
 }],
 "loop": true,
 "name": &"MoveUp",
@@ -427,8 +427,9 @@ collision_mask = 3
 [node name="AnimatedSprite" parent="." index="0"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_lscel")
-animation = &"MoveUp"
+animation = &"IdleDown"
 autoplay = "IdleDown"
+frame_progress = 0.995855
 
 [node name="CollisionShape" parent="." index="1"]
 shape = SubResource("CircleShape2D_ba10h")
