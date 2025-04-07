@@ -20,7 +20,8 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
 	multiplayer.connected_to_server.connect(_connected_to_server)
-	multiplayer.connection_failed.connect(_connection_failed)
+	# TODO Virer ça non ? ça devrait être géré par HostLobby ou JoinLobby
+	#multiplayer.connection_failed.connect(_connection_failed)
 	multiplayer.server_disconnected.connect(_server_disconnected)
 
 func _peer_connected(id: int) -> void:
@@ -51,7 +52,11 @@ func _connection_failed() -> void:
 #endregion Client only
 
 #region Lobby management functions.
-@rpc("any_peer")
+func register_me(player_name: String) -> void:
+	self.player_name = player_name
+	_add_player(multiplayer.get_unique_id(), player_name)
+	
+@rpc("any_peer", "reliable")
 func register_player(new_player_name: String) -> void:
 	_add_player(multiplayer.get_remote_sender_id(), new_player_name)
 
@@ -59,6 +64,7 @@ func unregister_player(id: int) -> void:
 	players.erase(id)
 	player_list_changed.emit()
 
+# TODO Supprimer
 func host_game(new_player_name: String) -> void:
 	player_name = new_player_name
 	peer = ENetMultiplayerPeer.new()
@@ -70,6 +76,7 @@ func host_game(new_player_name: String) -> void:
 	else:
 		game_error.emit("Failed to create server. Error code: %d" % result)
 
+# TODO Supprimer
 func join_game(ip: String, new_player_name: String) -> void:
 	player_name = new_player_name
 	peer = ENetMultiplayerPeer.new()
@@ -115,6 +122,7 @@ func _load_island():
 	var island_scene: Node2D = load("res://scenes/levels/islands/Island.tscn").instantiate()
 	get_tree().get_root().add_child(island_scene)
 
+# TODO Rename this to land_on_island()
 func begin_game():
 	_load_island.rpc()
 	_add_player_and_spawn_position()
@@ -147,3 +155,13 @@ func _spawn_players():
 		if player_id == 1:
 			player.on_player_dead.connect(island._on_player_dead)
 #endregion Island management
+
+func get_default_player_name() -> String:
+	#MacOS
+	if OS.has_environment("USER"):
+		return OS.get_environment("USER")
+	#Windows
+	elif OS.has_environment("USERNAME"):
+		return OS.get_environment("USERNAME")
+	else:
+		return "Pirate"
