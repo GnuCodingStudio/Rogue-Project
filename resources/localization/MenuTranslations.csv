@@ -26,6 +26,9 @@ JOIN_HOST,Host,Hôte
 JOIN_PORT,Port,Port
 JOIN_BUTTON,Join,Rejoindre
 JOIN_BACK_BUTTON,BACK,RETOUR
+WAITING_FOR_PLAYERS,Waiting for players,En attente de joueurs
+WAITING_READY_BUTTON,Ready,Prêt(e)
+WAITING_START_BUTTON,Get on board,Embarquer
 WEAPON_CHOICE_MENU,Choose your weapon,Choisis ton arme
 WEAPON_CHOICE_BUTTON,Take,Prendre
 WEAPON_CHOICE_LAND,Land,Débarquer
