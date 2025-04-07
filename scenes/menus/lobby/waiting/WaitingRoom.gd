@@ -10,6 +10,7 @@ const WAITING_PLAYER_PANEL = preload("res://scenes/menus/lobby/waiting/WaitingPl
 func _ready() -> void:
 	if multiplayer.is_server():
 		play_button.text = "WAITING_START_BUTTON"
+		multiplayer.peer_connected.connect(_on_peer_connected)
 	else:
 		play_button.text = "WAITING_READY_BUTTON"
 		play_button.toggle_mode = true
@@ -31,27 +32,33 @@ func _on_players_changed() -> void:
 	if multiplayer.is_server():
 		play_button.disabled = !all_players_ready || players_list.size() <= 1
 
+func _on_peer_connected(id: int) -> void:
+	# We, no-joke, need to wait before sending data to a client who just connected
+	await get_tree().create_timer(1).timeout
+	set_player_ready.rpc_id(id, _ready_players)
+
 func _on_start_button_pressed() -> void:
 	if multiplayer.is_server():
 		start_game.rpc()
 	else:
 		var is_ready = play_button.button_pressed
 		play_button.release_focus()
-		set_ready.rpc(is_ready)
+		send_is_ready.rpc(is_ready)
+
+@rpc("reliable")
+func set_player_ready(ready_ids: Array[int]) -> void:
+	_ready_players.append_array(ready_ids)
+	_on_players_changed()
 
 @rpc("call_local", "reliable")
 func start_game() -> void:
 	SceneTransition.change_scene("res://scenes/map/Map.tscn")
 
 @rpc("any_peer", "call_local", "reliable")
-func set_ready(ready: bool) -> void:
+func send_is_ready(ready: bool) -> void:
 	prints(multiplayer.get_remote_sender_id(), "is ready")
 	if ready:
 		_ready_players.push_back(multiplayer.get_remote_sender_id())
 	else:
 		_ready_players.erase(multiplayer.get_remote_sender_id())
 	_on_players_changed()
-
-# TODO Garder ça ?
-func _sort_by_pseudo(a: PlayerData, b: PlayerData) -> int:
-	return a.pseudo < b.pseudo
