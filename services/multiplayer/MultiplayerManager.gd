@@ -94,6 +94,7 @@ func get_players() -> Array[PlayerData]:
 	for p in players.values():
 		if p is PlayerData:
 			x.push_back(p)
+	x.sort_custom(_sort_by_pseudo)
 	return x
 
 func get_player(id: int) -> PlayerData:
@@ -165,3 +166,6 @@ func get_default_player_name() -> String:
 		return OS.get_environment("USERNAME")
 	else:
 		return "Pirate"
+
+func _sort_by_pseudo(a: PlayerData, b: PlayerData) -> int:
+	return a.pseudo < b.pseudo

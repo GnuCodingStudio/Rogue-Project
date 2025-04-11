@@ -8,3 +8,6 @@ var weapon: String
 func _init(id: int, pseudo: String) -> void:
 	self.id = id
 	self.pseudo = pseudo
+
+func is_server() -> bool:
+	return id == 1

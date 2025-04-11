@@ -1,8 +1,78 @@
-[gd_scene load_steps=4 format=3 uid="uid://dng2fi1m3reag"]
+[gd_scene load_steps=16 format=3 uid="uid://dng2fi1m3reag"]
 
 [ext_resource type="Script" path="res://scenes/menus/lobby/waiting/WaitingRoom.gd" id="1_qwjdv"]
 [ext_resource type="PackedScene" uid="uid://wdqk4jv113lg" path="res://components/uicontrols/UIContols.tscn" id="1_rbuie"]
 [ext_resource type="Material" uid="uid://dygopb8fee5xt" path="res://scenes/menus/MenuBackground.tres" id="2_e7xk1"]
+[ext_resource type="Texture2D" uid="uid://dw5vuo3agm77m" path="res://objects/actors/player/template.png" id="4_l4wnb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3foi"]
+atlas = ExtResource("4_l4wnb")
+region = Rect2(0, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofnvj"]
+atlas = ExtResource("4_l4wnb")
+region = Rect2(64, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylg8v"]
+atlas = ExtResource("4_l4wnb")
+region = Rect2(128, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emr7i"]
+atlas = ExtResource("4_l4wnb")
+region = Rect2(192, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8lfj"]
+atlas = ExtResource("4_l4wnb")
+region = Rect2(256, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag7g4"]
+atlas = ExtResource("4_l4wnb")
+region = Rect2(320, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p703k"]
+atlas = ExtResource("4_l4wnb")
+region = Rect2(384, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eac6r"]
+atlas = ExtResource("4_l4wnb")
+region = Rect2(448, 0, 62, 62)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bprm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3foi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofnvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylg8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emr7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8lfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag7g4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p703k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eac6r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4now6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gehtu"]
+viewport_path = NodePath("SubViewport")
 
 [node name="WaitingRoom" type="Control"]
 layout_mode = 3
@@ -24,36 +94,65 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(64, 64)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_bprm8")
+autoplay = "default"
+frame_progress = 0.128027
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"MenuMargin"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_type_variation = &"BigTitle"
-theme_override_font_sizes/font_size = 40
-text = "Todo Waiting players"
+theme_type_variation = &"SubTitle"
+text = "WAITING_FOR_PLAYERS"
 horizontal_alignment = 1
 
-[node name="PlayersList" type="ItemList" parent="CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 100)
+[node name="HSeparator1" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4now6")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+texture = SubResource("ViewportTexture_gehtu")
+expand_mode = 2
 
-[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4now6")
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Todo Play !"
+text = "WAITING_READY_BUTTON"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[node name="Players" type="GridContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
